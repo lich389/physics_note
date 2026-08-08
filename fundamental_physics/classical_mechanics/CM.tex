@@ -1,0 +1,157 @@
+% main.tex
+\documentclass[12pt,openany]{book}
+
+% 中文支持和 Unicode 编译
+\usepackage[UTF8]{ctex}
+% 数学支持
+\usepackage{amsmath,amssymb,mathtools}
+% 绘图支持
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,patterns,angles,quotes}
+% 页面和超链接
+\usepackage{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\geometry{a4paper,top=30mm,bottom=30mm,left=30mm,right=30mm}
+\setlength{\parskip}{0.8em}
+\setlength{\parindent}{2em}
+
+\title{经典力学}
+\author{LiCheng}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\frontmatter
+\tableofcontents
+\mainmatter
+
+\chapter{绪论}
+
+\section{费马原理}
+费马原理指出：光在同一介质中，从一点到另一点传播的路径，使得光程
+\(S = \int_A^B n\,\mathrm{d}s\)
+取极值。这里的\(n\)是折射率，\(\mathrm{d}s\)是光路元。
+
+对于任意可变曲线\(\mathbf{r}(s)\)，光程的变分为
+\[
+\delta S = \delta \int_A^B n(\mathbf{r})\,\mathrm{d}s = 0,
+\]
+得到光的运动方程。费马原理既可以解释反射现象，也可以解释折射现象。
+
+在折射界面处，光线满足斯涅尔定律：
+\[
+n_1 \sin\theta_1 = n_2 \sin\theta_2,
+\]
+其中\(\theta_1\)和\(\theta_2\)分别是入射角和折射角。
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0,>=Stealth, every node/.style={font=\small}]
+   % 界面和法线
+   \draw[thick] (-3,0) -- (3,0);
+   \draw[dashed] (0,-2) -- (0,2) node[above] {法线};
+   \node at (-2.4,0.25) {介质1 ($n_1$)};
+   \node at (2.4,-0.25) {介质2 ($n_2$)};
+
+   % 入射光线和反射光线
+   \draw[->,red,thick] (-2.5,1.5) -- (0,0) node[midway,above,sloped] {入射光线};
+   \draw[->,blue,thick] (0,0) -- (2.4,-1.0) node[midway,below,sloped] {折射光线};
+
+   % 入射点和角度标记
+   \filldraw[black] (0,0) circle (1.5pt) node[above right] {$P$};
+   \draw[black] (0,0) -- (-0.8,1.2);
+   \draw[black] (0,0) -- (0.8,-1.2);
+   \draw[black] (0,0.4) arc[start angle=90,end angle=150,radius=0.4];
+   \node at (-0.55,0.6) {$\theta_1$};
+   \draw[black] (0,-0.4) arc[start angle=270,end angle=338,radius=0.4];
+   \node at (0.55,-0.6) {$\theta_2$};
+
+   % 光源和目标
+   \node at (-2.5,1.7) {A};
+   \node at (2.4,-1.2) {B};
+\end{tikzpicture}
+\end{center}
+
+若将光程写成积分形式
+\[
+S = \int_A^B n(x,y,z)\sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\,\mathrm{d}t,
+\]
+对路径进行变分，可得到与欧拉-拉格朗日方程类似的光线方程。
+
+费马原理是几何光学的基础之一，与最小作用量原理有形式上的相似性，体现了自然界中“极值原理”的普遍性。
+
+**费马原理**（光沿所需时间为极值的路径传播）推导**折射定律**（斯涅耳定律：\(n_1 \sin\theta_1 = n_2 \sin\theta_2\)），核心就是求时间函数的极值。步骤如下：
+
+**1. 建立几何模型**
+设介质1和2的分界面为水平直线（\(x\)轴），光从介质1中的点 \(A(0, h_1)\) 射向界面上的点 \(P(x, 0)\)，再折射到介质2中的点 \(B(d, -h_2)\)。
+
+**2. 写出总时间函数**
+光速 \(v = c/n\)，总传播时间 \(T\) 为两段路程时间之和：
+\[
+T(x)=\frac{\sqrt{x^2+h_1^2}}{v_1}+\frac{\sqrt{(d-x)^2+h_2^2}}{v_2}
+\]
+
+**3. 应用费马原理（求极值）**
+真实路径满足 \(\frac{dT}{dx}=0\)，对 \(x\) 求导：
+\[
+\frac{dT}{dx}=\frac{x}{v_1\sqrt{x^2+h_1^2}}+\frac{-(d-x)}{v_2\sqrt{(d-x)^2+h_2^2}}=0
+\]
+
+**4. 转化为三角函数**
+观察几何关系：
+- \(\frac{x}{\sqrt{x^2+h_1^2}} = \sin\theta_1\)（入射角）
+- \(\frac{d-x}{\sqrt{(d-x)^2+h_2^2}} = \sin\theta_2\)（折射角）
+
+代入得：
+\[
+\frac{\sin\theta_1}{v_1} - \frac{\sin\theta_2}{v_2} = 0
+\]
+即：
+\[
+\frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2}
+\]
+
+**5. 得到折射定律**
+因为 \(v = c/n\)，代入上式约去 \(c\)，即得：
+\[
+\boxed{n_1 \sin\theta_1 = n_2 \sin\theta_2}
+\]
+如果光在同一均匀介质中遇到平面镜，费马原理也能推出反射定律。设平面镜为 $x$ 轴，光从点 $A(0,h)$ 射到镜面上的点 $P(x,0)$，再到点 $B(d,h)$。由于两段路程都在同一种介质中，传播时间为
+\[
+T(x)=\frac{\sqrt{x^2+h^2}}{v}+\frac{\sqrt{(d-x)^2+h^2}}{v}.
+\]
+由费马原理，真实光路满足 $\d T/\d x=0$，即
+\[
+\frac{dT}{dx}=\frac{x}{v\sqrt{x^2+h^2}}-\frac{d-x}{v\sqrt{(d-x)^2+h^2}}=0.
+\]
+于是
+\[
+\frac{x}{\sqrt{x^2+h^2}}=\frac{d-x}{\sqrt{(d-x)^2+h^2}}.
+\]
+几何上这两个比值分别等于入射角和反射角的正弦，因此
+\[
+\sin\theta_i=\sin\theta_r.
+\]
+在 $0\leq \theta_i,\theta_r\leq \pi/2$ 的范围内，得到
+\[
+\boxed{\theta_i=\theta_r.}
+\]
+这就是反射定律：入射角等于反射角。
+**补充一点**：如果光从光疏进入光密（\(n_2 > n_1\)），根据上式 \(\sin\theta_2 < \sin\theta_1\)，折射角小于入射角，光靠近法线，这与我们的直观认知完全一致。
+
+
+
+\section{虚功原理}
+% \section{变分法}
+
+\input{lag.tex}
+
+
+\input{ham.tex}
+\appendix
+\section{变分法}
+\section{勒让德变换}
+\section{李群基础}
+
+\end{document}
