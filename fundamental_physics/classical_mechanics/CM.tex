@@ -12,6 +12,11 @@
 \usepackage{geometry}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 
+\newcommand{\action}{\mathcal{S}}
+\newcommand{\lag}{\mathcal{L}}
+\newcommand{\ham}{\mathcal{H}}
+\newcommand{\bd}{\mathrm{d}}
+
 \geometry{a4paper,top=30mm,bottom=30mm,left=30mm,right=30mm}
 \setlength{\parskip}{0.8em}
 \setlength{\parindent}{2em}
@@ -28,17 +33,40 @@
 \mainmatter
 
 \chapter{绪论}
+经典力学是整个物理学的基础，也是其核心骨干。它不仅是牛顿力学的延伸和发展，而且是整个量子力学、相对论以及量子场论等现代物理理论最坚实的基石。经典的牛顿力学从力的概念出发，分析并推导出宏观物体的运动规律，在揭示自然界宏观物体的运动规律方面取得了巨大的成功。然而在年拉格朗日提出分析力学，经典力学不再依赖于力的概念，而是能从更本质的角度去理解物理规律。其最小作用量原理更是揭示了自然界中最基本的第一性原理，以至于在现代物理中的广义相对论和量子场论都有着深刻的体现。
 
-\section{费马原理}
-费马原理指出：光在同一介质中，从一点到另一点传播的路径，使得光程
-\(S = \int_A^B n\,\mathrm{d}s\)
-取极值。这里的\(n\)是折射率，\(\mathrm{d}s\)是光路元。
 
-对于任意可变曲线\(\mathbf{r}(s)\)，光程的变分为
-\[
-\delta S = \delta \int_A^B n(\mathbf{r})\,\mathrm{d}s = 0,
-\]
-得到光的运动方程。费马原理既可以解释反射现象，也可以解释折射现象。
+\section{Fermat原理}
+
+从最早的光学研究中，光实际上被视为一种粒子，而其光粒子的运动路径被认为总是沿着光程最短的路径传播，也就是所谓的Fermat原理，在数学上我们可以表示为
+\begin{equation}
+   \delta \action = \delta \int \bd s =0
+\end{equation}
+其中\(\bd s\)是光程元。而对总光程的$\delta\action=0$则视为取极值的数学操作，也称之为变分法。对于真空中无介质无遮挡的情况，光则会沿着直线行径，这便是几何光学的基础。实际上这里的光程也可以表示为特定时间以真空中光速走过的路程$s = ct$，由于真空中光速为常数，因此光程可以写为
+\begin{equation}
+   \action = c\int \bd t %= \int\bd\left( n(\boldsymbol{r}) \boldsymbol{v}t \right)
+\end{equation}
+由此可见Fermat原理也可表述为光沿最快的路径传播。
+
+当我们考虑光在均一介质中从A点经过反射后到达B点的情况，而反射的位置以及经过的路程不定时，经过的光程可以表示为
+\begin{equation}
+   \action = c\int_A^B \bd t = c\left(\frac{\sqrt{x^2 + h^2}}{v} + \frac{\sqrt{(L-x)^2+h^2}}{v} \right)
+\end{equation}
+那么对光程取变分可以转为对变量$x$求变分，可得
+\begin{equation}
+   \begin{split}
+   \delta\action &=\frac{\partial\action}{\partial x}\Big|^A_B ~~\delta x = \frac{c}{v}\left( \frac{x}{\sqrt{x^2 + h^2}} - \frac{L-x}{\sqrt{(L-x)^2+h^2}} \right)\delta x=0
+   \\&=\frac{c}{v}(\sin\theta_i - \sin\theta_r)\delta x=0
+   \end{split}
+\end{equation}
+由此我们可以推导出反射定律
+\begin{equation}
+   \sin\theta_i = \sin\theta_r
+\end{equation}
+
+
+然而在介质中光速会发生变化，光程也会随之发生变化。对于不同介质的折射率\(n\)，光速\(v=\frac{c}{n}\)。
+
 
 在折射界面处，光线满足斯涅尔定律：
 \[
@@ -73,76 +101,79 @@ n_1 \sin\theta_1 = n_2 \sin\theta_2,
 \end{tikzpicture}
 \end{center}
 
-若将光程写成积分形式
-\[
-S = \int_A^B n(x,y,z)\sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\,\mathrm{d}t,
-\]
-对路径进行变分，可得到与欧拉-拉格朗日方程类似的光线方程。
+% 若将光程写成积分形式
+% \[
+% S = \int_A^B n(x,y,z)\sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\,\mathrm{d}t,
+% \]
+% 对路径进行变分，可得到与欧拉-拉格朗日方程类似的光线方程。
 
-费马原理是几何光学的基础之一，与最小作用量原理有形式上的相似性，体现了自然界中“极值原理”的普遍性。
+% 费马原理是几何光学的基础之一，与最小作用量原理有形式上的相似性，体现了自然界中“极值原理”的普遍性。
 
-**费马原理**（光沿所需时间为极值的路径传播）推导**折射定律**（斯涅耳定律：\(n_1 \sin\theta_1 = n_2 \sin\theta_2\)），核心就是求时间函数的极值。步骤如下：
+% **Fermat原理**（光沿所需时间为极值的路径传播）推导**折射定律**（斯涅耳定律：\(n_1 \sin\theta_1 = n_2 \sin\theta_2\)），核心就是求时间函数的极值。步骤如下：
 
-**1. 建立几何模型**
-设介质1和2的分界面为水平直线（\(x\)轴），光从介质1中的点 \(A(0, h_1)\) 射向界面上的点 \(P(x, 0)\)，再折射到介质2中的点 \(B(d, -h_2)\)。
+% **1. 建立几何模型**
+% 设介质1和2的分界面为水平直线（\(x\)轴），光从介质1中的点 \(A(0, h_1)\) 射向界面上的点 \(P(x, 0)\)，再折射到介质2中的点 \(B(d, -h_2)\)。
 
-**2. 写出总时间函数**
-光速 \(v = c/n\)，总传播时间 \(T\) 为两段路程时间之和：
-\[
-T(x)=\frac{\sqrt{x^2+h_1^2}}{v_1}+\frac{\sqrt{(d-x)^2+h_2^2}}{v_2}
-\]
+% **2. 写出总时间函数**
+% 光速 \(v = c/n\)，总传播时间 \(T\) 为两段路程时间之和：
+% \[
+% T(x)=\frac{\sqrt{x^2+h_1^2}}{v_1}+\frac{\sqrt{(d-x)^2+h_2^2}}{v_2}
+% \]
 
-**3. 应用费马原理（求极值）**
-真实路径满足 \(\frac{dT}{dx}=0\)，对 \(x\) 求导：
-\[
-\frac{dT}{dx}=\frac{x}{v_1\sqrt{x^2+h_1^2}}+\frac{-(d-x)}{v_2\sqrt{(d-x)^2+h_2^2}}=0
-\]
+% **3. 应用费马原理（求极值）**
+% 真实路径满足 \(\frac{dT}{dx}=0\)，对 \(x\) 求导：
+% \[
+% \frac{dT}{dx}=\frac{x}{v_1\sqrt{x^2+h_1^2}}+\frac{-(d-x)}{v_2\sqrt{(d-x)^2+h_2^2}}=0
+% \]
 
-**4. 转化为三角函数**
-观察几何关系：
-- \(\frac{x}{\sqrt{x^2+h_1^2}} = \sin\theta_1\)（入射角）
-- \(\frac{d-x}{\sqrt{(d-x)^2+h_2^2}} = \sin\theta_2\)（折射角）
+% **4. 转化为三角函数**
+% 观察几何关系：
+% - \(\frac{x}{\sqrt{x^2+h_1^2}} = \sin\theta_1\)（入射角）
+% - \(\frac{d-x}{\sqrt{(d-x)^2+h_2^2}} = \sin\theta_2\)（折射角）
 
-代入得：
-\[
-\frac{\sin\theta_1}{v_1} - \frac{\sin\theta_2}{v_2} = 0
-\]
-即：
-\[
-\frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2}
-\]
+% 代入得：
+% \[
+% \frac{\sin\theta_1}{v_1} - \frac{\sin\theta_2}{v_2} = 0
+% \]
+% 即：
+% \[
+% \frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2}
+% \]
 
-**5. 得到折射定律**
-因为 \(v = c/n\)，代入上式约去 \(c\)，即得：
-\[
-\boxed{n_1 \sin\theta_1 = n_2 \sin\theta_2}
-\]
-如果光在同一均匀介质中遇到平面镜，费马原理也能推出反射定律。设平面镜为 $x$ 轴，光从点 $A(0,h)$ 射到镜面上的点 $P(x,0)$，再到点 $B(d,h)$。由于两段路程都在同一种介质中，传播时间为
-\[
-T(x)=\frac{\sqrt{x^2+h^2}}{v}+\frac{\sqrt{(d-x)^2+h^2}}{v}.
-\]
-由费马原理，真实光路满足 $\d T/\d x=0$，即
-\[
-\frac{dT}{dx}=\frac{x}{v\sqrt{x^2+h^2}}-\frac{d-x}{v\sqrt{(d-x)^2+h^2}}=0.
-\]
-于是
-\[
-\frac{x}{\sqrt{x^2+h^2}}=\frac{d-x}{\sqrt{(d-x)^2+h^2}}.
-\]
-几何上这两个比值分别等于入射角和反射角的正弦，因此
-\[
-\sin\theta_i=\sin\theta_r.
-\]
-在 $0\leq \theta_i,\theta_r\leq \pi/2$ 的范围内，得到
-\[
-\boxed{\theta_i=\theta_r.}
-\]
-这就是反射定律：入射角等于反射角。
-**补充一点**：如果光从光疏进入光密（\(n_2 > n_1\)），根据上式 \(\sin\theta_2 < \sin\theta_1\)，折射角小于入射角，光靠近法线，这与我们的直观认知完全一致。
+% **5. 得到折射定律**
+% 因为 \(v = c/n\)，代入上式约去 \(c\)，即得：
+% \[
+% \boxed{n_1 \sin\theta_1 = n_2 \sin\theta_2}
+% \]
+% 如果光在同一均匀介质中遇到平面镜，费马原理也能推出反射定律。设平面镜为 $x$ 轴，光从点 $A(0,h)$ 射到镜面上的点 $P(x,0)$，再到点 $B(d,h)$。由于两段路程都在同一种介质中，传播时间为
+% \[
+% T(x)=\frac{\sqrt{x^2+h^2}}{v}+\frac{\sqrt{(d-x)^2+h^2}}{v}.
+% \]
+% 由费马原理，真实光路满足 $\d T/\d x=0$，即
+% \[
+% \frac{dT}{dx}=\frac{x}{v\sqrt{x^2+h^2}}-\frac{d-x}{v\sqrt{(d-x)^2+h^2}}=0.
+% \]
+% 于是
+% \[
+% \frac{x}{\sqrt{x^2+h^2}}=\frac{d-x}{\sqrt{(d-x)^2+h^2}}.
+% \]
+% 几何上这两个比值分别等于入射角和反射角的正弦，因此
+% \[
+% \sin\theta_i=\sin\theta_r.
+% \]
+% 在 $0\leq \theta_i,\theta_r\leq \pi/2$ 的范围内，得到
+% \[
+% \boxed{\theta_i=\theta_r.}
+% \]
+% 这就是反射定律：入射角等于反射角。
+% **补充一点**：如果光从光疏进入光密（\(n_2 > n_1\)），根据上式 \(\sin\theta_2 < \sin\theta_1\)，折射角小于入射角，光靠近法线，这与我们的直观认知完全一致。
 
+Maupertuis原理
+\begin{equation}
+   \action =\int p~\mathrm{d}s
+\end{equation}
 
-
-\section{虚功原理}
+\section{d'Alembert原理}
 % \section{变分法}
 
 \input{lag.tex}
@@ -150,8 +181,8 @@ T(x)=\frac{\sqrt{x^2+h^2}}{v}+\frac{\sqrt{(d-x)^2+h^2}}{v}.
 
 \input{ham.tex}
 \appendix
-\section{变分法}
-\section{勒让德变换}
-\section{李群基础}
+\chapter{变分法}
+\chapter{Legendre变换}
+\chapter{Lie群及Lie代数基础}
 
 \end{document}
