@@ -1,27 +1,9 @@
 \documentclass[12pt,openany]{book}
 
-% 中文支持和 Unicode 编译
-\usepackage[UTF8]{ctex}
-% 数学支持
-\usepackage{amsmath,amssymb,mathtools}
-% 绘图支持
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,decorations.pathmorphing,patterns,angles,quotes}
-% 页面和超链接
-\usepackage{geometry}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-
-\newcommand{\action}{\mathcal{S}}
-\newcommand{\lag}{\mathcal{L}}
-\newcommand{\ham}{\mathcal{H}}
-\newcommand{\bd}{\mathrm{d}}
-
-\geometry{a4paper,top=30mm,bottom=30mm,left=30mm,right=30mm}
-\setlength{\parskip}{0.8em}
-\setlength{\parindent}{2em}
+\input{predef.tex}
 
 \title{经典力学}
-\author{LiCheng}
+\author{Li Cheng}
 \date{\today}
 
 \begin{document}
@@ -32,22 +14,34 @@
 \mainmatter
 
 \chapter{绪论}
-经典力学是整个物理学的基础，也是其核心骨干。它不仅是牛顿力学的延伸和发展，而且是整个量子力学、相对论以及量子场论等现代物理理论最坚实的基石。经典的牛顿力学从力的概念出发，分析并推导出宏观物体的运动规律，在揭示自然界宏观物体的运动规律方面取得了巨大的成功。然而在年拉格朗日提出分析力学，经典力学不再依赖于力的概念，而是能从更本质的角度去理解物理规律。其最小作用量原理更是揭示了自然界中最基本的第一性原理，以至于在现代物理中的广义相对论和量子场论都有着深刻的体现。
+\label{chap:intro}
+如果说要问，物理学究竟是怎样的一个学科？物理学究竟在做什么？那么我想最简单的回答就是，物理学是研究自然界中物质运动规律的学科。然而如何去描述物质的运动规律？以什么样的框架和语言去描述？毫无疑问，经典力学是整个物理学的基础框架，也是其核心骨干，哪怕现代的物理学早已发展出与经典力学诞生时完全不同的研究背景。
+它不仅是牛顿力学的延伸和发展，而且是整个量子力学、相对论以及量子场论等现代物理理论最坚实的基石。
+经典的牛顿力学从力的概念出发，分析并推导出宏观物体的运动规律，在揭示自然界宏观物体的运动规律方面取得了巨大的成功。然而在17世纪拉格朗日提出分析力学，经典力学不再依赖于力的概念，而是能从更本质的角度去理解物理规律。其最小作用量原理更是揭示了自然界中最基本的第一性原理，以至于在现代物理中的广义相对论和量子场论都有着深刻的体现。关于经典力学的系统发展与数学结构，可参考Goldstein等人的经典论述\cite{landau1976, goldstein2002}。
 
 
 \section{Fermat原理}
+\label{sec:fermat}
 
-从最早的光学研究中，光实际上被视为一种粒子，而其光粒子的运动路径被认为总是沿着光程最短的路径传播，也就是所谓的Fermat原理，在数学上我们可以表示为
+从最早的光学研究中，光实际上被视为一种粒子，但是从粒子的角度，又难以对光子进行受力分析，以预测计算其路径。对光子路径的描述则选择另辟蹊径，抛弃了Newtonian力学的从起点位置速度解微分方程的方法，而是假设起点和终点已经确定，去求解中间可能经过的路径。
+直觉告诉我们，光似乎总是沿着光程最短的路径传播，那么这意味着我们可以从两点之间寻找光程最短的路程，从而求解到光的实际传播路径，这也就是所谓的Fermat原理，在数学上我们可以表示为
 \begin{equation}
-   \delta \action = \delta \int \bd s =0
+   \delta \action = \delta \int \bd s =0\label{eq:fermat}
 \end{equation}
-其中\(\bd s\)是光程元。而对总光程的$\delta\action=0$则视为取极值的数学操作，也称之为变分法。对于真空中无介质无遮挡的情况，光则会沿着直线行径，这便是几何光学的基础。实际上这里的光程也可以表示为特定时间以真空中光速走过的路程$s = ct$，由于真空中光速为常数，因此光程可以写为
+其中\(\bd s\)是光程元。而对总光程的$\delta\action=0$则视为取极值的数学操作，也称之为变分法（在附录\ref{sec:variation}中我们将具体介绍）。由此我们可以通过这种变分法来求解光子实际经过的路径。这里的光程实际上表示为特定时间光子以真空中光速走过的路程$s = ct$，由于真空中光速为常数，因此光程可以写为
 \begin{equation}
    \action = c\int \bd t %= \int\bd\left( n(\boldsymbol{r}) \boldsymbol{v}t \right)
 \end{equation}
-由此可见Fermat原理也可表述为光沿最快的路径传播。
+由此可见Fermat原理也可表述为光沿最快的路径传播。对于平直时空的真空中无介质无遮挡的情况，光速为常数时，且最短路径为直线，我们其实很容易得出结论光会沿着直线行径，这便是几何光学的基础。值得注意的是，Fermat原理并不是一条推论，而是一个基于假设构建出的第一性原理，我们无法通过推导，甚至实验去验证其真实性（因为哥德尔不完备定律），我们只能认为这个原理符合直觉，并一直正确，从而去推导其它所以的推论。
+接下来我将展示如何使用Fermat原理来推导一些光学中最基本的定律。
 
-当我们考虑光在均一介质中从A点经过反射后到达B点的情况，而反射的位置以及经过的路程不定时，经过的光程可以表示为
+\begin{figure}
+   \centering 
+\input{figs/refl.tex}
+\label{fig:refl}
+\caption{从A点出发经过面反射到达同样高度的B点}
+\end{figure}
+当我们考虑光在均一介质中从A点经过反射后到达B点的情况（图\ref{fig:refl}），而反射的位置以及经过的路程不定时，经过的光程可以表示为
 \begin{equation}
    \action = c\int_A^B \bd t = c\left(\frac{\sqrt{x^2 + h^2}}{v} + \frac{\sqrt{(L-x)^2+h^2}}{v} \right)
 \end{equation}
@@ -64,124 +58,68 @@
 \end{equation}
 
 
-然而在介质中光速会发生变化，光程也会随之发生变化。对于不同介质的折射率\(n\)，光速\(v=\frac{c}{n}\)。
+然而在介质中光速会发生变化，光程也会随之发生变化。对于不同介质的折射率\(n\)，光速\(v=\frac{c}{n}\)。因此，总光程也可以写为
+\begin{equation}
+   \action = \int n(\boldsymbol{r})\bd s\label{eq:fermat_n}
+\end{equation}
+当光子经过不同介质的折射时（如图\ref{fig:refr}所示），光程可以表示为
+\begin{equation}
+   \begin{split}
+   \action = \int_A^B \bd s &= c\left(\frac{\sqrt{x^2 + h_1^2}}{v_1} + \frac{\sqrt{(L-x)^2+h_2^2}}{v_2} \right) \\&= \left(n_1{\sqrt{x^2 + h_1^2}} + n_2{\sqrt{(L-x)^2+h_2^2}} \right)
+   \end{split}
+\end{equation}
+对光程取变分可得
+\begin{equation}
+   \begin{split}
+   \delta\action &=\frac{\partial\action}{\partial x}\Big|^A_B ~~\delta x = \left( \frac{n_1 x}{\sqrt{x^2 + h_1^2}} - \frac{n_2 (L-x)}{\sqrt{(L-x)^2+h_2^2}} \right)\delta x=0
+   \\&= (n_1\sin\theta_1 - n_2\sin\theta_2)\delta x=0
+   \end{split}
+\end{equation}
+由此我们可以推导出折射定律
+\begin{equation}
+   n_1\sin\theta_1 = n_2\sin\theta_2
+\end{equation}
+\begin{figure}
+   \centering\input{figs/refr.tex}
+\label{fig:refr}
+\caption{从A点出发经过面折射到达B点}
+\end{figure}
 
-
-在折射界面处，光线满足斯涅尔定律：
-\[
-n_1 \sin\theta_1 = n_2 \sin\theta_2,
-\]
-其中\(\theta_1\)和\(\theta_2\)分别是入射角和折射角。
-
-\begin{center}
-\begin{tikzpicture}[scale=1.0,>=Stealth, every node/.style={font=\small}]
-   % 界面和法线
-   \draw[thick] (-3,0) -- (3,0);
-   \draw[dashed] (0,-2) -- (0,2) node[above] {法线};
-   \node at (-2.4,0.25) {介质1 ($n_1$)};
-   \node at (2.4,-0.25) {介质2 ($n_2$)};
-
-   % 入射光线和反射光线
-   \draw[->,red,thick] (-2.5,1.5) -- (0,0) node[midway,above,sloped] {入射光线};
-   \draw[->,blue,thick] (0,0) -- (2.4,-1.0) node[midway,below,sloped] {折射光线};
-
-   % 入射点和角度标记
-   \filldraw[black] (0,0) circle (1.5pt) node[above right] {$P$};
-   \draw[black] (0,0) -- (-0.8,1.2);
-   \draw[black] (0,0) -- (0.8,-1.2);
-   \draw[black] (0,0.4) arc[start angle=90,end angle=150,radius=0.4];
-   \node at (-0.55,0.6) {$\theta_1$};
-   \draw[black] (0,-0.4) arc[start angle=270,end angle=338,radius=0.4];
-   \node at (0.55,-0.6) {$\theta_2$};
-
-   % 光源和目标
-   \node at (-2.5,1.7) {A};
-   \node at (2.4,-1.2) {B};
-\end{tikzpicture}
-\end{center}
-
-% 若将光程写成积分形式
-% \[
-% S = \int_A^B n(x,y,z)\sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\,\mathrm{d}t,
-% \]
-% 对路径进行变分，可得到与欧拉-拉格朗日方程类似的光线方程。
-
-% 费马原理是几何光学的基础之一，与最小作用量原理有形式上的相似性，体现了自然界中“极值原理”的普遍性。
-
-% **Fermat原理**（光沿所需时间为极值的路径传播）推导**折射定律**（斯涅耳定律：\(n_1 \sin\theta_1 = n_2 \sin\theta_2\)），核心就是求时间函数的极值。步骤如下：
-
-% **1. 建立几何模型**
-% 设介质1和2的分界面为水平直线（\(x\)轴），光从介质1中的点 \(A(0, h_1)\) 射向界面上的点 \(P(x, 0)\)，再折射到介质2中的点 \(B(d, -h_2)\)。
-
-% **2. 写出总时间函数**
-% 光速 \(v = c/n\)，总传播时间 \(T\) 为两段路程时间之和：
-% \[
-% T(x)=\frac{\sqrt{x^2+h_1^2}}{v_1}+\frac{\sqrt{(d-x)^2+h_2^2}}{v_2}
-% \]
-
-% **3. 应用费马原理（求极值）**
-% 真实路径满足 \(\frac{dT}{dx}=0\)，对 \(x\) 求导：
-% \[
-% \frac{dT}{dx}=\frac{x}{v_1\sqrt{x^2+h_1^2}}+\frac{-(d-x)}{v_2\sqrt{(d-x)^2+h_2^2}}=0
-% \]
-
-% **4. 转化为三角函数**
-% 观察几何关系：
-% - \(\frac{x}{\sqrt{x^2+h_1^2}} = \sin\theta_1\)（入射角）
-% - \(\frac{d-x}{\sqrt{(d-x)^2+h_2^2}} = \sin\theta_2\)（折射角）
-
-% 代入得：
-% \[
-% \frac{\sin\theta_1}{v_1} - \frac{\sin\theta_2}{v_2} = 0
-% \]
-% 即：
-% \[
-% \frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2}
-% \]
-
-% **5. 得到折射定律**
-% 因为 \(v = c/n\)，代入上式约去 \(c\)，即得：
-% \[
-% \boxed{n_1 \sin\theta_1 = n_2 \sin\theta_2}
-% \]
-% 如果光在同一均匀介质中遇到平面镜，费马原理也能推出反射定律。设平面镜为 $x$ 轴，光从点 $A(0,h)$ 射到镜面上的点 $P(x,0)$，再到点 $B(d,h)$。由于两段路程都在同一种介质中，传播时间为
-% \[
-% T(x)=\frac{\sqrt{x^2+h^2}}{v}+\frac{\sqrt{(d-x)^2+h^2}}{v}.
-% \]
-% 由费马原理，真实光路满足 $\d T/\d x=0$，即
-% \[
-% \frac{dT}{dx}=\frac{x}{v\sqrt{x^2+h^2}}-\frac{d-x}{v\sqrt{(d-x)^2+h^2}}=0.
-% \]
-% 于是
-% \[
-% \frac{x}{\sqrt{x^2+h^2}}=\frac{d-x}{\sqrt{(d-x)^2+h^2}}.
-% \]
-% 几何上这两个比值分别等于入射角和反射角的正弦，因此
-% \[
-% \sin\theta_i=\sin\theta_r.
-% \]
-% 在 $0\leq \theta_i,\theta_r\leq \pi/2$ 的范围内，得到
-% \[
-% \boxed{\theta_i=\theta_r.}
-% \]
-% 这就是反射定律：入射角等于反射角。
-% **补充一点**：如果光从光疏进入光密（\(n_2 > n_1\)），根据上式 \(\sin\theta_2 < \sin\theta_1\)，折射角小于入射角，光靠近法线，这与我们的直观认知完全一致。
-
-Maupertuis原理
+由此可见，我们只需通过简单的变分法，基于Fermat原理就可以推导出光学中最基本的反射定律和折射定律。到此为止，光学的故事就差不多结束了，因为光学之后的故事则是沿着波动性的方向继续叙事下去，然而我们对于“力学”的故事却还远没有结束。
+那么我们也会想如何将这种方法推广到更普适的粒子运动规律中去呢？我们在现代物理学的中实际上认识的光子是一种无质量的粒子，而其动量也与它的波长相关，在不损失能量的情况下，光子动量通常为常数，在求极值时并不产生影响。因而对于有质量的粒子来说，我们需要引入动量相关的贡献。
+我们可以想象，如果粒子没有损失动量，那么它将会和光子一样沿直线传播，而如果粒子发生了碰撞损失了动量，就会像光碰到不同介质发生折射一样，其运动路径也因此发生偏折，因此我们可以类比\eqref{eq:fermat_n}式，将其中的折射率替换成动量，构造出新的$\action$，即为
 \begin{equation}
    \action =\int p~\mathrm{d}s
 \end{equation}
+这里的$\action$已经不再为实际的“光程”，而是一种更抽象的称之为作用量的物理量，我们会认为粒子运动的路径是沿着作用量取极值的路径，这便是Maupertuis原理。
 
-\section{d'Alembert原理}
+\section{虚功原理}
 % \section{变分法}
+
+\begin{equation}
+   \delta W = 0
+\end{equation}
+
+d'Alembert 原理
+\begin{equation}
+   (\boldsymbol{F} - m\ddot{\boldsymbol{r}})\cdot\delta\boldsymbol{r}=0
+\end{equation}
 
 \input{lag.tex}
 
 
 \input{ham.tex}
+\backmatter
+\bibliographystyle{plain}
+\bibliography{refs}
+
 \appendix
-\chapter{变分法}
-\chapter{Legendre变换}
-\chapter{Lie群及Lie代数基础}
+\chapter{附录}
+\section{变分法}
+\label{sec:variation}
+\section{Legendre变换}
+\label{sec:legendre}
+\section{Lie群及Lie代数基础}
+\label{sec:lie}
 
 \end{document}
