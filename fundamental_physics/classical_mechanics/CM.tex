@@ -91,7 +91,16 @@
 \begin{equation}
    \action =\int p~\mathrm{d}s
 \end{equation}
-这里的$\action$已经不再为实际的“光程”，而是一种更抽象的称之为作用量的物理量，我们会认为粒子运动的路径是沿着作用量取极值的路径，这便是Maupertuis原理。
+这里的$\action$已经不再为实际的“光程”，而是一种更抽象的称之为作用量的物理量，我们会认为粒子运动的路径是沿着这种作用量取极值的路径，这便是Maupertuis原理。
+在此基础上，我们可以继续推导，将对路径的积分转化为对时间的积分
+\begin{equation}
+   \begin{split}
+   \action &= \int p~\bd d = \int mv \frac{\bd s}{\bd t}\bd t = \int mv^2 ~\bd t\\&=\int 2 T~\bd t
+   \end{split}
+\end{equation}
+这时，作用量可以看成是动能对时间的积分。因此我们也可以认为，真实的路径会选择一条动能累积最小的路径。
+
+至此，我们已经逐渐接近真正的分析力学了，然而目前的作用量只对应了我们只考虑惯性系且不存在外力的情况，还不能够描述更普适泛用的情形。而目前我们缺乏考虑的正是“外力”这一因素，因此下一节我们转而去用变分的角度去思考“外力”。
 
 \section{虚功原理}
 % \section{变分法}
@@ -114,12 +123,11 @@ d'Alembert 原理
 \bibliography{refs}
 
 \appendix
-\chapter{附录}
-\section{变分法}
+\chapter{变分法}
 \label{sec:variation}
-\section{Legendre变换}
+\chapter{Legendre变换}
 \label{sec:legendre}
-\section{Lie群及Lie代数基础}
+\chapter{Lie群及Lie代数基础}
 \label{sec:lie}
 
 \end{document}
