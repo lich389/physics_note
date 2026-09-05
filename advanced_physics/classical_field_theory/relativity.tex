@@ -3,7 +3,7 @@
 \input{predef.tex}
 
 \author{Cheng Li}
-\title{\textbf{{\Huge 经典场论}}}
+\title{\textbf{{\Huge 经典场论}}\\{\normalsize 相对论与宇宙学}}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -20,18 +20,19 @@
 如果在一个参考系中，一个不受外力作用的物体保持静止或做匀速直线运动，这个参考系就称为\textbf{惯性参考系}。
 \end{quote}
 经验表明，惯性参考系是存在的，并且不止一个。在经典力学中，所用的惯性系可以通过Galilean变换相互转换。然而人们在经典力学中会尝试寻找一个绝对静止的参考系，但是20世纪的Michelson-Morley实验表明，并不存在这样一个绝对静止的参考系，因此我们可以做出相对性原理的假设，其核心表述为：
-\begin{quote}
-\textbf{相对性原理}：\textit{所有自然定律在所有惯性参考系中都具有相同的形式。}
-\end{quote}
+\begin{theorem}[相对性原理]
+所有自然定律在所有惯性参考系中都具有相同的形式。
+\end{theorem}
 换句话说，不存在任何一个特殊的、绝对优越的惯性系。我们不能通过任何物理实验来判断自己是“绝对静止”还是“绝对运动”，只能判断两个惯性系之间的相对运动。
 由此我们可以给出推论
 \begin{quote}
 不存在绝对空间，也不存在绝对时间；只有相对运动才有物理意义。
 \end{quote}
 
-\begin{quote}
-\textbf{光速不变原理}：\textit{存在一个最大的相互作用传播速度，它在所有惯性参考系中都具有相同的数值。}
-\end{quote}
+\begin{theorem}[光速不变原理]
+    存在一个最大的相互作用传播速度，它在所有惯性参考系中都具有相同的数值。
+\end{theorem}
+
 
 这个最大速度通常记为 \(c\)，它在数值上等于真空中的光速。因此这一原理通常称为“光速不变原理”。这个原理并不只是关于光本身的特殊性质，而是关于自然界中一切相互作用传播的普遍限制。光之所以重要，只是因为它是我们已知的、以这个极限速度传播的物理实体之一。
 光速不变原理首先意味着：任何物理相互作用的传播速度都不能超过 \(c\)。也就是说，不存在瞬时超距作用。信号、能量、动量以及因果影响的传递速度都被限制在 \(c\) 以内。
@@ -133,15 +134,15 @@ t = \frac{t' + \beta x'/c}{\gamma}.
 
 即可以用待定参数$\alpha$来表达
 \begin{equation}
-    \action = -\alpha\int\bd s = -\alpha\int\sqrt{-g_{\mu\nu}\bd x^\mu \bd x^\nu} = -\alpha\int \sqrt{-g_{\mu\nu}\frac{\bd x^\mu}{\bd\tau}\frac{\bd x^\nu}{\bd\tau}}\bd\tau
+    \action = -\alpha\int\bd s = -\alpha\int\sqrt{-g_{\mu\nu}\bd x^\mu \bd x^\nu} = -\alpha\int \sqrt{-g_{\mu\nu}\frac{\bd x^\mu}{\bd t}\frac{\bd x^\nu}{\bd t}}\bd t
 \end{equation}
-其中对于速度项
+其中对于广义速度项，即为四维时空坐标在特定参考系下对参考系时间的导数
 \begin{equation}
-    \frac{\bd x^\mu}{\bd \tau} = (c, ~\boldsymbol{v}), \qquad\frac{\bd x^\mu}{\bd \tau}\frac{\bd x_\mu}{\bd \tau} = c^2-v^2
+    \frac{\bd x^\mu}{\bd t} = \dot x^\mu = (c, ~\boldsymbol{v}), \qquad\frac{\bd x^\mu}{\bd t}\frac{\bd x_\mu}{\bd t} =\dot x^\mu \dot x_\mu= v^2 -c^2\label{eq:gen_vel}
 \end{equation}
 因此我们可得
 \begin{equation}
-    \action =  -\alpha c \int\sqrt{1-\frac{v^2}{c^2}} \bd \tau
+    \action =  -\alpha c \int\sqrt{1-\frac{v^2}{c^2}} \bd t
 \end{equation}
 其中带入固有时的关系。这样我们可得相对论性粒子的Lagrangian
 \begin{equation}
@@ -153,81 +154,159 @@ t = \frac{t' + \beta x'/c}{\gamma}.
 \end{equation}
 为了使其在低速情形回归到经典力学Lagrangian，我们取$\alpha = m c$， 因此
 \begin{equation}
-     \lag = -m c^2\sqrt{1-\frac{v^2}{c^2}}
+     \lag = -m c^2\sqrt{1-\frac{v^2}{c^2}} = -mc\sqrt{-\dot x^\mu \dot x_\mu}
+\end{equation}
+对于作用量，我们可以对$\dot x_\mu$作变分
+\begin{equation}
+    \delta\action = \int\bd\tau~\frac{mc\,\dot x^\mu\delta(\dot x_\mu)}{\sqrt{-\dot x^\mu \dot x_\mu}}=\int\bd\tau \frac{\bd}{\bd\tau}\left( \frac{mc \dot x^\mu}{\sqrt{-\dot x^\mu \dot x_\mu}} \right)\delta x_\mu = 0
+\end{equation}
+得到相对论性粒子的运动方程
+\begin{equation}
+    \frac{\bd}{\bd\tau}\left( \frac{mc \dot x^\mu}{\sqrt{-\dot x^\mu \dot x_\mu}} \right) = 0
 \end{equation}
 
-
-对于无质量粒子，解决上述问题的方法是引入一个辅助变量 \(e(\tau)\)，称为\textbf{einbein}。考虑作用量
+我们可以得到广义动量
 \begin{equation}
-    \action =  \int \bd\tau \left[ \frac{1}{2e} g_{\mu\nu}\frac{\bd x^\mu}{\bd\tau}\frac{\bd x^\nu}{\bd\tau} \right],
+    p^\mu = \frac{\partial\lag}{\partial \dot x_\mu} = \frac{m\dot x^\mu c}{\sqrt{-\dot x^\mu \dot x_\mu}} = \frac{m\dot x^\mu}{\sqrt{1-\frac{v^2}{c^2}}} = \gamma m \dot x^\mu
+\end{equation}
+这个动量则称为四动量，是我们描述相对论粒子的重要物理量，同时运动方程也可以写为
+\begin{equation}
+    \frac{\bd p^\mu}{\bd t} = 0
+\end{equation}
+由\eqref{eq:gen_vel}式，我们可以看出，四动量的模长可以为恒定值，同时也是Lorentz不变量，即
+\begin{equation}
+    p^\mu p_\mu = - m^2 c^2
+\end{equation}
+
+除此之外，我们可以通过对广义动量的空间分量作Legendre变换，得到另一个运动积分
+\begin{equation}
+    \boldsymbol{p}\cdot\boldsymbol{v} - \lag =  \frac{m \boldsymbol{v}^2}{\sqrt{1-\frac{v^2}{c^2}}} + mc^2\sqrt{1-\frac{v^2}{c^2}}  = \frac{m c^2}{\sqrt{1-\frac{v^2}{c^2}}}= \gamma m c^2  = E
+\end{equation}
+这便是相对论形式的能量，同时也是四动量的时间分量，即四动量可以写为
+\begin{equation}
+    p^\mu = (\gamma m c,~ \gamma m \boldsymbol{v}) = (E/c, ~ \boldsymbol{p})
+\end{equation}
+
+在此基础上，我们可以定义四速度
+\begin{equation}
+    u^\mu =\frac{\bd x^\mu}{\bd\tau} = \gamma\dot x^\mu = (\gamma c, ~\gamma\boldsymbol{v}),\qquad p^\mu = m u^\mu
+\end{equation}
+四速度实际上是时空坐标对固有时的导数，那么四速度同样可以有恒等式
+\begin{equation}
+    u^\mu u_\mu = -c^2
+\end{equation}
+以上的所有运动学内容虽然适用于相对论性粒子，但只适用于有质量的粒子，一旦涉及到无质量粒子，作用量就会变为0，而使得整个变分系统无法得出想要的运动学量。
+
+那么对于无质量粒子，解决上述问题的方法是引入一个辅助变量 \(e( t)\)，称为\textbf{einbein}。考虑作用量
+\begin{equation}
+    \action =  \int \bd t \left[ \frac{1}{2e} g_{\mu\nu}\frac{\bd x^\mu}{\bd t}\frac{\bd x^\nu}{\bd t} \right],
 \end{equation}
 该作用量具有重参数化不变性：在变换
 \begin{equation}
-    \tau \to \tau' = f(\tau), \qquad e \to e' = e \frac{d\tau'}{d\tau}
+    t\to t' = f(t), \qquad e \to e' = e \frac{\bd t'}{\bd t}
 \end{equation}
 下，作用量\(\action\) 保持不变。因此同样满足Lorentz不变性。
 
 将作用量对 \(e\) 变分：
 \[
-\delta \action =  \int \bd\tau \left[ -\frac{1}{2e^2} g_{\mu\nu}\frac{\bd x^\mu}{\bd\tau}\frac{\bd x^\nu}{\bd\tau} \right]\delta e = 0.
+\delta \action =  \int \bd t \left[ -\frac{1}{2e^2} g_{\mu\nu} \dot x^\mu \dot x^\nu\right]\delta e = 0.
 \]
-由于 \(\delta e\) 任意，得到约束
+由于 \(\delta e\) 任意，得到约束条件
 \[
-g_{\mu\nu}\frac{\bd x^\mu}{\bd\tau}\frac{\bd x^\nu}{\bd\tau} = 0.
+\dot x^\mu \dot x_\mu = 0.
 \]
 这正是类光条件，意味着该粒子的速度一直为光速，说明无质量粒子的世界线是光锥上的曲线。
 
 将作用量对 \(x^\mu\) 变分，得到
 \[
-\delta \action = \int \bd\tau \left[ e^{-1} g_{\mu\nu}\frac{\bd x^\mu}{\bd\tau} \delta\left(  \frac{\bd x^\nu}{\bd\tau} \right) \right].
+\delta \action = \int \bd t \left[ e^{-1} g_{\mu\nu} \dot x^\nu \delta\left(   \dot x^\mu \right) \right].
 \]
 分部积分，并舍弃边界项：
 \[
-\delta \action = - \int \bd\tau \frac{\bd}{\bd\tau}\left( e^{-1} g_{\mu\nu}  \frac{\bd x^\mu}{\bd\tau} \right) \delta x^\nu = 0.
+\delta \action = - \int \bd t \frac{\bd}{\bd t}\left( e^{-1} g_{\mu\nu}  \dot x^\nu \right) \delta x^\mu = 0.
 \]
 因此运动方程为
 \[
-\frac{\bd}{\bd\tau}\left( e^{-1} g_{\mu\nu} \frac{\bd x^\mu}{\bd\tau} \right) = 0.
+\frac{\bd}{\bd t}\left( e^{-1} g_{\mu\nu} \frac{\bd x^\mu}{\bd t} \right) = 0.
 \]
 若选择规范 \(e=1\)（这总是可以通过重参数化做到），则运动方程简化为
 \[
-\frac{\bd^2 x_\nu}{\bd\tau^2} = 0.
+\frac{\bd^2 x_\mu}{\bd t^2} =\ddot x_\mu  = 0.
 \]
-即无质量粒子在平直时空中做匀速直线运动。
-
-\section{四动量与能量-动量关系}
-
-
-我们可以定义四速度
+即无质量粒子在平直时空中做匀速直线运动。同时，由于无质量粒子一直以光速行径，则其固有时与任意参考系时间相同，则运动方程也可表为
 \begin{equation}
-    u^\mu = \frac{\bd x^\mu}{\bd t} = \gamma\frac{\bd x^\mu}{\bd \tau} = \gamma(c,~\boldsymbol{v}) 
-\end{equation}
-我们有
-\begin{equation}
-    u_\mu u^\mu = -c^2
-\end{equation}
-四动量
-\begin{equation}
-    p^\mu = m u^\mu = (E/c,~ \boldsymbol{p})
-\end{equation}
-可得
-\begin{equation}
-    E = \gamma m c^2,\qquad \boldsymbol{p} = \gamma m\boldsymbol{v}
+     \frac{\bd^2 x_\mu}{\bd \tau^2} = 0
 \end{equation}
 
-\begin{equation}
-    p_\mu p^\mu = -m c^2
-\end{equation}
 
 
 
 \chapter{广义相对论}
-\section{等效原理与非惯性系}
-\section{度规张量与测地线方程}
-\section{弯曲时空与曲率张量}
-\section{爱因斯坦方程}
-\section{施瓦西解}
+
+
+\section{等效原理}
+\begin{theorem}[等效原理]
+   一个观测者无法分辨是出于重力场中还是处于一个具有重力加速度的非惯性参考系中
+\end{theorem}
+\begin{theorem}[广义相对性原理]
+   物理规律应当在任意参考系中成立，包括非惯性系
+\end{theorem}
+\section{测地线方程}
+\begin{equation}
+    \ddot x^\mu + \Gamma^\mu_{\alpha\beta} \,\dot x^\alpha\dot x^\beta = 0
+\end{equation}
+
+\section{潮汐力}
+\begin{equation}
+    a^\mu = \lim_{\epsilon\to0}\frac{\ddot x_2^\mu-\ddot x_1^\mu}{\epsilon} = {R^\mu}_{\nu\lambda\sigma} \frac{\bd x_1^\nu}{\bd\tau} \frac{\bd x_1^\lambda}{\bd\tau}X^\sigma 
+\end{equation}
+
+\section{Einstein方程}
+Einstein-Hillbert action
+\begin{equation}
+    \action = \int \bd^4x\,\sqrt{-\lVert g \rVert } (\frac{{R}}{2\kappa} +\lag_M)
+\end{equation}
+对度规$g_{\mu\nu}$作变分，我们有
+\begin{equation}
+    \begin{split}
+        \delta \sqrt{-\lVert g\rVert} &= -\frac{1}{2}\sqrt{-\lVert g\rVert} g_{\mu\nu}\delta g^{\mu\nu}\\
+        \delta R &= R_{\mu\nu}\delta g^{\mu\nu} + g^{\mu\nu}\delta R_{\mu\nu}
+    \end{split}
+\end{equation}
+则可得
+\begin{equation}
+    \frac{\delta\action}{\delta g_{\mu\nu}} = \frac{\sqrt{- \lVert g \rVert } }{2}\left( \frac{1}{\kappa}(R^{\mu\nu}-\frac{1}{2}g^{\mu\nu}R)-T^{\mu\nu}  \right) = 0
+\end{equation}
+得Einstein场方程
+\begin{equation}
+    R^{\mu\nu}-\frac{1}{2}g^{\mu\nu}R = \kappa T^{\mu\nu}
+\end{equation}
+为了回归到经典万有引力定律，取$\kappa = \frac{8\pi G}{c^4}$，同时我们定义Einstein张量$G_{\mu\nu} =R^{\mu\nu}-\frac{1}{2}g^{\mu\nu}R $
+则有
+\begin{equation}
+    G_{\mu\nu} = \frac{8\pi G}{c^4} T^{\mu\nu}
+\end{equation}
+
+\section{Schwarzschild解}
+
+\begin{equation}
+\bd s^2 = -\left(1 - \frac{2GM}{c^2 r}\right) c^2 \bd t^2
++ \left(1 - \frac{2GM}{c^2 r}\right)^{-1} \bd r^2
++ r^2 (\bd\theta^2 + \sin^2\theta\, \bd\varphi^2).
+    % \bd s^2=  (\frac{R}{r}-1)\bd t ^2 + \frac{1}{1-\frac{R}{r}}\bd r^2 +r^2(\bd \theta^2 + \sin^2\theta\bd \phi^2)
+\end{equation}
+
 \section{引力波}
+
+定义$h_{\mu\nu}$
+\begin{equation}
+    g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}
+\end{equation}
+
+则有
+\begin{equation}
+    \frac{1}{2}({\partial_\nu\partial^\rho h_{\mu\rho}} - {\partial_\nu\partial_\mu {h^\rho}_{\rho}} +{\partial_\rho\partial_\mu {h_\nu}^\rho} -\partial^\rho\partial_\rho h_{\mu\nu})=0
+\end{equation}
 
 \chapter{相对论性流体力学}
 \section{能量动量应力张量} 
@@ -274,16 +353,22 @@ Israel-Stewart 理论
     T^{\mu\nu}=\rho u^\mu u^\nu + (p+\Pi)\Delta ^{\mu\nu} + q^\mu u^\nu + q^\nu u^\mu + \pi^{\mu\nu}
 \end{equation}
 
-\section{相对论性热力学与方程状态}
+% \section{相对论性热力学与方程状态}
 
 
-\chapter{宇宙学原理}
+\chapter{宇宙学}
 \section{空间均匀性与各向同性}
-\section{弗里德曼-勒梅特-罗伯逊-沃尔克度规}
+\section{Friedmann-Robertson-Walker度规}
+\begin{equation}
+    ds^2 = -c^2 dt^2 + a^2(t) \left[ \frac{dr^2}{1 - k r^2} + r^2 (d\theta^2 + \sin^2\theta\, d\varphi^2) \right] 
+\end{equation}
 \section{弗里德曼方程与宇宙演化}
 \section{暗能量与宇宙学常数}
 % \section{宇宙暴胀}
 
 
-%\input{附录}
+
+
+\appendix
+\chapter{微分几何}
 \end{document}

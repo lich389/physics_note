@@ -1,0 +1,90 @@
+\documentclass[a4paper]{report}
+% \usepackage{predefine}
+\input{predef.tex}
+
+\author{Cheng Li}
+\title{\textbf{{\Huge 经典场论}}\\{\normalsize 连续介质提力学与电动力学}}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{连续介质体力学}
+\chapter{弹性体力学}
+\section{位移场}
+\section{应力与应变张量}
+Navi-Cauchy
+\begin{equation}
+    (\lambda+\mu) \nabla(\nabla\cdot \uf) + \mu \nabla^2 \uf + \boldsymbol{f} = \rho \frac{\partial^2\uf}{\partial t^2}
+\end{equation}
+\section{弹性波}
+\chapter{流体力学}
+\section{流速场}
+连续性方程
+\begin{equation}
+    \frac{\partial\rho}{\partial t}+ \nabla\cdot(\rho\uf)=0
+\end{equation}
+\section{流体静力学}
+\begin{equation}
+    \nabla p = \rho \boldsymbol{f}
+\end{equation}
+\section{理想流体动力学}
+\begin{equation}
+    \nabla\cdot\uf = 0
+\end{equation}
+Euler-equations
+\begin{equation}
+    \rho \left( \frac{\partial\uf}{\partial t}+ (\uf\cdot\nabla)\uf \right) = -\nabla p + \rho\boldsymbol{f}
+\end{equation}
+\section{粘性流体动力学}
+Navi-Stokes equations
+\begin{equation}
+    \rho \left( \frac{\partial\uf}{\partial t}+ (\uf\cdot\nabla)\uf \right) = -\nabla p + \mu\nabla^2 \uf+ \rho\boldsymbol{f}
+\end{equation}
+\section{空气动力学}
+
+\part{电动力学}
+Gaussian Units
+\begin{equation}
+    \varepsilon_0 = \frac{1}{4\pi}, \qquad \mu_0 = \frac{4\pi}{c^2}
+\end{equation}
+\chapter{电磁场基本理论}
+\section{麦克斯韦方程组}
+\begin{equation}
+    \begin{split}
+        \nabla\cdot \boldsymbol{E} &= 4\pi{\rho_c}\\
+        \nabla\times\boldsymbol{E} &= -\frac{1}{c}\frac{\partial \boldsymbol{B}}{\partial t}\\
+        \nabla\cdot\boldsymbol{B}&=0\\
+        \nabla\times\boldsymbol{B}&=\frac{4\pi}{c}\boldsymbol{J}+\frac{1}{c}\frac{\partial\boldsymbol{E}}{\partial t}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \action = \int \bd t~\bd^3\boldsymbol{x}~\frac{1}{2}\Big[ (\nabla\phi)^2-(\nabla\times\boldsymbol{A})^2  \Big]
+\end{equation}
+\section{极化与磁化}
+\section{电磁场边界条件}
+\chapter{静电场}
+\section{电标势}
+\section{电偶极子}
+\section{连续电荷系统及电偶极展开}
+\section{导体的静电场}
+\chapter{静磁场}
+\section{库伦规范与磁矢势}
+\section{磁偶极子}
+\section{铁磁体}
+\chapter{电磁波}
+\section{洛伦兹规范与达朗贝尔方程}
+\section{电磁辐射}
+% \section{电磁波的传播}
+\chapter{动体的电动力学}
+\section{运动带电粒子与电磁场的相互作用}
+\section{运动带电粒子的辐射}
+% \chapter{协变形式的电磁场理论}
+% \section{闵可夫斯基空间与四维协变量}
+% \section{电磁场张量}
+\appendix
+\chapter{矢量分析}
+\chapter{偏微分方程与特殊函数}
+
+
+\end{document}
