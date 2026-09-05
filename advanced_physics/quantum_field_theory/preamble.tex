@@ -1,0 +1,79 @@
+\usepackage{xeCJK}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{physics}
+\usepackage{indentfirst}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+\usepackage{simpler-wick}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{geometry}
+\geometry{textheight=230mm,textwidth=165mm,footskip=20mm}
+% \geometry{b5paper}
+\usepackage{parskip}
+\parindent=20pt
+
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+
+\usepackage{epigraph} % for quote
+\makeatletter
+  \let\@epipart\@endpart
+  \renewcommand{\@endpart}{\thispagestyle{epigraph}\@epipart}
+\makeatother        
+
+\usepackage{feynmf}
+
+
+\usepackage{natbib} % 设置样式为 authoryear
+\bibliographystyle{plain} % 指定 .bib 文件（需加扩展名）
+\renewcommand{\bibname}{参考文献}
+
+% \usepackage[backend=biber, style=numeric]{biblatex}
+% \addbibresource{参考.bib}
+
+\usepackage{slashed}
+
+
+
+% terminology
+\usepackage[acronym]{glossaries} % [acronym] 选项允许我们定义缩写词
+
+\makeglossaries % 初始化glossaries系统，必须添加
+
+% 定义中文术语
+
+
+\newglossaryentry{scal}{
+  name={标量},
+  description={Scalar}
+}
+
+\newglossaryentry{vec}{
+  name={矢量},
+  description={Vector}
+}
+
+\newglossaryentry{spinor}{
+  name={旋量},
+  description={Spinor}
+}
+
+\newglossaryentry{局域性}{
+  name={局域性},
+  description={Locality}
+}
+
+\newglossaryentry{Lag}{
+  name={Lagrangian},
+  description={拉格朗日量}
+}
+
+\newglossaryentry{LzB}{
+  name={Lorentz加速变换},
+  description={Lorentz Boost}
+}

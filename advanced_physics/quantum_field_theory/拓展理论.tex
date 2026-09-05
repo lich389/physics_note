@@ -1,0 +1,1240 @@
+\epigraphhead[650]{}
+\part{拓展理论}
+\chapter{有效场论}
+在物理学理论的发展过程中，人们对于物理学的理解是一个逐步认知的过程。比如，经典力学理论只能描述宏观尺度，且速度较低的运动。而当人们接触到接近光速的情形时，便发展出了相对论理论。同时当我们回过头研究低速情形时，可以对相对论的速度$\beta$做高阶展开$E=mc^2/\sqrt{1-\beta^2}\approx mc^2 + \frac{1}{2}mc^2 \beta^2+\mathcal{O}(\beta^4)+\cdots$。其中第二项则回归到经典力学情形$E=\frac{1}{2}mv^2$，同时增加了静止质量项$mc^2$。而当人们开始研究低速运动的微观粒子的规律，则构建了量子力学。同样对于量子力学中的路径积分$Z = e^{\frac{i}{\hbar}\mathcal{S}}$，我们可以对在宏观尺度下极小的普朗克常数$\hbar$做高阶展开$Z = \exp{\frac{i}{\hbar}(\mathcal{S}^{(0)} - i\hbar \mathcal{S}^{(1)} + \mathcal{O}((i\hbar)^2)+\cdots}$，即为WKB半经典近似，便可回归到经典的Hamliton-Jacobi方程。
+
+% 从以上例子中我们发现，虽然物理理论会发展到更高尺度下更加普适的理论，但是对于某个特定尺度，更加的普适的理论反而更加难以计算结果。而我们对普适理论中的尺度参数做高阶展开后，其中的前几项便是该尺度下的有效理论。通常我们将这种通过对普适理论做高阶展开得到有效理论的方法，称之为``Top-down''。相反，如果我们实验数据发现，我们的目前使用的理论存在某些修正项，那么意味着这些修正项将会把我们指引到更高尺度的普适理论，这样的过程称之为``Bottom-up''。
+
+% \begin{equation}
+%     \mathscr{L} = \sum_n \epsilon^n \mathscr{L}^{(n)}= \mathscr{L}^{(0)} + \epsilon\mathscr{L}^{(1)} + \mathcal{O}(\epsilon^2)+\cdots
+% \end{equation}
+
+在量子场论中，实际上圈图的重整化预示着量子场论只能描述特定能标$\Lambda$下的物理，这恰好符合了有效理论的描述。而我们将量子场截断到某个能标下的表述形式便是有效场论。则我们可以将拉氏量对参数$\frac{1}{\Lambda}$做高阶展开：
+\begin{equation}
+    \mathscr{L}_\mathrm{eff} =\mathscr{L}_0^{(d=4)}+\frac{\mathcal{C}_1}{\Lambda} \mathscr{L}^{(d=5)}+\frac{\mathcal{C}_2}{\Lambda^2} \mathscr{L}^{(d=6)}+\mathcal{O}(\frac{1}{\Lambda^3})+\cdots
+\end{equation}
+% \section{有效拉格朗日量}
+% \section{级次展开与Wilson系数}
+% %\section{重整化群优化微扰论}
+% \section{线性$\sigma$模型}
+\section{重场展开}
+
+我们考虑一个与外源相互作用的系统，考虑其作用量包含了较重背景场$\Phi$以及较轻外源场$\varphi$的动能项和相互作用项，则有
+\begin{equation}
+    \mathcal{S}[\Phi,\varphi] = \int\mathrm{d}x\, \Big(\Phi_i\Delta^{-1}(\Phi)_{ij} \Phi_j + g J(\varphi)_k\Phi_k  + \varphi_l D^{-1}(\varphi)_{lm}\varphi_m\Big)
+\end{equation}
+其连通Green函数生成泛函可表为（\eqref{eq:congreen}式）
+\begin{equation}
+    W[J] = \ln \mathscr{Z}[J] =  -{g^2}\int\mathrm{d}{x}\mathrm{d}{x}'\,  J^*(x) \Delta(x-x')J(x') = -{g^2}\int\mathrm{d}x\int{\mathrm{d}q}\, J^*(p) \Delta(p-q)\delta(p-q) J(q)
+\end{equation}
+则有效作用可以表示为
+\begin{equation}
+\begin{split}
+        \Gamma[\varphi]&= -i\ln\mathscr{Z}[J(\varphi)]-g\int\mathrm{d}x\, J(\varphi)\Phi = \int\mathrm{d}x \,\Big[ -{g^2}J_i^*(\varphi) \frac{k_{ij}}{p^2 - M^2+i\epsilon} J_j(\varphi) -gJ(\varphi)\Phi  \Big]\\
+        &= \int\mathrm{d}x\Big[ \varphi_l D^{-1}_{lm}\varphi_m  -{g^2}J_i^*(\varphi) \frac{k_{ij}}{p^2 - M^2+i\epsilon} J_j(\varphi)\Big]
+\end{split}
+\end{equation}
+其中有效作用量的$J(\varphi)\Phi$的相互作用项可以用轻场的运动方程替换，则变为轻场的动能项。
+此时重场表现为几乎静止，那么其质量项必然远远大于其动量$M^2\gg p^2$，则我们可以对重场的传播子$\Delta$围绕$\frac{p^2}{M^2}\sim0$作展开，得
+\begin{equation}
+\begin{split}
+    \Gamma[\varphi] =& \int\mathrm{d}x \Big[\varphi_l D^{-1}_{lm}\varphi_m - g^2 J_i^*(\varphi)\frac{k_{ij}}{M^2}\left(\frac{1}{\frac{p^2}{M^2}-1} \right)J_j(\varphi)\Big] \\\approx&  \int\mathrm{d}x \Big[\varphi_l D^{-1}_{lm}\varphi_m + g^2 J_i^*(\varphi)\frac{k_{ij}}{M^2}\left(1 + \frac{p^2}{M^2} +\mathcal{O}\left( \frac{p^4}{M^4} \right)+\cdots \right)J_j(\varphi)\Big]\\
+    \approx&\int\mathrm{d}x\Big[\varphi_l D^{-1}_{lm}\varphi_m +  \frac{g^2}{M^2}J^*_i(\varphi)  J_i(\varphi) \Big]
+\end{split}
+\end{equation}
+则此时整个体系的作用量只保留轻场的动能项和运动，重场的自由度被忽略不计，而轻场与重场的之间参与相互作用表现形式则变为了两个轻场流之间直接相互作用，重场的自由度则贡献到了相互作用常数中
+\begin{equation}
+    \mathscr{L}_\mathrm{eff} (\varphi) = \varphi_l D^{-1}_{lm}\varphi_m +  GJ^*_i(\varphi)  J_i(\varphi),~~~~G = \frac{g^2}{M^2}\sim\frac{1}{\Lambda^2}
+\end{equation}
+最终，新的相互作用耦合常数$G$不再是无量纲常数，而是依赖于重场质量，且量纲为-2的耦合常数。而对于轻场相互作用项$J^*_i(\varphi)  J_i(\varphi)$，其量纲为6，大于可重整化的要求$d\leq4$，因此该项只能被算作有效算符，该理论只能在能标远低于重场质量的情形下适用，而不能作为完备的全能标普适理论。而此时如果实验上发现了$[G]\geq 2$的有效理论，则意味着该理论有可能存在一个更重的未被发现的场，贡献到了相互作用耦合常数上。
+
+如果我们考虑轻场是费米子场，而重场是$W$玻色子场，则费米子与$W$相互作用的弱相互作用理论在低能标下可以转变为有效的四费米子理论
+\begin{equation}
+    \mathscr{L}_\mathrm{eff} \approx i\bar{\psi}(\partial\!\!\!/-m)\psi + \frac{G_F}{\sqrt{2}}(\bar{\psi}_R\gamma^\mu\psi_L)(\bar{\psi}_L\gamma_\mu\psi_R) + \mathrm{h.c.},~~~~\frac{G_F}{\sqrt{2}} = \frac{g_2^2}{8M_W^2}
+\end{equation}
+
+\section{单圈有效势能}
+
+对于场$\phi$，我们可以考虑将场分解为静止的经典背景场$\phi_0$和较小的涨落场$\varphi$，即$\phi=\phi_0+\varphi$。那么我们可以对作用量围绕$\phi_0$进行展开
+\begin{equation}
+    % \mathscr{V}(\phi_0 + \varphi) = \mathscr{V}(\phi_0) + \mathscr{V}'(\phi_0)\,\varphi + \frac{1}{2!} \mathscr{V}''(\phi_0)\,\varphi^2 + \frac{1}{3!}\mathscr{V}'''(\phi_0)\,\varphi^3 + \frac{1}{4!} \mathscr{V}''''(\phi_0)\,\varphi^4 + \dots
+    S[\phi_0 + \varphi] = S[\phi_0] + \int \mathrm{d}^4x \, \frac{\delta S}{\delta \phi(x)}\bigg|_{\phi_0} \varphi(x) + \frac{1}{2} \int \mathrm{d}^4x \mathrm{d}^4y \, \varphi(x) \frac{\delta^2 S}{\delta \phi(x)\delta \phi(y)}\bigg|_{\phi_0} \varphi(y) + \mathcal{O}(\varphi^3)+  \cdots
+\end{equation}
+其中不考虑外源的情况下，第一项展开式可以用运动方程$\frac{\delta\mathcal{S}}{\delta \phi}=0$代替，同时我们可以略去$\mathcal{O}(\varphi^3)$等更高阶小量，因此只保留两项。
+当我们考虑路径积分时，我们则可以将小场$\varphi$贡献积分掉，即
+\begin{equation}
+\begin{split}
+    \mathcal{Z} &= \int\mathcal{D}\phi_0\, e^{-\mathcal{S}[\phi_0]}\int\mathcal{D}\varphi\, \exp\Big( \frac{1}{2}\int \mathrm{d}^4x\frac{\delta^2\mathcal{S}}{\delta\phi(x)^2}\Big|_{\phi_0}\varphi(x)^2  \Big)\\
+    &=\mathcal{Z}_0 \Big(\operatorname{det} \Big[\int \mathrm{d}^4x\frac{\delta^2\mathcal{S}}{\delta\phi(x)^2}\Big|_{\phi_0} \Big] \Big)^{-1/2}
+    % =\mathcal{Z}_0 \Big(\operatorname{det} \Big[\int \mathrm{d}^4x(-\partial_\mu\partial^\mu - \mathscr{V}''(\phi_0))\Big] \Big)^{-1/2}
+\end{split}
+\end{equation}
+因此有效作用量可以表示为
+\begin{equation}
+    \Gamma[\phi_0] = -\ln\mathcal{Z} = \mathcal{S}[\phi_0] + \frac{1}{2}\int \mathrm{d}^4x\,\operatorname{tr}\ln \left( \frac{\delta^2\mathcal{S}}{\delta\phi(x)^2}\Big|_{\phi_0}  \right)+\cdots
+\end{equation}
+其中有效作用量的第二项为理论的单圈修正项，而其中的求迹则是对四动量空间的求和。由于$\phi_0$场为几乎静止的背景场，其动能项几乎可以忽略不计，则$\mathcal{S}[\phi_0]$中只包含势能项，则我们可以根据\eqref{eq:veff0}式中的有效势能定义，可得有效势能为
+\begin{equation}
+    \mathscr{V}_\mathrm{eff}(\phi_0) = \mathscr{V}(\phi_0) - \frac{1}{2}\operatorname{tr}\ln\left( \frac{\delta^2\mathcal{S}}{\delta\phi(x)^2}\Big|_{\phi_0}  \right)+\cdots
+\end{equation}
+
+如果我们具体考虑带势能项的标量场
+\begin{equation}
+    \mathcal{S}[\phi] = \int \mathrm{d}^4x \Big[\frac{1}{2} (\partial_\mu \phi)(\partial^\mu \phi) - \mathscr{V}(\phi)\Big]
+\end{equation}
+那么可得展开式
+% \begin{equation}
+%     \begin{split}
+%         \mathcal{S}[\phi_0,\varphi] = \int \mathrm{d}^4x \Big[& \frac{1}{2}(\partial_\mu \phi_0)^2 - \mathscr{V}(\phi_0)
+%         -[\partial_\mu\partial^\mu\phi_0 +\mathscr{V}'(\phi_0)]\varphi
+%         -\frac{1}{2}[\partial_\mu\partial^\mu + \mathscr{V}''(\phi_0)]\varphi^2\\
+%         &-\frac{1}{3!}\mathscr{V}'''(\phi_0)\,\varphi^3 - \frac{1}{4!} \mathscr{V}''''(\phi_0)\,\varphi^4 - \dots\Big]
+%     \end{split}
+% \end{equation}
+\begin{equation}
+\begin{split}
+        \mathcal{S}[\phi_0,\varphi]  = \int \mathrm{d}^4x \Big[ \frac{1}{2}(\partial_\mu \phi_0)^2- \mathscr{V}(\phi_0)+\frac{1}{2}(\partial_\mu \varphi)^2-\frac{1}{2}\mathscr{V}''(\phi_0)\varphi^2 - \dots\Big]
+\end{split}
+\end{equation}
+那么有效作用量可以表示为
+\begin{equation}
+\begin{split}
+       \Gamma[\phi_0] =& \int\mathrm{d}^4x \Big[ \frac{1}{2}(\partial_\mu \phi_0)^2- \mathscr{V}(\phi_0) +\frac{1}{2}\operatorname{tr}\ln\left( -\partial^2 -\mathscr{V}''(\phi_0) \right)+\cdots\Big] \\
+       =&\int\mathrm{d}^4x \Big[ \frac{1}{2}(\partial_\mu \phi_0)^2- \mathscr{V}(\phi_0) +\frac{1}{2}\int\frac{\mathrm{d}^4p}{(2\pi)^4}\ln\left( p^2 -\mathscr{V}''(\phi_0) \right)+\cdots\Big]
+\end{split}
+\end{equation}
+其中将求迹转化为对动量空间的积分。带入$\phi^4$理论，即$\mathscr{V}(\phi)  = \frac{1}{2}m^2\phi^2 + \frac{\lambda}{4!}\phi^4$可得
+\begin{equation}
+    \begin{split}
+        \mathcal{S}[\phi_0,\varphi] = \int \mathrm{d}^4x \Big[&\frac{1}{2}(\partial_\mu \phi_0)^2-\frac{1}{2}m^2\phi_0^2-\frac{\lambda}{4!}\phi_0^4\\
+        &+\frac{1}{2}(\partial_\mu \varphi)^2-\frac{1}{2}\Big(m^2+\frac{\lambda}{2}\phi_0^2\Big)\varphi^2 -\frac{\lambda}{6}\phi_0\varphi^3 - \frac{\lambda}{4!}\varphi^4\Big]
+    \end{split}
+\end{equation}
+仅保留$\varphi^2$项，即首阶修正项，则可得有效作用量为
+\begin{equation}
+    \Gamma[\phi_0] = \int\mathrm{d}^4x \Big[ \frac{1}{2}(\partial_\mu \phi_0)^2- \frac{1}{2}m^2\phi_0^2 -\frac{\lambda}{4!}\phi_0^4 +\frac{1}{2}\int\frac{\mathrm{d}^4p}{(2\pi)^4}\ln\left( p^2 -m^2-\frac{\lambda}{2}\phi_0^2 \right)+\cdots\Big]
+\end{equation}
+由于$\phi_0$场为几乎静止的背景场，其动能项几乎可以忽略不计$\frac{1}{2}(\partial_\mu\phi_0)^2\approx 0$，则我们由此可得有效势能
+\begin{align}
+\mathscr{V}_\mathrm{eff}(\phi_0) &= \mathscr{V}(\phi_0) - \frac{1}{2}\int\frac{\mathrm{d}^4p}{(2\pi)^4}\ln\left( p^2 -\mathscr{V}''(\phi_0) \right)+\cdots \\
+    \mathscr{V}_\mathrm{eff}(\phi_0) &= \frac{1}{2}m^2\phi_0^2 +\frac{\lambda}{4!}\phi_0^4 - \frac{1}{2}\int\frac{\mathrm{d}^4p}{(2\pi)^4}\ln\left( p^2 -m^2-\frac{\lambda}{2}\phi_0^2 \right)+\cdots
+\end{align}
+
+\chapter{有限温度场论}
+在之前的讨论中，我们通常考虑的物理过程是瞬时的相互作用过程。然而，当我们考虑整个系统经历了足够长时间的内部相互作用后，达到了平衡态，那么此时系统的时间依赖性则会被积分掉，从而转化为系统的温度参数。我们考虑经历了足够长的时间$\beta$后达到热平衡态，则系统的温度为$T=\frac{1}{\beta}$。我们可以看出当系统经历的是瞬时过程，即$\beta\rightarrow0$，则温度$T\rightarrow\infty$趋于无穷大。而当时间足够长时，温度则为有限值，这种情形下的量子场论理论即为有限温度量子场论。也叫热量子场论。
+
+考虑系统的路径积分$\mathcal{Z}=\int \mathcal{D}\phi\,\exp(i\int\mathrm{d}t\,\mathcal{L})$中的时间积分，根据柯西定理，我们有
+\begin{equation}
+    \int_{0}^{\infty} \mathrm{d}t ~\mathcal{L} + \int_{i\infty}^0\mathrm{d}t ~\mathcal{L} = 0
+\end{equation}
+对于虚轴上的积分，我们可以将时间参数$t$转化为虚时间$t=-i\tau$，即通过Wick转动将对时间$t$的积分转化为虚时间$\tau$的积分：
+\begin{equation}
+    i\int_{0}^{\infty} \mathrm{d}t ~\mathcal{L} = - \int_{i\infty}^0 i\mathrm{d}t ~\mathcal{L} =  \int_{\infty}^0\mathrm{d}\tau ~\mathcal{L}(-i\tau) = \int_0^\infty \mathrm{d}\tau ~ [-\mathcal{L}(-i\tau)]
+\end{equation}
+而此时对于时空度规，我们则有：
+\begin{equation}
+    \mathrm{d}s^2 = \mathrm{d}t^2 - \mathrm{d}\boldsymbol{x}^2 = -(\mathrm{d}\tau^2 + \mathrm{d}\boldsymbol{x}^2)
+\end{equation}
+此时在$x_\mu=(\tau,\boldsymbol{x})$的坐标系中，时空度规变为欧几里德度规，则我们Minkowski空间下的拉氏量转化为Euclidean Lagrangian：
+\begin{equation}
+    \mathcal{L}_{\mathbb{E}} (\tau)= -\mathcal{L}_{\mathbb{M}}(-i\tau)
+\end{equation}
+那么对拉氏量的时间从$0$到$\beta$积分，得到系统的作用量为：
+\begin{equation}
+    \mathcal{S}_{\mathbb{E}} = \int_0^{\beta} \mathrm{d} \tau \,\mathcal{L}_{\mathbb{E}}
+\end{equation}
+此时，系统的路径积分则为：
+\begin{equation}
+    \mathcal{Z}=\oint\mathcal{D}\phi\, e^{-S_{\mathbb{E}}}
+\end{equation}
+其中路径积分表为当系统经历一段时间后回到了初态，即系统处于平衡态。则路径积分是对有限空间进行的积分，因此有限温度场论类似于场在固定边界条件下的驻波解，而此时场的能谱则会变为一系列离散的能级，此时场的傅立叶展开则为对一系列特定频率的频谱求和。
+
+根据路径积分的理论，实际上系统的路径积分就是系统的配分函数，通过计算路径积分，我们即可获得体系的配分函数，以此来获得系统的热力学信息，如热力学势（自由能）：
+\begin{equation}
+    F = -\frac{1}{\beta}\ln \mathcal{Z}
+\end{equation}
+当我们考虑一个开放系统，系统与外源存在相互作用物质交换，我们可以考虑把场分解为恒定的背景场$\phi_0$以及外源相互作用的场$\varphi$，即$\phi = \phi_0 + \varphi$，那么此时系统的配分函数（也即路径积分）可以写为
+\begin{gather}
+    \mathcal{Z}[J] = \int\mathcal{D}\phi\,e^{-\mathcal{S}_\mathbb{E}+\int \mathrm{d}^4x_\mathbb{E} J\varphi},\\\mathcal{W}[J]=-\ln \mathcal{Z}[J],~~~~\Gamma[\varphi] = \mathcal{W}[J]-i\int\mathrm{d}^4x\, J\varphi
+\end{gather}
+% 其中连通格林函数生产泛函$\mathcal{W}[J]$的定义为传统形式。
+其中当我们将$\int\mathrm{d}^4x\, J\varphi$转化为欧氏空间积分，
+而在有限温度场论下，我们可以将时间维度积分掉，转化为温度，
+则有
+\begin{equation}
+    \Gamma[\varphi] = \mathcal{W}[J]+\beta\int\mathrm{d}^3\boldsymbol{x}\, J\varphi
+\end{equation}
+那我们可以在有限温度场论中的连通格林函数生产泛函，而其形式恰为为热力学中的亥姆霍兹自由能：
+\begin{equation}
+    F[J,\beta] = -\frac{1}{\beta}\ln\mathcal{Z} = \frac{1}{\beta}\mathcal{W}[J]
+\end{equation}
+此时我们再对自由能进行Legendre变换，得到有效作用量，则此时有效作用量恰好是热力学中的巨势
+\begin{equation}
+     \Omega[\varphi,\beta,V] = F[J,\beta,V]  +\int \mathrm{d}^3\boldsymbol{x} \,J\varphi =\frac{1}{\beta}\Gamma[\varphi]
+\end{equation}
+由于在量子场论的框架中，有效作用量可以表示成有效势能的形式，则在有限温度场论中的对有效势能的体积分即为有效作用量，而其在热力学中也称为巨势
+\begin{equation}
+    \Omega[\varphi,\beta,V] = \int\mathrm{d}^3\boldsymbol{x}\, \mathscr{V}_\mathrm{eff}(\varphi,T)
+\end{equation}
+对于封闭系统而言，没有外源参与相互作用，则Gibbs自由能$G[\varphi,\beta]$形式上等于热力学自由能$F[\beta]$，则有效势能为
+\begin{equation}
+    F[T,V] = \int\mathrm{d}^3\boldsymbol{x}\, \mathscr{V}_\mathrm{eff}(\varphi,T)
+\end{equation}
+
+% 其中$\varphi$为背景经典场。则有效作用量可按照圈图展开为
+% \begin{equation}
+%     \Gamma[\varphi] = \mathcal{S}[\varphi] +\frac{1}{2}\operatorname{tr}\Big[\ln(-\frac{\delta^2\mathcal{S}}{\delta\phi^2}[\varphi])\Big] +\cdots
+% \end{equation}
+
+
+
+\section{标量场的有限温度理论}
+我们考虑实标量场，其欧式空间的Lagrangian为：
+\begin{equation}
+    \mathscr{L}_\mathbb{E} = \frac{1}{2}\left[\left( \frac{\partial \phi }{\partial\tau} \right)^2 +(\nabla\phi)^2 +m^2\phi^2 \right]\label{eq:lagEphi}
+\end{equation}
+此时，场的离散化傅立叶展开则为\footnote{%正交归一化条件：\[\int_0^\beta\mathrm{d}\tau\int_V\mathrm{d}^3x\, e^{i(\omega_n-\nu_m)\tau + i(\boldsymbol{k}-\boldsymbol{q})\cdot\boldsymbol{x}} = \beta V\delta(\omega_n-\nu_m)\delta^3(\boldsymbol{k}-\boldsymbol{q})\] 
+完备性条件：\[\sum_{n=-\infty}^{\infty} e^{i\omega_n\tau}=\beta\sum_{n=-\infty}^{\infty}\delta(\tau-n\beta),\qquad\sum_{\boldsymbol{k}} e^{i\boldsymbol{k}\cdot\boldsymbol{x}}=V\delta^3(\boldsymbol{x})\]
+\[\sum_{n=-\infty}^{\infty}\sum_{\boldsymbol{k}} e^{i\omega_n\tau +i\boldsymbol{k}\boldsymbol{x}} = \beta V \delta^3(\boldsymbol{x})\sum_{n=-\infty}^{\infty}\delta(\tau-n\beta)\]}：
+\begin{equation}
+    \phi(\tau, \boldsymbol{x}) = \frac{1}{\sqrt{\beta V}}\sum_{n=-\infty}^{\infty}\sum_{\boldsymbol{k}}\tilde{\phi}(\omega_n, \boldsymbol{k})e^{i\omega_n\tau + i\boldsymbol{k}\cdot\boldsymbol{x}}\label{eq:phiksum}
+\end{equation}
+其中$\frac{1}{\sqrt{\beta V}}$为归一化因子。
+
+由于我们要求场在经历一段时间$\beta$后回到初始状态，即为周期性边界条件：
+\begin{equation}
+    \phi(0,\boldsymbol{x}) = \phi(\beta,\boldsymbol{x})
+\end{equation}
+带入到\eqref{eq:phiksum}式中，可得：
+\begin{equation}
+    e^{i\omega_n\beta} = 1
+\end{equation}
+则我们可以定出，场的频率只能取一系列的离散值，即为：
+\begin{equation}
+    \omega_n = \frac{2\pi n}{\beta}, \qquad n\in\mathbb{Z},\label{eq:mastubarab}
+\end{equation}
+该频率则称为（玻色子）松原频率。
+
+对于配分函数，我们则可以计算路径积分：
+\begin{equation}
+    \mathcal{Z} = \oint\mathcal{D}\phi \exp\Big\{-\int_0^\beta\mathrm{d}\tau\int_V\mathrm{d}^3x\frac{1}{2}\left[\left( \frac{\partial \phi }{\partial\tau} \right)^2 +(\nabla\phi)^2 +m^2 \phi^2\right]\Big\}
+\end{equation}
+带入\eqref{eq:phiksum}式，可得：
+\begin{equation}
+    \mathcal{Z}=\int\mathcal{D}\phi \exp\Big\{ -\frac{1}{2}\sum_{n}\sum_{\boldsymbol{k}} \tilde{\phi}(\omega_n,\boldsymbol{k})(m^2 + \omega_n^2 +\boldsymbol{k}^2)\tilde{\phi}(-\omega_n,-\boldsymbol{k}) \Big\}
+\end{equation}
+由于对于实标量场有：
+\begin{equation}
+    \tilde{\phi}^*_k = \tilde{\phi}_{-k},\qquad \operatorname{Re}\tilde{\phi}_{-k}=\operatorname{Re}\tilde{\phi}_k,~\operatorname{Im}\tilde{\phi}_{-k}=-\operatorname{Im}\tilde{\phi}_k
+\end{equation}
+我们可以只需要考虑$(\omega_n,\boldsymbol{k})>0$的情况，并加上零模$\tilde{\phi}(0,0)$即可，则有：
+\begin{equation}
+    \mathcal{Z}\propto\int\mathrm{d}\frac{\tilde{\phi}_0}{\sqrt{\beta}} e^{-\frac{1}{2}m^2\tilde{\phi}_0^2}\prod_{n,k>0}\frac{1}{\beta}\int\mathrm{d}\operatorname{Re}\tilde{\phi}_k\mathrm{d}\operatorname{Im}\tilde{\phi}_k\exp\Big[ -\frac{1}{2}\Delta^{-1}(\omega_n,\boldsymbol{k}) ((\operatorname{Re}\tilde{\phi}_k)^2 + (\operatorname{Im}\tilde{\phi}_k)^2) \Big]
+\end{equation}
+其中$\Delta^{-1}(\omega_n,\boldsymbol{k})=\omega_n^2+\boldsymbol{k}^2+m^2=\omega_n^2+E_k^2$为热传播子，包含了所有可能的频率及动量的组合。最终可得：
+\begin{equation}
+    \mathcal{Z}\propto\prod_{n,k>0}[\beta^2\Delta^{-1}(\omega_n,\boldsymbol{k})]^{-\frac{1}{2}}=[\operatorname{det}(\beta^2\Delta^{-1})]^{-\frac{1}{2}}
+\end{equation}
+我们可以对配分函数取对数，则有：
+\begin{equation}
+    \ln\mathcal{Z}=-\frac{1}{2}\sum_{n>0,\,\boldsymbol{k}}\ln[\beta^2(\omega_n^2 +E_k^2)]+ \text{const.}
+\end{equation}
+带入松原频率\eqref{eq:mastubarab}式可得
+\begin{align}
+        \ln\mathcal{Z}&=%-\frac{1}{2}\sum_{\boldsymbol{k}} \Big( \ln(E_k^2) + \ln\Big[\prod_{n>0} (\omega_n^2 + E_k^2) \Big] \Big) + \text{const.}\notag
+        -\frac{1}{2}\sum_{n,\boldsymbol{k}}\ln[(2\pi n )^2 +  \beta^2 E_k^2]+ \text{const.}\notag\\
+        & = %-\frac{1}{2}\sum_{\boldsymbol{k}} \Big( \ln(E_k^2) + \ln\prod_{n>0}\omega_n^2 + \ln \Big[\prod_{n>0} (1 + \frac{E_k^2}{\omega_n^2}) \Big] 
+        -\sum_{n,\boldsymbol{k}}\Big(\int_1^{\beta E_k} \frac{x\mathrm{d}x}{(2\pi n)^2 + x^2} + \ln[(2\pi n)^2 + 1]\Big)
+        + \text{const.} \notag\\
+         & =-\sum_{\boldsymbol{k}} \int_1^{\beta E_k} \Big(\sum_{n=-\infty}^{\infty}\frac{1}{(2\pi n)^2 + x^2} \Big) x\mathrm{d}x  + \text{const.}\notag
+\end{align}   
+我们可以利用以下关系：
+\begin{equation}
+    \sum_{n=-\infty}^{\infty}\frac{1}{(2\pi n)^2 + x^2} = \frac{1}{x}\left( \frac{1}{2} + \frac{1}{e^x -1} \right)
+    % \prod_n^\infty \left(1+\frac{x^2}{\pi^2 n^2}\right) = \frac{\sinh x}{x}.\qquad \prod_n^\infty (2\pi n x) = 2\pi
+\end{equation}
+因此我们可得：
+\begin{equation}
+    \ln\mathcal{Z}=-\sum_{\boldsymbol{k}} \left[ \frac{\beta E_k}{2} + \ln(1-e^{-\beta E_k}) \right] + \text{const.}
+\end{equation}
+最终配分函数即为：
+\begin{align}
+    \mathcal{Z}=&\mathcal{N}\prod_{\boldsymbol{k}}\exp\left[ -\frac{\beta E_k}{2}-\ln(1-e^{-\beta E_k}) \right]%\notag\\
+    % =&\mathcal{N}\prod_{\boldsymbol{k}}\exp\left[ -\frac{m^2 + \boldsymbol{k}^2}{2T}-\ln(1-e^{-\frac{m^2 + \boldsymbol{k^2}}{T^2}})\right]
+\end{align}
+其中$\mathcal{N}$为无穷大的归一系数项，不贡献物理效应。此时我们可以计算系统的自由能：
+\begin{equation}
+    F[T,V] = -T\ln\mathcal{Z} = \int\mathrm{d}^3\boldsymbol{x}\int\frac{\mathrm{d}^3 k}{(2\pi)^3}\left[ \frac{m^2+\boldsymbol{k}^2}{2} + T\ln(1-e^{-(m^2+\boldsymbol{k^2})/T}) \right]
+\end{equation}
+可以看出，对实标量场的路径积分回归到了Bose-Einstein统计给出的结果，只是将粒子动能项替换为相对论动能的形式。而如果我们将绝对零度的压强定义为0，则可将产生的额外项舍弃。
+
+考虑带势能的标量场，即系统内部存在相互作用，则可表示为
+\begin{equation}
+    \mathscr{L}_\mathbb{E} = \frac{1}{2}\left[\left( \frac{\partial \phi }{\partial\tau} \right)^2 +(\nabla\phi)^2 +m^2\phi^2 \right] + \mathscr{V}(\phi)
+\end{equation}
+利用有效场论方法，则可将势能的贡献等效为对粒子质量的修正项
+\begin{equation}
+    \tilde{m}^2(\varphi) = m^2 + \mathscr{V}''(\varphi)
+\end{equation}
+则有\begin{equation}
+    E_k = \boldsymbol{k}^2 + \tilde{m}^2(\varphi) = \boldsymbol{k}^2 +m^2 + \mathscr{V}''(\varphi)
+\end{equation}
+%我们考虑单圈贡献下的二点单粒子不可约函数构成的有效势能（\eqref{eq:effpot}式），可得
+% \begin{equation}
+%     V_\mathrm{eff} = V+\frac{T}{2}\int\frac{\mathrm{d}^3 \boldsymbol{k}}{(2\pi)^3}\sum_n^\infty\ln \Big(\boldsymbol{k}^2 + \omega_n^2 + m^2 + \frac{\partial^2 V}{\partial\phi^2}\Big|_{\phi=\varphi} \Big) 
+% \end{equation}
+% 其中我们可以定义背景场的有效质量为
+% \begin{equation}
+%     \tilde{m}^2(\varphi) = m^2+ \frac{\partial^2 V}{\partial\phi^2}\Big|_{\phi=\varphi}
+% \end{equation}
+% 则我们可得
+那么此时自由能可以表示为
+\begin{equation}
+    F[T,V]  = \int\mathrm{d}^3\boldsymbol{x}\Big(\mathscr{V}(\varphi)T + \int\frac{\mathrm{d}^3 k}{(2\pi)^3}\left[ \frac{\tilde{m}^2(\varphi)+\boldsymbol{k}^2}{2} + T\ln(1-e^{-(\tilde{m}^2(\varphi)+\boldsymbol{k^2})/T}) \right]\Big)
+\end{equation}
+由此我们可以从热力学自由能得出有效势能
+\begin{equation}
+\begin{split}
+       \mathscr{V}_\mathrm{eff} &=\mathscr{V}T+\int\frac{\mathrm{d}^3 \boldsymbol{k}}{(2\pi)^3} \Big( \frac{E_k}{2} + T\ln\Big[   1-e^{-E_k/T}\Big] \Big)\\&= \mathscr{V}T+\mathscr{V}^{(0)}_\mathrm{eff}+\mathscr{V}^{(T)}_\mathrm{eff}  
+\end{split}
+\end{equation}
+此时我们考虑的即产生的单圈有效势能包含了不依赖温度的零温项$V_\mathrm{eff}^{(0)}$，还包含了温度依赖的有限温度项$V_\mathrm{eff}^{(T)}$，即
+\begin{align}
+    \mathscr{V}_\mathrm{eff}^{(0)} &= \int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3} \frac{(\boldsymbol{k^2}+\tilde{m}^2(\varphi))^{1/2}}{2}\\
+    \mathscr{V}_\mathrm{eff}^{(T)} &= T\int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3} \, \ln\left( 1- \exp\Big[{-\sqrt{\frac{\boldsymbol{k}^2 + \tilde{m}^2(\varphi)}{T^2} }}\Big] \right)\notag\\
+    &=\frac{T^4}{2\pi^2}\int_0^\infty \mathrm{d}\xi\, \xi^2\ln\left( 1- \exp\Big[{-\sqrt{\xi^2+\frac{\tilde{m}^2(\varphi)}{T^2}  }}\Big] \right)
+\end{align}
+对于零温项而言，我们可以考虑维数正规化及最小差值方案进行重整化，得到如下结果
+\begin{equation}
+    {\mathscr{V}_\mathrm{eff}^{(0)}}^{\overline{\text{MS}}} = \frac{\tilde{m}^4(\varphi)}{64\pi^2}\left( \ln \frac{\tilde{m}^2(\varphi)}{\mu^2}-\frac{3}{2} \right)
+\end{equation}
+而对于有限温度项，我们将积分定义为热函数$J_B(\tilde{m}(\varphi)^2)$
+\begin{equation}
+    J_B(x^2) = \int_0^\infty \mathrm{d}\xi\, \xi^2\ln\left( 1- \exp\Big[{-\sqrt{\xi^2+x^2}}\Big] \right)
+\end{equation}
+则有限温度项为
+\begin{equation}
+    \mathscr{V}_\mathrm{eff}^{(T)} = \frac{T^4}{2\pi^2}J_B\left(\frac{\tilde{m}^2(\varphi)}{T^2}\right)
+\end{equation}
+那么最终该系统的巨势，也即有效作用作用量，为
+\begin{equation}
+    \Omega[\varphi,T,V]=\int\mathrm{d}^3\boldsymbol{x}\Big [  \mathscr{V}(\varphi)T + \frac{\tilde{m}^4(\varphi)}{64\pi^2}\left( \ln \frac{\tilde{m}^2(\varphi)}{\mu^2}-\frac{3}{2} \right) +  \frac{T^4}{2\pi^2}J_B\left(\frac{\tilde{m}^2(\varphi)}{T^2}\right)  \Big]
+\end{equation}
+在考虑高温情形时，热函数$J_B(\tilde{m}(\varphi)^2)$可以围绕$\frac{\tilde{m}(\boldsymbol{\phi}_0)}{T}\sim0$对有限温度项做高温展开
+\begin{equation}
+\begin{split}
+        J_B(x^2)= &-\frac{\pi^4}{45}+\frac{\pi^2}{12}x^2 - \frac{\pi}{6}x^3-\frac{x^4}{32}\left(\ln\frac{x^2}{16\pi^2} -\frac{3}{2} + 2\gamma_E\right)\\
+    &-2\pi^{7/2}\sum_{\ell=1}^\infty (-1)^\ell \frac{\zeta(2\ell+1)}{(\ell+1)!}\Gamma(\ell+\frac{1}{2})(\frac{x^2}{4\pi^2})^{\ell+2}
+\end{split}
+\end{equation}
+忽略一些在作用量中不对运动方程构成影响的项，我们发现其中高温展开的有限温度项中包含了零温项的贡献，因此在高温情形中，零温项可以被抵消而忽略不计。
+
+\section{高温展开及三维有效理论}
+对于我们的欧氏空间作用量，我们考虑$\phi^4$的标量场理论：
+\begin{equation}
+    \mathcal{S}_\mathbb{E} = \int_0^\beta \mathrm{d}\tau \int\mathrm{d}^3 \boldsymbol{x} \Big[ \frac{1}{2}\left(\left( \frac{\partial \phi }{\partial\tau} \right)^2 + (\boldsymbol{\nabla}\phi)^2+m^2 \phi^2\right) + \frac{\lambda}{4!}\phi^4 \Big]
+\end{equation}
+带入有限温度场的通解\eqref{eq:phiksum}式以及松原频率\eqref{eq:mastubarab}式
+得
+\begin{multline}
+    \mathcal{S}_\mathbb{E} = \int_0^\beta \mathrm{d}\tau \int\mathrm{d}^3 \boldsymbol{x} \Big( \frac{1}{2\beta}\sum_{n,m}\Big[ \left(m^2-\omega_n\omega_m \right)\boldsymbol{\phi_n}\boldsymbol{\phi_m} + \boldsymbol{\nabla}\boldsymbol{\phi_n} \cdot\boldsymbol{\nabla}\boldsymbol{\phi_m} \Big]e^{i(\omega_n+\omega_m)\tau} \\+ \frac{\lambda}{4! \beta^2}\sum_{n_i}\boldsymbol{\phi}_{n_1}\boldsymbol{\phi}_{n_2}\boldsymbol{\phi}_{n_3}\boldsymbol{\phi}_{n_4} e^{i(\omega_{n_1}+\omega_{n_2}+\omega_{n_3}+\omega_{n_4})\tau}\Big)
+\end{multline}
+% \begin{gather}
+%     \frac{1}{2}\dot{\phi} ^2 = \frac{1}{{\beta }}\sum_n \sum_m (i2\pi n)(i2\pi m) \boldsymbol{\phi}_n \boldsymbol{\phi}_m e^{i(\omega_n+\omega_m)\tau}\\
+%     \boldsymbol{\nabla}\phi = {\beta} \sum_n \sum_m (\boldsymbol{\nabla\phi}_n)(\boldsymbol{\nabla\phi}_m)  e^{i(\omega_n+\omega_m)\tau}
+% \end{gather}
+其中我们将3维场函数$\boldsymbol{\phi}_n$标记为
+\begin{equation}
+    \boldsymbol{\phi}_n = \frac{1}{\sqrt{V}}\sum_{\boldsymbol{k} }\tilde{\phi}(\omega_n,\boldsymbol{k}) e^{i\boldsymbol{k}\cdot\boldsymbol{x}},~~\phi = \frac{1}{\sqrt{\beta}}\sum_n \boldsymbol{\phi_n}e^{i\omega_n\tau}
+\end{equation}
+我们利用$\int_0^\beta \mathrm{d}\tau e^{i\omega_n \tau} = \beta \delta_{n,0}$将时间维度积分掉，则可以得到
+\begin{equation}
+     \mathcal{S}_\mathbb{E} =\int\mathrm{d}^3 \boldsymbol{x} \Big[\frac{1}{2}\sum_n (\omega_n^2+\boldsymbol{\nabla}^2 + m^2)|\boldsymbol{\phi}_n|^2 + \frac{\lambda}{4! \beta}\sum_{n_i} \boldsymbol{\phi}_{n_1}\boldsymbol{\phi}_{n_2}\boldsymbol{\phi}_{n_3}\boldsymbol{\phi}_{n_4} \delta_{\sum_{n_i},0}\Big]
+\end{equation}
+我们可以将作用量中的频率求和分为零模态和非零模态$\boldsymbol{\phi}=\boldsymbol{\phi}_0+\boldsymbol{\phi}_n$，同时相互作用项还会产生零模态与非零模态的相干项，即
+\begin{equation}
+    {\mathcal{S}_\mathbb{E}}[\boldsymbol{\phi}_0,\boldsymbol{\phi}_n] = {\mathcal{S}^{(0)}_\mathbb{E}}[\boldsymbol{\phi}_0]  + {\mathcal{S}^{(\mathrm{int})}_\mathbb{E}}[\boldsymbol{\phi}_0,\boldsymbol{\phi}_n]+ {\mathcal{S}^{(n)}_\mathbb{E}}[\boldsymbol{\phi}_n]
+\end{equation}
+对于零模态，作用量即为
+\begin{equation}
+    {\mathcal{S}^{(0)}_\mathbb{E}} [\boldsymbol{\phi}_0] = \int\mathrm{d}^3 \boldsymbol{x} \Big[\frac{1}{2} (\boldsymbol{\nabla}^2 + m^2)\boldsymbol{\phi}_0^2 + \frac{\lambda T}{4!} \boldsymbol{\phi}^4_0\Big]
+\end{equation}
+对于相互作用项
+\begin{equation}
+    {\mathcal{S}^{(\mathrm{int})}_\mathbb{E}}  = \int\mathrm{d}^3 \boldsymbol{x} \sum_n\Big[ \frac{\lambda T}{4!} (\boldsymbol{\phi}_0+\boldsymbol{\phi}_n)^4\Big] = \int\mathrm{d}^3 \boldsymbol{x} \sum_n\Big[ \frac{\lambda T}{4!} (\boldsymbol{\phi}_0^4 + 4 \boldsymbol{\phi}_0^3\boldsymbol{\phi}_n + 6\boldsymbol{\phi}_0^2 \boldsymbol{\phi}_n^2 + 4\boldsymbol{\phi}_0 \boldsymbol{\phi}_n^3 +\boldsymbol{\phi}_n^4)\Big]
+\end{equation}
+由于时间积分产生的$\delta_{\sum_{n_i},0}$函数的限制，$ \boldsymbol{\phi}_n$一次项必然无法存在，因此可得
+\begin{equation}
+    {\mathcal{S}^{(\mathrm{int})}_\mathbb{E}}  = \int\mathrm{d}^3 \boldsymbol{x} \sum_n\Big[ \lambda T (\frac{\boldsymbol{\phi}_0^4}{4!}  + \frac{1}{4}\boldsymbol{\phi}_0^2 \boldsymbol{\phi}_n^2 + \frac{1}{3!}\boldsymbol{\phi}_0 \boldsymbol{\phi}_n^3 +\frac{1}{4!}\boldsymbol{\phi}_n^4)\Big]
+\end{equation}
+
+我们可以计算配分函数，也即路径积分
+\begin{equation}
+    \mathcal{Z}=\int\mathcal{D}\boldsymbol{\phi}_0\int \mathcal{D}\boldsymbol{\phi}_n \, e^{-\mathcal{S}_\mathbb{E}[\boldsymbol{\phi}_0,\boldsymbol{\phi}_n]} = \int\mathcal{D}\boldsymbol{\phi}_0\, e^{-\mathcal{S}^{(0)}_\mathbb{E}[\boldsymbol{\phi}_0]}\int\mathcal{D}\boldsymbol{\phi}_n \, e^{-\mathcal{S}^{(\mathrm{int})}_\mathbb{E}[\boldsymbol{\boldsymbol{\phi}_0,\phi}_n]-\mathcal{S}^{(n)}_\mathbb{E}[\boldsymbol{\phi}_n]}
+\end{equation}
+我们先计算$n$模态情形：
+\begin{equation}
+\begin{split}
+        \int\mathcal{D}\boldsymbol{\phi}_n \, e^{-\mathcal{S}^{(\mathrm{int})}_\mathbb{E}[\boldsymbol{\boldsymbol{\phi}_0,\phi}_n]-\mathcal{S}^{(n)}_\mathbb{E}[\boldsymbol{\phi}_n]} &= \prod_{n\neq0} \left[ \operatorname{det}\Big(-\nabla^2 + m^2+\omega_n^2 + \frac{\lambda T}{2} \boldsymbol{\phi}_0^2\Big) \right]^{-1/2}\\&=\exp\left[ -\frac{1}{2}\sum_{n}\operatorname{tr}\Big[ \ln(-\nabla^2+m^2+\omega_n^2+\frac{\lambda T}{2}\boldsymbol{\phi}_0^2) \Big] \right]
+\end{split}
+\end{equation}
+则我们可以构建有效作用量
+\begin{equation}
+     {\mathcal{S}^\mathrm{eff}_\mathbb{E}}[\boldsymbol{\phi}_0] = {\mathcal{S}^{(0)}_\mathbb{E}}[\boldsymbol{\phi}_0] +\frac{1}{2}\sum_{n}\operatorname{tr}\Big[ \ln(-\nabla^2+\omega_n^2+m^2+\frac{\lambda T}{2}\boldsymbol{\phi}_0^2) \Big] 
+\end{equation}
+考虑动量空间变换，其中求迹可以转化为对动量及坐标空间的积分
+\begin{equation}
+\begin{split}
+ {\mathcal{L}^\mathrm{eff}_\mathbb{E}}[\boldsymbol{\phi}_0] &= {\mathcal{L}^{(0)}_\mathbb{E}}[\boldsymbol{\phi}_0] +\frac{1}{2}\int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3} \sum_{n}\Big[ \ln(\boldsymbol{k}^2+\omega_n^2+m^2+\frac{\lambda T}{2}\boldsymbol{\phi}_0^2) \Big] \\
+ &=   {\mathcal{L}^{(0)}_\mathbb{E}}[\boldsymbol{\phi}_0] +\frac{1}{2}\int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3}\sum_{n}\Big[ \ln(\omega_n^2+E_k(\boldsymbol{\phi_0})^2) \Big]
+\end{split}
+\end{equation}
+其中我们有$E_k(\boldsymbol{\phi_0})^2 = \boldsymbol{k}^2 +m^2 + \frac{\lambda T}{2}\boldsymbol{\phi_0}^2 $。
+其中我们带入松原频率进行求和，再挖去零模项，即为：
+\begin{align}
+    \frac{1}{2}\sum_{n\neq0} \ln( \omega_n^2 + E_k^2 ) &= \int \mathrm{d}E_k \sum_n \frac{E_k}{(2\pi n T)^2 + E_k^2} - \ln E_k \notag\\
+    % &=\frac{1}{2}\int \mathrm{d}\frac{E_k}{T} \coth\left(\frac{E_k}{2T}\right)\notag\\
+    % & = \ln \left( \sinh \frac{E_k}{2T} \right)\notag\\
+    &=\frac{E_k}{2T}+\ln(1-e^{-E_k/T})-\ln E_k + \mathrm{const.}
+\end{align}
+此时我们对该求和式进行动量空间积分
+\begin{multline}
+    \frac{1}{2}\int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3}\sum_{n\neq0}\Big[ \ln(\omega_n^2+E_k(\boldsymbol{\phi_0})^2) \Big] = \frac{T^3}{2\pi^2}\int \mathrm{d}\xi\, \xi^2\Big( 
+    + \ln\Big[1-\exp\Big(-\sqrt{\xi^2 + \frac{\tilde{m}(\boldsymbol{\phi}_0)^2}{T^2}}\Big)\Big]\Big)\\
+    +\int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3} \Big(\frac{(k^2 +\tilde{m}(\boldsymbol{\phi}_0)^2)^{-1/2}}{2T} -\frac{1}{2}\ln[ k^2 + {\tilde{m}(\boldsymbol{\phi}_0)^2} ]\Big)
+\end{multline}
+第一部分积分考虑高温展开，第二部分会产生紫外发散，通过维数正规化及最小差值重整化，得到
+\begin{equation}
+    \frac{1}{2}\int\frac{\mathrm{d}^3\boldsymbol{k}}{(2\pi)^3}\sum_{n\neq0}\Big[ \ln(\omega_n^2+E_k(\boldsymbol{\phi_0})^2) \Big]\approx \frac{\tilde{m}(\boldsymbol{\phi}_0)^2}{24}T-\frac{\pi^2}{90}T^3 + \mathcal{O}(\frac{\tilde{m}(\boldsymbol{\phi}_0)}{T}^6)+\cdots
+\end{equation}
+由于不包含$\boldsymbol{\phi_0}$场的项不对运动方程产生影响，因此舍弃这些项之后，首阶修正项只保留$V_\text{eff}\approx\frac{\lambda T^2\boldsymbol{\phi}_0^2}{24}$
+% 在考虑温度较高的情形时，我们还可以对求和部分$\frac{1}{2}\sum_n \ln( \omega_n^2 + E_k^2 )$做高温展开，即$\frac{E_k}{T}\sim0$，则有
+% \begin{equation}
+%     \frac{1}{2}\sum_n \ln( \omega_n^2 + E_k^2 )=\ln \frac{E_k}{2T} + \frac{E_k^2}{24 T^2}-\frac{E_k^4}{2880 T^4} +\mathcal{O}(\frac{E_k^6}{T^6})+\cdots
+% \end{equation}
+% 此时零温项被抵消掉，意味着高温情形时零温项贡献可以忽略。除此之外，还包含了趋近于无穷大项$\ln(E_k/T)$
+最终，我们可得保留首阶修正高温情形下的有效作用量
+% 当我们考虑对整个动量空间积分时，会出现紫外发散项，需要进行重整化，\textcolor{purple}{this part need to be more concret...} 消去发散项后得到$-\frac{T^2}{12}$项，最终得到有效作用量
+\begin{equation}
+     {\mathcal{S}^\mathrm{eff}_\mathbb{E}}[\boldsymbol{\phi}_0] \approx\int\mathrm{d}^3 \boldsymbol{x}\Big [   \frac{1}{2}(\nabla\boldsymbol{\phi_0})^2 + \frac{1}{2}(m^2+\frac{\lambda T^2}{24})\boldsymbol{\phi_0}^2 + \frac{\lambda T}{4!} \boldsymbol{\phi_0}^4  \Big ]
+\end{equation}
+此时，$\boldsymbol{\phi_0}$为三维有效场，其量纲为$[\boldsymbol{\phi_0}]=\frac{1}{2}$，于四维理论的标量场量纲不同。其中有效热质量$m_T^2 = m^2 + \frac{\lambda T^2}{24} $，而有效热耦合常数则为$\lambda_T = \lambda T$，具有量纲$[\lambda_T] = 1$。
+
+%--------------------------------
+
+
+\chapter{拓扑场论}
+
+
+\section{规范矢量场的拓扑不变量}
+
+在非阿贝尔规范场论中，规范矢量场 \(A_\mu^a\)（其中 \(a\) 是伴随指标）允许具有拓扑非平庸的位形，这些位形由一个称为**庞特里亚金指标**或**绕数** \(Q\) 的拓扑不变量来表征。这个整数值的量对规范场位形的同伦类进行分类，并且与手征反常和瞬子物理密切相关。
+
+\subsection*{拓扑荷的定义}
+
+四维欧几里得空间中规范场的拓扑荷（庞特里亚金数）定义为
+\begin{equation}
+Q = \frac{g^2}{32\pi^2} \int d^4x \, \operatorname{Tr} \left( F_{\mu\nu} \tilde{F}^{\mu\nu} \right),
+\label{eq:pontryagin}
+\end{equation}
+其中 \(g\) 是规范耦合常数，\(F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + ig [A_\mu, A_\nu]\) 是场强张量（用矩阵表示），对偶场强为
+\begin{equation}
+\tilde{F}^{\mu\nu} = \frac{1}{2} \epsilon^{\mu\nu\rho\sigma} F_{\rho\sigma}.
+\end{equation}
+这里 \(\operatorname{Tr}\) 表示对规范群生成元的基本表示（或伴随表示）求迹，归一化满足 \(\operatorname{Tr}(T^a T^b) = \frac{1}{2} \delta^{ab}\)（对于 \(SU(N)\)）。
+
+对于 \(SU(2)\) 杨-米尔斯理论，通常采用伴随表示，记 \(A_\mu = A_\mu^a \frac{\sigma^a}{2}\)，其中 \(\sigma^a\) 是泡利矩阵。
+
+\subsection*{拓扑流及其守恒}
+
+方程 \eqref{eq:pontryagin} 中的被积函数可以写为一个全散度：
+\begin{equation}
+\operatorname{Tr} \left( F_{\mu\nu} \tilde{F}^{\mu\nu} \right) = \partial_\mu K^\mu,
+\end{equation}
+其中 Chern-Simons 流 \(K^\mu\) 为
+\begin{equation}
+K^\mu = 2 \operatorname{Tr} \left( A_\nu \tilde{F}^{\mu\nu} - \frac{2ig}{3} A_\nu A_\rho A_\sigma \epsilon^{\mu\nu\rho\sigma} \right).
+\label{eq:cs_current}
+\end{equation}
+该恒等式可由 Bianchi 恒等式 \(\operatorname{D}_\mu \tilde{F}^{\mu\nu} = 0\) 以及直接代数运算推出。
+
+因此，拓扑荷变为四维体积边界（通常是空间无穷远处的 \(S^3\)）上的面积分：
+\begin{equation}
+Q = \frac{g^2}{32\pi^2} \int_{S^3} dS_\mu \, K^\mu.
+\label{eq:surface}
+\end{equation}
+
+\subsection*{Chern-Simons 形式的推导}
+
+为推导关系 \(\operatorname{Tr}(F \tilde{F}) = \partial_\mu K^\mu\)，从场强的矩阵形式定义出发：
+\[
+F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + ig [A_\mu, A_\nu].
+\]
+对偶场强满足 \(\partial_\mu \tilde{F}^{\mu\nu} = 0\)（Bianchi 恒等式，在非阿贝尔情形下需用协变导数）。
+
+考虑一般变分或直接展开。一种标准方法是利用恒等式：
+\[
+\operatorname{Tr}(F_{\mu\nu} \tilde{F}^{\mu\nu}) = 4 \operatorname{Tr} \left( \partial_\mu \left( A_\nu \tilde{F}^{\mu\nu} \right) \right) - \frac{4ig}{3} \operatorname{Tr} \left( \epsilon^{\mu\nu\rho\sigma} \partial_\mu (A_\nu A_\rho A_\sigma) \right) + \text{相互作用项}.
+\]
+合并所有项并利用迹的循环性质及 \(\epsilon^{\mu\nu\rho\sigma}\) 的反对称性，即可准确得到方程 \eqref{eq:cs_current}（除了常规归一化因子）。
+
+对于无穷远处为纯规范位形的配置，\(A_\mu \to \frac{i}{g} U \partial_\mu U^\dagger\)，其中 \(U: S^3 \to SU(N)\) 属于非平凡同伦类 \(\pi_3(SU(N)) = \mathbb{Z}\) 的规范变换。
+
+\subsection*{绕数解释}
+
+对于在无穷远处趋于纯规范（\(F_{\mu\nu} \to 0\) 当 \(|x| \to \infty\)）的位形，拓扑荷 \(Q\) 约化为映射 \(U: S^3 \to SU(2)\)（或 \(SU(N)\)）的绕数：
+\begin{equation}
+Q = \frac{1}{24\pi^2} \int_{S^3} d^3\Omega \, \epsilon_{ijk} \operatorname{Tr} \left( U^\dagger \partial_i U \, U^\dagger \partial_j U \, U^\dagger \partial_k U \right),
+\end{equation}
+其中积分是在空间无穷远处的三维球面上进行。
+
+这正是映射的度数，一个整数，计数了空间无穷远 \(S^3\) 覆盖规范群流形的次数。
+
+
+\section{瞬子}
+在量子场论中，传统的微扰方法只适用于处理小耦合常数下的物理过程，即围绕某个经典真空的量子涨落。然而，规范场论中存在一类重要的非微扰效应，它们不能通过微扰展开得到，却对理解真空结构、禁闭现象和手征对称性破缺等强耦合物理至关重要。这类效应的核心载体就是瞬子（instanton）。
+
+瞬子是欧几里得时空中满足经典运动方程、且作用量有限的局域化解。与微扰论中处理的小涨落不同，瞬子具有非平凡的拓扑结构，它连接了规范场论中不同的经典真空，并描述了这些真空之间的量子隧穿过程。从几何角度看，瞬子对应着“最不弯曲”的规范联络，即杨-米尔斯泛函在给定拓扑扇区中的极小值点。
+
+我们从下面的欧几里得作用量开始（此后省略下标 \(E\)）：
+\begin{equation}
+S = -\frac{1}{2cg^2}\int_{\mathbb{R}^4}\mathrm{d}^4 x\,\mathrm{tr}(F_{\mu \nu}F^{\mu \nu}). \label{eq:YMaction}
+\end{equation}
+回忆一下，
+\begin{equation}
+F_{\mu \nu} = [\nabla_{\mu},\nabla_{\nu}] = [\partial_{\mu} - A_{\mu},\partial_{\nu} - A_{\nu}] = \partial_{\nu}A_{\mu} - \partial_{\mu}A_{\nu} + [A_{\mu},A_{\nu}].
+\end{equation}
+在我们的设定中，\(F_{\mu \nu}\) 是反厄米矩阵，李代数的生成元 \(T^{a}\) 归一化为 \(\mathrm{tr}(T^{a}T^{b}) = -\frac{1}{2}\)。作用量是非负的，即对任何场构型它取正值或零。\(S\) 的全局最小值对应于场强处处为零 \(F_{\mu \nu} = 0\)。下面我们将建立 \(S\) 的一个下界，为此需要霍奇对偶的概念。
+
+定义霍奇对偶张量：
+\begin{equation}
+\tilde{F}_{\mu \nu} = \frac{1}{2}\epsilon_{\mu \nu \rho \lambda}F^{\rho \lambda}. \label{eq:Hodge}
+\end{equation}
+在目前情况下指标的位置无关紧要，因为它们是借助欧几里得度量升降的。对霍奇对偶作用两次得到原张量：
+\begin{equation}
+\widetilde{(\tilde{F})}_{\mu \nu} = \frac{1}{4}\epsilon_{\mu \nu \rho \lambda}\epsilon^{\rho \lambda \tau \sigma}F_{\tau \sigma} = \frac{1}{4} \cdot 2(\delta_{\mu}^{\tau}\delta_{\nu}^{\sigma} - \delta_{\mu}^{\sigma}\delta_{\nu}^{\tau})F_{\tau \sigma} = F_{\mu \nu}.
+\end{equation}
+
+我们现在可以从下方估计作用量的值。由于 \(F\) 的反厄米性，我们有如下不等式：
+\begin{equation}
+0\leqslant -\int \mathrm{d}^4 x\,\mathrm{tr}(F\pm \tilde{F})^2 = -2\int \mathrm{d}^4 x\,\mathrm{tr}F^2\mp 2\int \mathrm{d}^4 x\,\tr F\tilde{F}\geqslant 0.
+\end{equation}
+由此可得
+\begin{equation}
+\pm \frac{1}{2cg^2}\int \mathrm{d}^4 x\,\mathrm{tr}F\tilde{F}\;\leqslant\; S = -\frac{1}{2cg^2}\int \mathrm{d}^4 x\,\mathrm{tr}F^2. \label{eq:bound1}
+\end{equation}
+右边的作用量是非负的，左边的符号 \(\pm\) 可以任意选择。为了得到一个有用的不等式，我们选择：如果 \(\mathrm{tr}F\tilde{F} > 0\) 则取 \(+\)，如果 \(\mathrm{tr}F\tilde{F}< 0\) 则取 \(-\)，使得左边也是非负的。两种情形可以合并为一个表达式：
+\begin{equation}
+\frac{1}{2cg^2}\Big|\int \mathrm{d}^4 x\,\mathrm{tr}F\tilde{F}\Big|\;\leqslant\; S. \label{eq:bound2}
+\end{equation}
+当 \(F = \pm \tilde{F}\) 时等号成立。\(F = \tilde{F}\) 的构型称为自对偶，\(F = - \tilde{F}\) 的构型称为反自对偶。可以看到这些构型自动满足运动方程。事实上，
+\begin{equation}
+\begin{aligned}
+D_{\mu}F^{\mu \nu} &= \partial_{\mu}F^{\mu \nu} - [A_{\mu},F^{\mu \nu}] \\
+&= \mp \frac{1}{2}\epsilon^{\nu \mu \rho \lambda}(\partial_{\mu}F_{\rho \lambda} - [A_{\mu},F_{\rho \lambda}]) \\
+&= \mp \frac{1}{2}\epsilon^{\nu \mu \rho \lambda}\bigl(\partial_{\mu}\partial_{\lambda}A_{\rho} - \partial_{\mu}\partial_{\rho}A_{\lambda} + [\partial_{\mu}A_{\rho},A_{\lambda}] + [A_{\rho},\partial_{\mu}A_{\lambda}] \\
+&\qquad - [A_{\mu},\partial_{\lambda}A_{\rho} - \partial_{\rho}A_{\lambda} + [A_{\rho},A_{\lambda}]]\bigr) \\
+&= \mp \frac{1}{2}\epsilon^{\nu \mu \rho \lambda}\bigl([\partial_{\mu}A_{\rho},A_{\lambda}] - [\partial_{\mu}A_{\lambda},A_{\rho}] + [\partial_{\lambda}A_{\rho},A_{\mu}] - [\partial_{\rho}A_{\lambda},A_{\mu}] \\
+&\qquad + [A_{\mu},[A_{\rho},A_{\lambda}]]\bigr) = 0,
+\end{aligned}
+\end{equation}
+其中最后一行由于 Levi-Civita 张量的反对称性质而等于零。
+
+现在我们来研究量 \(\mathrm{tr}F\tilde{F} = \frac{1}{2}\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}(F_{\mu \nu}F_{\rho \lambda})\)，并证明它实际上是一个全导数。我们有
+\begin{equation}
+\begin{aligned}
+\frac{1}{2}\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}(F_{\mu \nu}F_{\rho \lambda}) &= 2\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}(\partial_{\mu}A_{\nu} - A_{\mu}A_{\nu})(\partial_{\rho}A_{\lambda} - A_{\rho}A_{\lambda}) \\
+&= 2\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}(\partial_{\mu}A_{\nu}\partial_{\rho}A_{\lambda} - 2\partial_{\mu}A_{\nu}A_{\rho}A_{\lambda} + A_{\mu}A_{\nu}A_{\rho}A_{\lambda}).
+\end{aligned}
+\end{equation}
+首先，最后一项是 \(A\) 的四次项，由于迹的循环性质而消失。其次，我们注意到
+\begin{equation}
+\begin{aligned}
+\epsilon^{\mu \nu \rho \lambda}\partial_{\mu}(A_{\nu}A_{\rho}A_{\lambda}) &= \epsilon^{\mu \nu \rho \lambda}(\partial_{\mu}A_{\nu}A_{\rho}A_{\lambda} + A_{\nu}\partial_{\mu}A_{\rho}A_{\lambda} + A_{\nu}A_{\rho}\partial_{\mu}A_{\lambda}) \\
+&= (\epsilon^{\mu \nu \rho \lambda} + \epsilon^{\mu \lambda \nu \rho} + \epsilon^{\mu \nu \rho \lambda})\partial_{\mu}A_{\nu}A_{\rho}A_{\lambda} \\
+&= 3\epsilon^{\mu \nu \rho \lambda}\partial_{\mu}A_{\nu}A_{\rho}A_{\lambda},
+\end{aligned}
+\end{equation}
+即
+\begin{equation}
+\epsilon^{\mu \nu \rho \lambda}\partial_{\mu}A_{\nu}A_{\rho}A_{\lambda} = \frac{1}{3}\epsilon^{\mu \nu \rho \lambda}\partial_{\mu}(A_{\nu}A_{\rho}A_{\lambda}).
+\end{equation}
+由此我们得到
+\begin{equation}
+\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}(F_{\mu \nu}F_{\rho \lambda}) = \partial_{\mu}\left[4\epsilon^{\mu \nu \rho \lambda}\tr \Big(A_{\nu}\partial_{\rho}A_{\lambda} - \frac{2}{3} A_{\nu}A_{\rho}A_{\lambda}\Big)\right].
+\end{equation}
+四维欧几里得空间的边界是在半径 \(|x| = (x_{i}^{2})^{1/2}\) 趋于无穷大的三维球面 \(S^{3}\)。
+
+接下来我们引入拓扑不变量：
+\begin{equation}
+Q = -\frac{1}{32\pi^2c}\int \mathrm{d}^4 x\,\epsilon^{\mu \nu \rho \lambda}\tr(F_{\mu \nu}F_{\rho \lambda}) = -\frac{1}{8\pi^2c}\int \mathrm{d}^4 x\,\partial_{\mu}K^{\mu} = -\frac{1}{8\pi^2c}\int_{S^3}K^{\mu}\mathrm{d}S_{\mu}, \label{eq:Pontryagin}
+\end{equation}
+其中 \(K\) 是如下矢量：
+\begin{equation}
+K^{\mu} = \epsilon^{\mu \nu \rho \lambda}\mathrm{tr}\Big(A_{\nu}\partial_{\rho}A_{\lambda} - \frac{2}{3} A_{\nu}A_{\rho}A_{\lambda}\Big). \label{eq:Kvec}
+\end{equation}
+量 \(Q\) 称为庞特里亚金指标（第二陈类）。由构造，\(Q\) 在规范变换下不变。用庞特里亚金指标来表示，下界 
+\eqref{eq:bound2}变为
+\begin{equation}
+S\geqslant \frac{8\pi^2}{g^2} |Q|. \label{eq:boundQ}
+\end{equation}
+
+现在我们来证明 \(Q\) 是一个拓扑量——同伦指标。注意，为了具有有限作用量，张量 \(F\) 必须在无穷远处为零。一方面，这意味着在无穷远处 \(\epsilon^{\mu \nu \rho \lambda}\partial_{\rho}A_{\lambda} = \epsilon^{\mu \nu \rho \lambda}A_{\rho}A_{\lambda}\)，因此，在 \(S^3\) 的表面上，矢量 \(K^{\mu}\) 简化为
+\begin{equation}
+K^{\mu} = \frac{1}{3}\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}A_{\nu}A_{\rho}A_{\lambda},
+\end{equation}
+从而庞特里亚金指标变为
+\begin{equation}
+Q = -\frac{1}{24\pi^2c}\int_{S^3}\mathrm{d}S_{\mu}\,\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}A_{\nu}A_{\rho}A_{\lambda}. \label{eq:PontryaginS3}
+\end{equation}
+另一方面，无穷远处 \(F_{\mu \nu}=0\) 意味着 \(A_{\mu}\) 在那里是纯规范，即存在群元素 \(U\) 使得
+\begin{equation}
+A_{\mu}\xrightarrow{|x|\rightarrow\infty}\partial_{\mu}U\,U^{-1}.
+\end{equation}
+根据这一观察，庞特里亚金指标可以进一步具体化：
+\begin{equation}
+Q = -\frac{1}{24\pi^2c}\int_{S^3}\mathrm{d}S_{\mu}\,\epsilon^{\mu \nu \rho \lambda}\mathrm{tr}\big(\partial_{\nu}U\,U^{-1}\,\partial_{\rho}U\,U^{-1}\,\partial_{\lambda}U\,U^{-1}\big). \label{eq:PontryaginU}
+\end{equation}
+
+现在考虑规范群 \(G = \mathrm{SU}(2)\) 的具体且最简单的例子。拓扑上，\(\mathrm{SU}(2)\) 是一个三维球面 \(S^3\)，因此元素 \(U(x)\) 可以视为从空间球面 \(S^3\) 到群流形 \(S^3\) 的光滑映射：
+\begin{equation}
+U:\quad S^3\longrightarrow S^3. \label{eq:map}
+\end{equation}
+众所周知，所有这些映射被组织成同伦不等价类，由同伦群 \(\pi_3(S^3) = \mathbb{Z}\) 分类。换句话说，每个同伦类由一个整数参数化，这个整数正是数 \(Q\)。杨-米尔斯方程的自对偶解称为瞬子，反自对偶解称为反瞬子。在给定的 \(Q\) 扇形中，瞬子和反瞬子给出欧几里得作用量的绝对最小值。
+
+一个非常有趣的特点是，在瞬子解上，应力-能量张量为零。事实上，应力-能量张量为
+\begin{equation}
+T_{\mu\nu} = \mathrm{tr}\left(F_{\mu\rho}F_{\nu}^{\ \rho} - \frac{1}{4}\delta_{\mu\nu}F_{\rho\lambda}F^{\rho\lambda}\right).
+\end{equation}
+在瞬子解上，我们有
+\begin{equation}
+\mathrm{tr}F_{\mu\rho}F_{\nu}^{\ \rho} = \frac{1}{4}\delta_{\mu\nu}\mathrm{tr}F^2,
+\end{equation}
+因此 \(T_{\mu\nu}=0\)。
+
+现在我们考虑 \(G = \mathrm{SU}(2)\) 的瞬子解的显式例子。考虑如下的 \(\mathrm{SU}(2)\) 矩阵：
+\begin{equation}
+U = \frac{x_4 + i\vec{x}\cdot\vec{\sigma}}{|x|},
+\end{equation}
+其中 \(x_4 \equiv \tau\) 是欧几里得时间方向。我们使用这个矩阵来定义
+\begin{equation}
+A_{\mu} = \frac{x^2}{\lambda^2 + x^2}\,\partial_{\mu}U\,U^{-1}, \label{eq:BPST1}
+\end{equation}
+这里 \(\lambda\) 是任意实数。相应的场强为
+\begin{equation}
+F_{\mu\nu} = \tilde{F}_{\mu\nu} = \frac{4\lambda^2}{(\lambda^2 + x^2)^2}\,i\sigma_{\mu\nu}, \label{eq:BPST2}
+\end{equation}
+其中我们引入了厄米反对称矩阵 \(\sigma_{\mu\nu}\)，其分量为
+\begin{equation}
+\sigma_{ij} = \frac{1}{4i}[\sigma_i,\sigma_j] = \frac{1}{2}\epsilon_{ijk}\sigma_k,\quad
+\sigma_{i4} = \frac{1}{2}\sigma_i,\quad
+\sigma_{4i} = -\frac{1}{2}\sigma_i.
+\end{equation}
+
+在球坐标系中，
+\begin{align*}
+x_1 &= r \sin\phi_1 \sin\phi_2 \sin\phi_3,\\
+x_2 &= r \sin\phi_1 \sin\phi_2 \cos\phi_3,\\
+x_3 &= r \sin\phi_1 \cos\phi_2,\\
+x_4 &= r \cos\phi_1,
+\end{align*}
+其中 \(0 \le \phi_1,\phi_2 < \pi\)，\(0 \le \phi_3 < 2\pi\)，\(r = |x|\)，量 \(n_\mu K^\mu\) 为
+\begin{equation}
+n_\mu K^\mu = -\frac{12r^3}{(\lambda^2 + r^2)^3}.
+\end{equation}
+这里 \(n_\mu = x_\mu/|x|\) 是半径为 \(r\) 的三维球面的单位法向量。由于该三维球面的体积元为 \(\mathrm{d}S(r) = r^3 \sin^2\phi_1 \sin\phi_2\, \mathrm{d}\phi_1\mathrm{d}\phi_2\mathrm{d}\phi_3\)，对于庞特里亚金指标我们得到
+\begin{equation}
+Q = -\frac{1}{24\pi^2} \lim_{r\to\infty} \int \mathrm{d}S(r)\, n_\mu K^\mu = \frac{1}{2\pi^2} \int \mathrm{d}\phi_1\mathrm{d}\phi_2\mathrm{d}\phi_3\, \sin^2\phi_1 \sin\phi_2 = 1.
+\end{equation}
+因此，我们构造了一个具有拓扑荷 \(Q=1\) 的杨-米尔斯方程的自对偶解。这就是所谓的单瞬子解，称为BPST瞬子（Belavin-Polyakov-Tyupkin-Schwarz 瞬子）。
+
+
+\section{陈-Simons理论}
+\subsection*{基本定义与拓扑来源}
+
+设 $M$ 为三维定向闭流形，规范群 $G$ 为紧致李群（通常取 $SU(N)$），规范场为取值于李代数 $\mathfrak{g}$ 的1-形式 $A$。Chern-Simons作用量由纯Chern-Simons形式构成，不依赖于时空度规：
+\begin{equation}
+S_{\mathrm{CS}}[A] = \frac{k}{4\pi}\int_M \Tr\!\Big( A \wedge dA + \frac{2}{3} A \wedge A \wedge A \Big),
+\end{equation}
+其中 $k$ 称为Chern-Simons能级。在规范变换 $A \to U^{-1}AU + U^{-1}dU$ 下，
+\begin{equation}
+S_{\mathrm{CS}}[A^U] = S_{\mathrm{CS}}[A] + 2\pi k\, \mathcal{W}[U],
+\end{equation}
+$\mathcal{W}[U] \in \mathbb{Z}$ 为 $U: M \to G$ 的卷绕数。为保证 $e^{iS_{\mathrm{CS}}}$ 在“大规范变换”下不变，必须要求 $k \in \mathbb{Z}$，这就是Chern-Simons能级的量子化条件。
+
+Chern-Simons形式 $\omega_3 = \Tr(A\wedge dA + \tfrac{2}{3}A^3)$ 满足 $d\omega_3 = \Tr(F\wedge F)$，因此它在数学上是第二陈特征类的边界项。在四维流形 $X$ 上，若 $\partial X = M$，则
+\begin{equation}
+\frac{1}{8\pi^2}\int_X \Tr(F\wedge F) = \frac{1}{8\pi^2}\int_M \omega_3 \equiv N_{\mathrm{CS}}[A|_M],
+\end{equation}
+右边的积分正是Chern-Simons数。这正是瞬子拓扑荷 $Q$ 与三维边界Chern-Simons不变量之间深刻联系的几何根源。
+
+\subsection*{与瞬子的内在联系：真空分类与隧穿}
+
+在非阿贝尔规范理论中，三维纯规范构型 $A_i = i\,U^{-1}\partial_i U$ 按映射 $U: S^3 \to G$ 的同伦类划分，其拓扑标签正是Chern-Simons数：
+\begin{equation}
+N_{\mathrm{CS}}[A] = \frac{1}{8\pi^2}\int_{\mathbb{R}^3} \omega_3 \in \mathbb{Z}.
+\end{equation}
+于是经典真空分解为一系列拓扑孤立的态 $|n\rangle$，$n = N_{\mathrm{CS}}$。四维欧氏时空中的瞬子对应连接这些真空的量子隧穿过程，其拓扑荷恰好实现Chern-Simons数的跃迁：
+\begin{equation}
+Q = N_{\mathrm{CS}}(\tau=+\infty) - N_{\mathrm{CS}}(\tau=-\infty).
+\end{equation}
+因此，**Chern-Simons泛函标记了规范场真空的静态拓扑扇区，而瞬子则是驱动这些扇区之间动态跃迁的“事件”**。真正的物理真空是所有这些 $|n\rangle$ 态的Bloch叠加——$\theta$ 真空，其构造直接依赖于Chern-Simons数作为拓扑序参量。
+
+\subsection*{经典解与量子化}
+
+对作用量变分立即得到运动方程：
+\begin{equation}
+F_{\mu\nu} = 0,
+\end{equation}
+即Chern-Simons理论的经典解全部为平坦联络。理论没有局部的传播自由度，是典型的拓扑量子场论。在量子层面，Hilbert空间对应于边界二维黎曼面 $\Sigma$ 上平坦联络模空间的全纯截面空间，从而与 $\Sigma$ 上的Wess-Zumino-Witten模型形成体-边对应。
+
+%-------------------------------
+
+
+\chapter{超对称}
+粒子物理的标准模型（Standard Model, SM）是迄今为止最为成功的物理学理论之一，它精确地描述了电磁相互作用、弱相互作用和强相互作用，并预言了诸如希格斯玻色子等关键粒子的存在。然而，标准模型并非终极理论。它留下了诸多未解之谜：暗物质的本性、宇宙中物质-反物质的不对称性、等级问题（hierarchy problem）、以及引力在量子场论框架下的统一等。这些疑难强烈暗示着，在电弱能标之上存在更深刻的物理规律。
+
+超对称（Supersymmetry, SUSY）是超越标准模型的最具吸引力的新物理候选者之一。它预言了自然界中一种全新的时空对称性——将玻色子与费米子联系起来的对称性。简单来说，对于每一个标准模型中的粒子，超对称理论都赋予一个自旋相差 $1/2$ 的“超伙伴”（superpartner）。例如，自旋为 $1/2$ 的电子（费米子）对应自旋为 $0$ 的选择子（selectron，标量玻色子）；自旋为 $1$ 的光子（规范玻色子）对应自旋为 $1/2$ 的光微子（photino，费米子）。若超对称是精确的，则粒子与其超伙伴应具有完全相同的质量。然而，实验上尚未发现任何超对称粒子，这意味着超对称必须在某个能标下发生自发破缺。
+
+引入超对称的首要理论动机源于它对等级问题的优雅解决。标准模型中希格斯玻色子的质量受到来自费米子圈和玻色子圈的二次发散量子修正：
+\begin{equation}
+\delta m_H^2 \sim -\frac{|\lambda_f|^2}{8\pi^2} \Lambda_{\text{UV}}^2 + \frac{\lambda_s}{16\pi^2} \Lambda_{\text{UV}}^2 + \cdots,
+\end{equation}
+其中 $\Lambda_{\text{UV}}$ 是紫外截断能标（例如普朗克能标 $M_{\text{Pl}} \sim 10^{19}\,\text{GeV}$）。为了使电弱能标（$\sim 10^2\,\text{GeV}$）保持自然，这些巨大的二次发散本应需要精细调节。但若在标准模型费米子（如顶夸克）之外存在其玻色型超伙伴（如顶夸克），且耦合常数满足 $|\lambda_f|^2 = \lambda_s$，则圈图发散将精确抵消，从而将希格斯质量修正压低至超对称破缺能标 $\tilde{m}_{\text{SUSY}}$ 的量级：
+\begin{equation}
+\delta m_H^2 \sim \frac{|\lambda_f|^2}{4\pi^2} \left( \tilde{m}_{\text{SUSY}}^2 - m_f^2 \right).
+\end{equation}
+这意味着只要超对称破缺能标不太高（例如 TeV 量级），即可自然地将希格斯质量稳定在观测值附近。
+
+从代数的角度看，超对称是庞加莱对称性（Poincaré symmetry）的最非平凡扩展，属于分次李代数（graded Lie algebra）。它引入了一组超对称生成元 $Q_\alpha$（以及其共轭 $\bar{Q}_{\dot{\alpha}}$），它们满足如下的反交换关系：
+\begin{align}
+\{ Q_\alpha, \bar{Q}_{\dot{\beta}} \} &= 2 \sigma^\mu_{\alpha\dot{\beta}} P_\mu, \\
+\{ Q_\alpha, Q_\beta \} &= 0, \quad \{ \bar{Q}_{\dot{\alpha}}, \bar{Q}_{\dot{\beta}} \} = 0, \\
+[ Q_\alpha, P_\mu ] &= 0, \quad [ \bar{Q}_{\dot{\alpha}}, P_\mu ] = 0,
+\end{align}
+其中 $P_\mu$ 是平移生成元，$\sigma^\mu$ 是泡利矩阵。这一代数结构将时空平移与费米型变换统一起来，其数学内涵可以通过超空间（superspace）和超场（superfield）形式得以清晰表述。在超空间中，坐标被扩展为 $(x^\mu, \theta_\alpha, \bar{\theta}^{\dot{\alpha}})$，其中 $\theta$ 是格拉斯曼数，使得超对称变换成为超空间中的纯粹平移。
+\section{超对称代数及超对称表象}
+\label{sec:susy_algebra}
+% \begin{equation}
+%     \{Q_\alpha, \bar{Q}_{\dot{\beta}}\} = 2 \sigma^\mu_{\alpha\dot{\beta}}P_\mu
+% \end{equation}
+
+% \begin{equation}
+%     Q_\alpha = \frac{\partial}{\partial\theta^\alpha} - i\sigma^\mu_{\alpha\dot{\beta}}\Bar{\theta}^{\dot{\beta}}\partial_\mu,\qquad \bar{Q}_{\dot{\alpha}} = -\frac{\partial}{\partial\Bar{\theta}^{\dot{\alpha}}} + i{\theta}^{{\beta}}\sigma^\mu_{\beta\dot{\alpha}}\partial_\mu
+% \end{equation}
+超对称的核心是一个将玻色子与费米子联系起来的时空对称性。在量子场论中，对称性由李代数（Lie algebra）描述。为了统一自旋相差半整数的粒子，我们必须将普通的李代数推广为$\mathbb{Z}_2$分次李代数（graded Lie algebra），即超代数（superalgebra）。本章将详细阐述这一代数结构的数学形式、物理含义以及其表示论。
+
+\subsection*{庞加莱代数的回顾}
+
+四维闵可夫斯基时空中的庞加莱代数由平移生成元$P_\mu$和洛伦兹生成元$M_{\mu\nu}$（$\mu,\nu=0,1,2,3$）构成，满足以下对易关系：
+\begin{align}
+[P_\mu, P_\nu] &= 0, \\
+[M_{\mu\nu}, P_\rho] &= i(\eta_{\mu\rho}P_\nu - \eta_{\nu\rho}P_\mu), \\
+[M_{\mu\nu}, M_{\rho\sigma}] &= i(\eta_{\mu\rho}M_{\nu\sigma} - \eta_{\mu\sigma}M_{\nu\rho} - \eta_{\nu\rho}M_{\mu\sigma} + \eta_{\nu\sigma}M_{\mu\rho}),
+\end{align}
+其中$\eta_{\mu\nu}=\mathrm{diag}(1,-1,-1,-1)$是闵可夫斯基度规。
+
+为了描述费米子，我们通常使用旋量表示。在韦尔（Weyl）表示下，洛伦兹群的生成元可以分解为自旋$(1/2,0)$和$(0,1/2)$的不可约表示，分别用左手二分量旋量$\psi_\alpha$（$\alpha=1,2$）和右手二分量旋量$\bar\psi^{\dot\alpha}$（$\dot\alpha=1,2$）表示。指标通过全反对称张量$\epsilon^{\alpha\beta}$和$\epsilon_{\dot\alpha\dot\beta}$升降。
+
+\subsection*{超对称生成元的引入}
+
+为了实现玻色子与费米子之间的变换，我们引入一组费米型生成元$Q_\alpha$（左手旋量）及其共轭$\bar Q_{\dot\alpha}$（右手旋量）。它们携带自旋$1/2$，因此是格拉斯曼（Grassmann）奇元素。超对称代数将$Q_\alpha$、$\bar Q_{\dot\alpha}$与庞加莱生成元$P_\mu$、$M_{\mu\nu}$组合成一个超代数，其基本（反）对易关系为：
+\begin{align}
+\{ Q_\alpha, \bar Q_{\dot\beta} \} &= 2 \sigma^\mu_{\alpha\dot\beta} P_\mu, \label{eq:q_qbar} \\
+\{ Q_\alpha, Q_\beta \} &= 0, \quad \{ \bar Q_{\dot\alpha}, \bar Q_{\dot\beta} \} = 0, \label{eq:q_q} \\
+[ Q_\alpha, P_\mu ] &= 0, \quad [ \bar Q_{\dot\alpha}, P_\mu ] = 0, \label{eq:q_p} \\
+[ Q_\alpha, M_{\mu\nu} ] &= \frac12 (\sigma_{\mu\nu})_\alpha^{\ \beta} Q_\beta, \quad [ \bar Q^{\dot\alpha}, M_{\mu\nu} ] = \frac12 (\bar\sigma_{\mu\nu})^{\dot\alpha}_{\ \dot\beta} \bar Q^{\dot\beta}, \label{eq:q_m}
+\end{align}
+其中$\sigma^\mu = (1, \vec\sigma)$，$\bar\sigma^\mu = (1, -\vec\sigma)$，并且
+\begin{equation}
+\sigma_{\mu\nu} = \frac{i}{4}(\sigma_\mu\bar\sigma_\nu - \sigma_\nu\bar\sigma_\mu), \qquad
+\bar\sigma_{\mu\nu} = \frac{i}{4}(\bar\sigma_\mu\sigma_\nu - \bar\sigma_\nu\sigma_\mu).
+\end{equation}
+这些关系构成了$N=1$超对称代数（在四维时空中，$N$表示独立的超对称生成元对数）。我们称其为$N=1$超庞加莱代数（Super-Poincaré algebra）。
+
+\subsection*{超代数的一般结构}
+
+更一般地，一个$\mathbb{Z}_2$分次李代数可以分解为偶部（玻色型）和奇部（费米型）：
+\begin{equation}
+\mathfrak{g} = \mathfrak{g}_0 \oplus \mathfrak{g}_1,
+\end{equation}
+其中$[ \mathfrak{g}_0, \mathfrak{g}_0 ] \subseteq \mathfrak{g}_0$，$[ \mathfrak{g}_0, \mathfrak{g}_1 ] \subseteq \mathfrak{g}_1$，而$\{ \mathfrak{g}_1, \mathfrak{g}_1 \} \subseteq \mathfrak{g}_0$。在超对称代数中，偶部包含庞加莱代数$\mathfrak{iso}(3,1)$（或更广义地包括内对称性代数），奇部由$Q_\alpha$和$\bar Q_{\dot\alpha}$张成。
+
+一个非平凡的事实是，两个超对称变换的反对易子给出一个平移：
+\begin{equation}
+\{ Q_\alpha, \bar Q_{\dot\beta} \} = 2 (\sigma^\mu)_{\alpha\dot\beta} P_\mu,
+\end{equation}
+这意味着超对称是时空对称性的非平凡扩展。正是这一关系使得超对称有可能将不同自旋的粒子统一在同一多重态中。
+
+\subsection*{中心荷与扩展超对称}
+
+对于$N>1$的超对称，即存在多对生成元$Q_\alpha^I$（$I=1,\dots,N$）及其共轭$\bar Q_{\dot\alpha I}$，代数关系变为：
+\begin{align}
+\{ Q_\alpha^I, \bar Q_{\dot\beta J} \} &= 2 \sigma^\mu_{\alpha\dot\beta} P_\mu \delta^I_J, \\
+\{ Q_\alpha^I, Q_\beta^J \} &= \epsilon_{\alpha\beta} Z^{IJ}, \\
+\{\bar Q_{\dot\alpha I}, \bar Q_{\dot\beta J}\} &= \epsilon_{\dot\alpha\dot\beta} Z_{IJ},
+\end{align}
+其中$Z^{IJ} = -Z^{JI}$是中心荷（central charges），它们与所有生成元对易。中心荷的出现是扩展超对称的重要特征，在超弦理论和某些超对称规范理论中起着关键作用。此外，$N=2$和$N=4$超对称在四维时空中对应着具有更高自旋的粒子谱，并且是许多可解场论（如$\mathcal{N}=4$超对称杨-米尔斯理论）的基础。
+
+\subsection*{超代数的表示：超多重态}
+
+一个超对称表示（超多重态）包含同一超代数不可约表示中的一组粒子态。由于$Q_\alpha$改变自旋$1/2$，它可以连接不同自旋的态。我们通常从一个最低自旋态开始，称为“Clifford真空”，通过作用$Q_\alpha$提升到更高自旋态。
+
+考虑$N=1$超对称。对于一个有质量表示（$P^2 = m^2 > 0$），我们可以转到静止系$P_\mu = (m, \vec 0)$。此时代数( \ref{eq:q_qbar} )成为：
+\begin{equation}
+\{ Q_\alpha, \bar Q_{\dot\beta} \} = 2 m \delta_{\alpha\dot\beta},
+\end{equation}
+这恰好是$2\times 2$的Clifford代数。因此$Q_\alpha$和$\bar Q_{\dot\beta}$可以视为产生和湮灭算符。定义
+\begin{equation}
+a_1 = \frac{1}{\sqrt{2m}} Q_1, \quad a_2 = \frac{1}{\sqrt{2m}} Q_2, \quad \text{以及它们的厄米共轭} a_1^\dagger, a_2^\dagger.
+\end{equation}
+对易关系为$\{a_i, a_j^\dagger\} = \delta_{ij}$。每个产生算符将自旋投影提高$1/2$。一个不可约表示由一个“最低权重态”$|\Omega\rangle$（满足$a_i|\Omega\rangle=0$）开始，作用$0,1,2$个产生算符得到以下态：
+\begin{itemize}
+\item $|\Omega\rangle$：自旋$j$（$j$可以是整数或半整数），$2j+1$个态。
+\item $a_1^\dagger|\Omega\rangle$ 和 $a_2^\dagger|\Omega\rangle$：两个态，自旋$j+1/2$。
+\item $a_1^\dagger a_2^\dagger|\Omega\rangle$：一个态，自旋$j$。
+\end{itemize}
+因此一个有质量超多重态包含的自旋内容为$(j) \oplus 2\times (j+1/2) \oplus (j)$。对于无质量表示（$P^2=0$），类似的分析会给出螺旋度（helicity）表示，通常用于构建规范超多重态和手征超多重态。
+
+\subsection*{超场与超空间表示}
+
+为了更系统地研究超对称表示并构造超对称不变Lagrangian，超空间形式是强有力的工具。我们在普通时空坐标$x^\mu$的基础上增加四个格拉斯曼坐标$\theta^\alpha$和$\bar\theta^{\dot\alpha}$，形成超空间$(x^\mu, \theta^\alpha, \bar\theta^{\dot\alpha})$。超对称变换在超空间中表现为纯粹的平移：
+\begin{align}
+x^\mu &\to x^\mu + i\theta\sigma^\mu\bar\epsilon - i\epsilon\sigma^\mu\bar\theta, \\
+\theta^\alpha &\to \theta^\alpha + \epsilon^\alpha, \\
+\bar\theta^{\dot\alpha} &\to \bar\theta^{\dot\alpha} + \bar\epsilon^{\dot\alpha},
+\end{align}
+其中$\epsilon^\alpha$是格拉斯曼常数的无穷小参数。超场是超空间上的函数，可以按$\theta$和$\bar\theta$做泰勒展开（由于格拉斯曼数的幂零性，展开只有有限项）。通过对超场施加约束（例如手征条件$\bar D_\alpha \Phi = 0$），可以得到不可约的超多重态，例如：
+\begin{itemize}
+\item \textbf{手征超场} $\Phi(y,\theta)$：包含一个复标量场$\phi$，一个左手韦尔费米子$\psi_\alpha$和一个辅助标量场$F$。它描述了有质量或无质量的手征超多重态。
+\begin{equation}
+    \Phi_L(x,\theta) = \phi(x) + \sqrt{2}\theta^\alpha \psi_\alpha(x) + \theta^\alpha\theta^\beta \epsilon_{\alpha\beta}F(x)
+\end{equation}
+\item \textbf{矢量超场} $V(x,\theta,\bar\theta)$：包含规范场$A_\mu$，一个马约拉纳费米子（高微子$\lambda$）和一个辅助场$D$。它描述了规范超多重态。
+\begin{equation}
+\begin{split}
+    V(x,\theta,\bar{\theta}) =& (1+\frac{1}{4}\theta\theta\bar{\theta}\bar{\theta}\partial_\mu\partial^\mu)C(x) -\theta\sigma_\mu\bar{\theta}A^\mu(x)+\frac{1}{2}\theta\theta\bar{\theta}\bar{\theta}D(x) \\
+    &+\frac{i}{2}\theta\theta[M(x) + iN(x)]
+    -\frac{i}{2}\bar{\theta}\bar{\theta}[M(x) - iN(x)]\\
+    &+ (i\theta + \frac{1}{2}\theta\theta\sigma^\mu\bar{\theta}\partial_\mu)\chi(x) +(-i\theta + \frac{1}{2}\bar{\theta}\bar{\theta}\sigma^\mu{\theta}\partial_\mu)\bar{\chi}(x)\\
+    &+i\theta\theta\bar{\theta}\bar{\lambda}(x) - i\bar{\theta}\bar{\theta}\theta\lambda(x)
+    \end{split}
+\end{equation}
+\end{itemize}
+通过超场，我们可以以极其紧凑的方式写出超对称不变的Lagrangian，例如：
+\begin{equation}
+\mathcal{L} = \int d^4\theta \, \bar\Phi \Phi + \left[ \int d^2\theta \, W(\Phi) + \text{h.c.} \right] - \frac14 \int d^2\theta \, \mathrm{Tr}(W^\alpha W_\alpha) + \text{h.c.},
+\end{equation}
+其中$W(\Phi)$是超势（superpotential），$W_\alpha$是场强超场。
+
+
+% \section{超场}
+% \subsection{手征超场}
+
+% \subsection{矢量超场}
+
+\section{Wess-Zumino模型}
+% \begin{equation}
+%     \mathscr{L} = \int d^2\theta d^2\bar\theta \,\bar\Phi\Phi + \left[\int d^2\theta\, W(\Phi) + \mathrm{h.c.}\right]
+% \end{equation}
+Wess-Zumino（WZ）模型是由 Julius Wess 和 Bruno Zumino 在 1974 年提出的第一个四维超对称量子场论的具体实例。它展示了如何将超对称代数的抽象结构实现为相互作用的拉格朗日场论，并在量子层次上证明了超对称的紫外行为改善。本节将从手征超多重态出发，系统构建 WZ 模型的Lagrangian、超对称变换、辅助场机制以及超势的引入。
+
+\subsection*{手征超多重态的内容}
+
+根据第~\ref{sec:susy_algebra} 节对超对称表示的讨论，一个无质量 $N=1$ 手征超多重态（chiral supermultiplet）由以下组分场构成：
+\begin{itemize}
+\item 一个复标量场 $\phi(x)$（自旋 0），描述两个玻色子自由度；
+\item 一个左手韦尔费米子 $\psi_\alpha(x)$（自旋 1/2），描述两个费米子自由度；
+\item 一个复辅助标量场 $F(x)$（自旋 0），它不携带物理传播自由度，但用于闭合超对称代数。
+\end{itemize}
+在动量空间中，玻色子与费米子的自由度数目相等（$2_{\text{B}} = 2_{\text{F}}$），这是超对称表示的必要条件。
+
+\subsection*{WZ 模型的Lagrangian：自由情形}
+
+自由 WZ 模型的拉格朗日密度由标量场的动能项和费米子的 Dirac 型动能项构成，再加上辅助场的纯二次项：
+\begin{equation}
+\mathcal{L}_{\text{free}} = \partial_\mu \phi^\ast \partial^\mu \phi + i \bar\psi \bar\sigma^\mu \partial_\mu \psi + F^\ast F,
+\label{eq:wz_free}
+\end{equation}
+其中 $\bar\psi = \psi^\dagger$，并且我们已经使用了两分量旋量记号。为避免混淆，通常约定 $\bar\psi \bar\sigma^\mu \partial_\mu \psi \equiv \bar\psi^{\dot\alpha} (\bar\sigma^\mu)_{\dot\alpha}^{\ \beta} \partial_\mu \psi_\beta$。
+
+场上超对称变换（无穷小形式为 $\delta_\epsilon$，参数为格拉斯曼旋量 $\epsilon^\alpha$）作用为：
+\begin{align}
+\delta_\epsilon \phi &= \sqrt{2} \, \epsilon^\alpha \psi_\alpha, \label{eq:tr_phi} \\
+\delta_\epsilon \psi_\alpha &= -i\sqrt{2} \, (\sigma^\mu \bar\epsilon)_\alpha \partial_\mu \phi + \sqrt{2} \, \epsilon_\alpha F, \label{eq:tr_psi} \\
+\delta_\epsilon F &= -i\sqrt{2} \, \bar\epsilon^{\dot\alpha} (\bar\sigma^\mu)_{\dot\alpha}^{\ \beta} \partial_\mu \psi_\beta. \label{eq:tr_f}
+\end{align}
+可以验证，这些变换在壳上（即利用运动方程 $\partial^2\phi = 0$, $i\bar\sigma^\mu\partial_\mu\psi=0$, $F=0$）闭合成为超对称代数。而辅助场 $F$ 的存在使得变换代数离壳闭合（即不依赖运动方程），这是构造超对称相互作用的关键。
+
+\subsection*{辅助场与离壳超对称}
+
+辅助场 $F$ 的出现具有双重作用：
+\begin{enumerate}
+\item 使超对称变换代数在离壳情况下闭合。若没有 $F$，两个超对称变换的反对易子作用在 $\psi$ 上将产生一项正比于运动方程 $i\bar\sigma^\mu\partial_\mu\psi$，从而只能在壳封闭。
+\item 在相互作用理论中，$F$ 可以通过其运动方程被消去，给出标量势项。
+\end{enumerate}
+
+代入变换后，自由Lagrangian的变化是一个全导数：
+\begin{equation}
+\delta_\epsilon \mathcal{L}_{\text{free}} = \partial_\mu \left( i \sqrt{2} \, \bar\psi \bar\sigma^\mu \epsilon \, \phi^\ast + \text{h.c.} \right),
+\end{equation}
+因而作用量 $\int d^4x \mathcal{L}_{\text{free}}$ 是超对称不变的。
+
+\subsection*{相互作用：超势的引入}
+
+为了构造相互作用，我们引入一个解析函数 $W(\phi)$，称为超势（superpotential），它是复标量场 $\phi$（而非 $\phi^\ast$）的全纯函数。对于可重整的相互作用，$W(\phi)$ 至多是 $\phi$ 的三次多项式：
+\begin{equation}
+W(\phi) = \frac12 m \phi^2 + \frac13 g \phi^3,
+\end{equation}
+其中 $m$ 是质量参数，$g$ 是汤川耦合常数。相应的相互作用Lagrangian为：
+\begin{equation}
+\mathcal{L}_{\text{int}} = \left. \left( \frac{\partial W}{\partial \phi} F + \text{h.c.} \right) \right|_{\text{holomorphic}} - \frac12 \left. \frac{\partial^2 W}{\partial \phi^2} \psi\psi + \text{h.c.} \right.
+\end{equation}
+更明确地，对于 $W = \frac12 m \phi^2 + \frac13 g \phi^3$，我们有：
+\begin{align}
+\mathcal{L}_{\text{int}} &= m \phi F + g \phi^2 F + \text{h.c.} \;-\; \frac12 (m + 2g\phi) \psi\psi + \text{h.c.}
+\end{align}
+其中 $\psi\psi \equiv \psi^\alpha \psi_\alpha$。
+
+\subsection*{全 WZ 模型的Lagrangian}
+
+将自由部分与相互作用部分相加，得到 WZ 模型的总Lagrangian：
+\begin{align}
+\mathcal{L}_{\text{WZ}} =& \ \partial_\mu \phi^\ast \partial^\mu \phi + i\bar\psi\bar\sigma^\mu\partial_\mu\psi + F^\ast F \nonumber\\
+&+ \left( \frac{\partial W}{\partial\phi} F + \text{h.c.} \right) - \frac12 \left( \frac{\partial^2 W}{\partial\phi^2} \psi\psi + \text{h.c.} \right). \label{eq:wz_full}
+\end{align}
+
+辅助场 $F$ 没有动力学项，其运动方程为：
+\begin{equation}
+F^\ast = - \frac{\partial W}{\partial\phi}, \qquad F = - \frac{\partial W^\ast}{\partial\phi^\ast}.
+\end{equation}
+将这些代数方程代回Lagrangian，消去 $F$，得到 $\mathcal{L}_{\text{WZ}}$ 的 On-Shell 形式：
+\begin{align}
+\mathcal{L}_{\text{WZ}}^{\text{on-shell}} =& \ \partial_\mu \phi^\ast \partial^\mu \phi + i\bar\psi\bar\sigma^\mu\partial_\mu\psi \nonumber\\
+&- \left| \frac{\partial W}{\partial\phi} \right|^2 - \frac12 \left( \frac{\partial^2 W}{\partial\phi^2} \psi\psi + \text{h.c.} \right). \label{eq:wz_onshell}
+\end{align}
+
+\subsection*{标量势与超对称破缺}
+
+从 on-shell Lagrangian中读出标量势能：
+\begin{equation}
+V(\phi, \phi^\ast) = \left| \frac{\partial W}{\partial\phi} \right|^2.
+\end{equation}
+对于 $W = \frac12 m\phi^2 + \frac13 g\phi^3$，有：
+\begin{equation}
+V = |m\phi + g\phi^2|^2 = m^2 |\phi|^2 + mg(\phi^{\ast2}\phi + \phi^\ast\phi^2) + g^2|\phi|^4.
+\end{equation}
+这是典型的与超对称相伴的标量势，其最小值位于 $\partial W/\partial\phi = 0$。若存在一个 $\phi_0$ 使得 $\langle F \rangle = \langle \partial W/\partial\phi \rangle = 0$，则超对称保持未破缺。反之，若所有超对称真空均要求 $F=0$ 不可满足，则发生超对称自发破缺（例如通过 O'Raifeartaigh 机制）。
+
+\subsection*{超场表述中的 WZ 模型}
+
+WZ 模型最优雅的表述使用手征超场。在手征坐标 $(y^\mu = x^\mu + i\theta\sigma^\mu\bar\theta, \theta)$ 下，手征超场 $\Phi(y,\theta)$ 展开为：
+\begin{equation}
+\Phi(y,\theta) = \phi(y) + \sqrt{2}\theta\psi(y) + \theta\theta F(y),
+\end{equation}
+其中 $\theta\theta \equiv \theta^\alpha\theta_\alpha$。超共轭手征超场 $\bar\Phi(\bar y,\bar\theta)$ 则定义在反手征坐标上。
+
+Lagrangian可以紧凑地写为：
+\begin{equation}
+\mathcal{L}_{\text{WZ}} = \int d^4\theta \, \bar\Phi\Phi + \left[ \int d^2\theta \, W(\Phi) + \text{h.c.} \right],
+\end{equation}
+其中 $d^2\theta = -\frac14 d\theta^\alpha d\theta_\alpha$，$d^4\theta = d^2\theta d^2\bar\theta$。第一部分称为 $D$ 项，给出动能项；第二部分称为 $F$ 项，给出超势及其相互作用。这种形式自动保证了超对称不变性，且便于进行量子修正计算。
+
+\subsection*{WZ 模型的量子性质}
+
+WZ 模型的非凡性质在于其量子修正的高度受限。通过超图微扰计算可以发现：
+\begin{itemize}
+\item 超势 $W(\Phi)$ 不受量子修正（非重整化定理）。即所有辐射修正只出现在 $D$ 项中，而 $F$ 项的系数在微扰论下是受保护的。
+\item 辅助场的传播子不产生新的紫外发散，整体理论的可重整性是显而易见的。
+\item $\beta$ 函数与反常维度的关系由超对称 Adler-Bardeen 定理所约束。
+\end{itemize}
+这些特征使得 WZ 模型成为研究超对称动力学（如 Seiberg 对偶、瞬子效应）的理想理论实验室。
+
+
+
+
+
+\chapter{共形场论}
+\section{共形对称性}
+% 标度变换
+% \begin{equation}
+%     x'_\mu = \lambda x_\mu ,\qquad \phi'(x') = \lambda^{-\Delta}\phi(x)
+% \end{equation}
+
+% 共形变换
+% \begin{equation}
+%     g'_{\mu\nu}(x') = \frac{\partial x^\alpha}{\partial x'^\mu}\frac{\partial x^\beta}{\partial x'^\nu} g_{\alpha\beta}(x) = \Omega(x)^2 g_{\mu\nu}(x)
+% \end{equation}
+
+
+共形对称性是一类特殊的时空对称性，它比庞加莱对称性更为广泛。一个量子场论如果在其经典层面上具有共形不变性，并且在量子化后该对称性没有反常（或反常被适当抵消），则称该理论为共形场论。本节将系统阐述共形对称性的数学结构、代数实现以及在物理中的深刻影响。
+
+\subsection*{共形变换的定义}
+
+设 $(M,g_{\mu\nu})$ 是一个 $d$ 维（伪）黎曼流形，通常取闵可夫斯基时空 $\mathbb{R}^{1,d-1}$ 或欧几里得空间 $\mathbb{R}^d$。一个微分同胚 $\phi: M \to M$ 称为\textbf{共形变换}，如果它诱导的度规拉回与原度规之间仅差一个处处非零的标度因子 $\Omega(x)$：
+\begin{equation}
+\phi^* g_{\mu\nu}(x) = \Omega^2(x)\, g_{\mu\nu}(x).
+\label{eq:conformal}
+\end{equation}
+换句话说，共形变换保持时空光锥结构不变，即任意两条曲线之间的交角保持不变，但允许局部拉伸或收缩。当 $\Omega(x) \equiv 1$ 时，$\phi$ 成为等距变换（庞加莱变换的特例）。
+
+在物理中通常考虑流形为闵可夫斯基空间 $\mathbb{R}^{1,d-1}$（具有度规 $\eta_{\mu\nu} = \mathrm{diag}(-1,1,\dots,1)$）或欧几里得空间 $\mathbb{R}^d$（平坦正定度规）。此时共形变换构成一个李群，称为\textbf{共形群} $\mathrm{Conf}(\mathbb{R}^{1,d-1})$。
+
+\subsection*{共形群的显式形式（$d>2$）}
+
+对于 $d>2$ 维的平坦空间，共形群是有限维李群。除庞加莱群所含的\textbf{平移} $x^\mu \to x^\mu + a^\mu$ 和\textbf{洛伦兹变换} $x^\mu \to \Lambda^\mu_{\ \nu} x^\nu$（满足 $\Lambda^\mu_{\ \nu}\Lambda^\rho_{\ \sigma}\eta_{\mu\rho}=\eta_{\nu\sigma}$）之外，还包含两类新的变换：
+
+\begin{enumerate}
+    \item \textbf{伸缩变换（标度变换）}：
+    \begin{equation}
+    x^\mu \to \lambda\, x^\mu,\qquad \lambda \in \mathbb{R}^+.
+    \end{equation}
+    此时度规变为 $\eta_{\mu\nu} \to \lambda^{-2}\eta_{\mu\nu}$，因此 $\Omega(x)=\lambda^{-1}$。
+    \item \textbf{特殊共形变换}：
+    \begin{equation}
+    x^\mu \to \frac{x^\mu + b^\mu x^2}{1+2b\cdot x + b^2 x^2},
+    \end{equation}
+    其中 $b^\mu$ 是一个常向量，$x^2 = x_\mu x^\mu$（欧几里得情形为 $x^2 = \sum_{i=1}^d x_i^2$）。该变换可理解为“反演＋平移＋反演”的复合：先做 $x^\mu \to x^\mu/x^2$，再平移 $+b^\mu$，最后再做一次反演。
+\end{enumerate}
+
+上述所有变换共同生成一个 $d(d+3)/2$ 维的李群。就局部同构意义下，当度规为闵可夫斯基号差时，共形群同构于 $\mathrm{SO}(d,2)$（对于欧几里得号差则为 $\mathrm{SO}(d+1,1)$）。例如，四维闵氏时空的共形群为 $\mathrm{SO}(4,2)$，其维数为 $6+4=10$（6 个洛伦兹生成元 + 4 个平移 + 1 个伸缩 + 4 个特殊共形生成元）。
+
+\subsection*{无穷小共形变换与共形 Killing 方程}
+
+为研究共形对称性的局部代数结构，引入无穷小变换：
+\begin{equation}
+x^\mu \to x^\mu + \epsilon^\mu(x),
+\end{equation}
+其中 $\epsilon^\mu(x)$ 为小参数。度规变化为
+\begin{equation}
+\delta g_{\mu\nu} = \partial_\mu \epsilon_\nu + \partial_\nu \epsilon_\mu = 2\omega(x) g_{\mu\nu},
+\label{eq:conformal-killing}
+\end{equation}
+其中 $\omega(x)$ 由 $\epsilon^\mu$ 决定。方程 \eqref{eq:conformal-killing} 称为\textbf{共形 Killing 方程}。对平坦空间 $g_{\mu\nu}=\eta_{\mu\nu}$，该方程解出 $\epsilon^\mu$ 的一般形式最多包含上述四种变换的组合：
+\begin{equation}
+\epsilon^\mu = a^\mu + \omega^\mu_{\ \nu} x^\nu + \lambda x^\mu + (b^\mu x^2 - 2 x^\mu b\cdot x),
+\label{eq:infinitesimal}
+\end{equation}
+其中 $a^\mu$（平移）、$\omega_{\mu\nu} = -\omega_{\nu\mu}$（洛伦兹）、$\lambda$（伸缩）、$b^\mu$（特殊共形）为无穷小参数。
+
+\subsection*{共形代数（$d>2$）}
+
+定义生成元：
+\begin{itemize}
+    \item 平移：$P_\mu = -i\partial_\mu$。
+    \item 洛伦兹：$M_{\mu\nu} = i(x_\mu\partial_\nu - x_\nu\partial_\mu)$。
+    \item 伸缩：$D = -i x^\mu \partial_\mu$。
+    \item 特殊共形：$K_\mu = i(2x_\mu x^\nu\partial_\nu - x^2\partial_\mu)$。
+\end{itemize}
+它们满足如下对易关系（以 $[A,B]=AB-BA$ 为李括号）：
+\begin{align}
+[M_{\mu\nu}, M_{\rho\sigma}] &= i(\eta_{\mu\rho}M_{\nu\sigma} + \eta_{\nu\sigma}M_{\mu\rho} - \eta_{\mu\sigma}M_{\nu\rho} - \eta_{\nu\rho}M_{\mu\sigma}), \\
+[M_{\mu\nu}, P_\rho] &= i(\eta_{\nu\rho} P_\mu - \eta_{\mu\rho} P_\nu), \\
+[M_{\mu\nu}, K_\rho] &= i(\eta_{\nu\rho} K_\mu - \eta_{\mu\rho} K_\nu), \\
+[D, P_\mu] &= -i P_\mu, \qquad [D, K_\mu] = i K_\mu, \\
+[P_\mu, K_\nu] &= -2i(\eta_{\mu\nu} D + M_{\mu\nu}), \\
+[P_\mu, P_\nu] &= 0, \qquad [K_\mu, K_\nu] = 0.
+\end{align}
+这组关系定义了 $\mathfrak{so}(d,2)$ 李代数（当 $g_{\mu\nu}=\eta_{\mu\nu}$ 时）。事实上，若令
+\begin{equation}
+J_{ab} \quad (a,b=0,1,\dots,d+1)
+\end{equation}
+为 $\mathrm{SO}(d,2)$ 的生成元，并取合适的光锥坐标，上述对易关系可映射为标准的洛伦兹代数。
+
+\subsection*{二维特例：无穷维共形对称性}
+
+当 $d=2$ 时，共形对称性发生质变。在二维欧几里得平面上（或等效地，二维闵氏时空），共形变换等价于\textbf{全纯（解析）坐标变换}。引入复坐标 $z = x^1 + i x^2,\ \bar{z} = x^1 - i x^2$，则共形条件要求 $g_{zz} = g_{\bar{z}\bar{z}} = 0$ 且 $g_{z\bar{z}} = \frac12 \Omega^2$。任意满足 $\det(\partial z'/\partial z) \neq 0$ 的解析映射 $z\to f(z)$ 和 $\bar{z}\to \bar{f}(\bar{z})$ 皆为共形变换。这些变换的集合是无穷维的，局域上由所有解析函数构成。
+
+无穷小生成元：选取一组基 $l_n = -z^{n+1}\partial_z$（$n\in\mathbb{Z}$），它们满足\textbf{Virasoro 代数}（无中心项时为 Witt 代数）：
+\begin{equation}
+[l_m, l_n] = (m-n) l_{m+n}.
+\end{equation}
+在量子场论中，能量动量张量的真空期望值会引入中心扩展，得到真正的 Virasoro 代数：
+\begin{equation}
+[L_m, L_n] = (m-n)L_{m+n} + \frac{c}{12}(m^3-m)\delta_{m+n,0},
+\end{equation}
+以及类似的 $\bar{L}_m$ 代数（对反全纯部分）。中心荷 $c$ 是理论的重要参数，它标志着共形反常的大小。
+
+\subsection*{共形对称性对关联函数的限制}
+
+共形对称性对场论关联函数施加极其严格的约束。设 $\mathcal{O}_i(x)$ 为\textbf{原语场}（primary field），在标度变换 $x\to \lambda x$ 下其变换性质为
+\begin{equation}
+\mathcal{O}_i(x) \to \lambda^{-\Delta_i} \mathcal{O}_i(\lambda x),
+\end{equation}
+其中 $\Delta_i$ 称为\textbf{标度维度}。同时，特殊共形变换要求原语场的两点和三点函数形式被完全固定（至多一个常数）：
+
+\begin{itemize}
+    \item 两点函数：
+    \begin{equation}
+    \langle \mathcal{O}_i(x) \mathcal{O}_j(0) \rangle = \frac{C_{ij}}{|x|^{2\Delta_i}} \delta_{\Delta_i,\Delta_j},
+    \label{eq:2pt}
+    \end{equation}
+    其中 $|x|$ 为欧几里得距离。
+    \item 三点函数：
+    \begin{equation}
+    \langle \mathcal{O}_i(x) \mathcal{O}_j(y) \mathcal{O}_k(z) \rangle = \frac{C_{ijk}}{|x-y|^{\Delta_i+\Delta_j-\Delta_k} |y-z|^{\Delta_j+\Delta_k-\Delta_i} |z-x|^{\Delta_k+\Delta_i-\Delta_j}}.
+    \label{eq:3pt}
+    \end{equation}
+\end{itemize}
+四点及更高点函数可以通过算符乘积展开（OPE）和共形分波分解为二点和三点函数的组合，因此本质上由原语场谱（$\{\Delta_i\}$）和 OPE 系数 $\{C_{ijk}\}$ 决定。
+
+% \section{二维共形场论}
+\section{经典玻色子弦}
+玻色子弦理论是最简单的弦理论模型，其激发谱仅包含玻色子。本节将系统阐述经典（即未量子化）玻色弦的动力学描述，包括作用量、对称性、运动方程、边界条件以及经典解与约束分析。这些内容是理解弦量子化及导出现实物理（如超弦）的基础。
+
+\subsection*{弦的世界面}
+
+在弦理论中，基本对象是一维的弦，它在时空中的运动扫出一个二维曲面，称为\textbf{世界面}（worldsheet）。设时空为 $d$ 维闵可夫斯基空间，度规为 $\eta_{\mu\nu} = \mathrm{diag}(-1,1,\dots,1)$。弦的世界面由嵌入映射
+\begin{equation}
+X^\mu(\sigma,\tau),\qquad \mu=0,1,\dots,d-1
+\end{equation}
+描述，其中 $(\sigma,\tau)$ 是世界面上的坐标：$\tau$ 是类时参数（类似于固有时间），$\sigma$ 是沿弦的空间参数。对于\textbf{开弦}，$\sigma$ 的取值范围通常取为 $[0,\pi]$；对于\textbf{闭弦}，$\sigma$ 是圆周坐标，即 $\sigma \sim \sigma+2\pi$。$\tau$ 通常取遍整个实轴。
+
+世界面上诱导的度规为（拉回时空度规）：
+\begin{equation}
+h_{\alpha\beta} = \eta_{\mu\nu} \partial_\alpha X^\mu \partial_\beta X^\nu,\qquad \alpha,\beta = \tau,\sigma.
+\end{equation}
+世界面的面积元为 $\sqrt{-\det h}\, d\tau d\sigma$（在洛伦兹号差下，$\det h<0$）。
+
+\subsection*{南部-后藤作用量}
+
+弦的动力学由作用量决定。最直接的几何作用量是\textbf{Nambu–Goto 作用量}，它正比于世界面的总面积：
+\begin{equation}
+S_{\mathrm{NG}} = -T \int d\tau d\sigma \sqrt{-\det h},
+\end{equation}
+其中 $T$ 是弦的张力。通常引入\textbf{Regge 斜率} $\alpha'$ 与张力的关系：$T = \frac{1}{2\pi\alpha'}$。Nambu–Goto 作用量在几何上很自然，但由于根号的存在，量子化很不方便。为此引入辅助场 $h_{\alpha\beta}(\sigma,\tau)$（世界面度规），得到\textbf{Polyakov 作用量}：
+\begin{equation}
+S_{\mathrm{P}} = -\frac{T}{2} \int d\tau d\sigma \sqrt{-h}\, h^{\alpha\beta} \partial_\alpha X^\mu \partial_\beta X^\nu \eta_{\mu\nu},
+\end{equation}
+其中 $h = \det h_{\alpha\beta}$，$h^{\alpha\beta}$ 是 $h_{\alpha\beta}$ 的逆。Polyakov 作用量在经典水平等价于 Nambu–Goto 作用量：将 $h_{\alpha\beta}$ 视为独立变量，其运动方程给出 $h_{\alpha\beta} \propto \partial_\alpha X^\mu \partial_\beta X_\mu$，代入后回到 Nambu–Goto 作用量。
+
+\subsection*{对称性}
+
+Polyakov 作用量具有以下重要对称性：
+
+\begin{enumerate}
+    \item \textbf{庞加莱对称性}：时空上的平移和洛伦兹变换，$X^\mu \to \Lambda^\mu_{\ \nu} X^\nu + a^\mu$，$h_{\alpha\beta}$ 不变。
+    \item \textbf{重参数化不变性（微分同胚）}：世界面坐标变换 $\sigma^\alpha \to \sigma'^\alpha(\sigma)$，同时 $X^\mu$ 作为标量变换，$h_{\alpha\beta}$ 作为张量变换。这是二维引力理论的规范对称性。
+    \item \textbf{Weyl 对称性}：$h_{\alpha\beta} \to e^{2\phi(\sigma,\tau)} h_{\alpha\beta}$，$X^\mu$ 不变。该对称性仅存在于二维世界面，因为 $\sqrt{-h}\, h^{\alpha\beta}$ 在 Weyl 变换下不变（$\sqrt{-h}\to e^{2\phi}\sqrt{-h}$，$h^{\alpha\beta}\to e^{-2\phi}h^{\alpha\beta}$，乘积不变）。
+\end{enumerate}
+
+Weyl 对称性是二维特有的，它使得世界面上的度规只有两个物理自由度（与引力子不同），从而保证了弦理论的可解性。
+
+\subsection*{运动方程与约束}
+
+对 $X^\mu$ 变分，得到波动方程：
+\begin{equation}
+\partial_\alpha \left( \sqrt{-h}\, h^{\alpha\beta} \partial_\beta X^\mu \right) = 0.
+\end{equation}
+利用 Weyl 对称性，可以固定规范（共形规范）将世界面度规取为平直形式：
+\begin{equation}
+h_{\alpha\beta} = e^{2\phi} \eta_{\alpha\beta}, \quad \eta_{\alpha\beta} = \mathrm{diag}(-1,1).
+\end{equation}
+再使用重参数化不变性，可以进一步设 $\phi=0$，即 $h_{\alpha\beta} = \eta_{\alpha\beta}$。这称为\textbf{共形规范}。在该规范下，Polyakov 作用量简化为
+\begin{equation}
+S = -\frac{T}{2} \int d\tau d\sigma \left( \dot{X}^\mu \dot{X}_\mu - X'^\mu X'_\mu \right),
+\end{equation}
+其中 $\dot{X}^\mu = \partial_\tau X^\mu$，$X'^\mu = \partial_\sigma X^\mu$。此时运动方程为二维波动方程：
+\begin{equation}
+\left( \partial_\tau^2 - \partial_\sigma^2 \right) X^\mu = 0.
+\end{equation}
+
+然而，固定规范后，原来的对称性留下了残余约束：由 $h_{\alpha\beta}$ 的运动方程（即能量动量张量 $T_{\alpha\beta}=0$）产生的\textbf{Virasoro 约束}：
+\begin{equation}
+T_{01} = T_{10} = \dot{X}^\mu X'_\mu = 0,\qquad T_{00} = T_{11} = \frac12 \left( \dot{X}^\mu \dot{X}_\mu + X'^\mu X'_\mu \right) = 0.
+\end{equation}
+这些约束必须施加于解上，它们等同于世界面上的度规运动方程，保证了作用量中辅助场 $h_{\alpha\beta}$ 的动力学被消除。
+
+\subsection*{边界条件}
+
+波动方程要求边界项消失。对作用量变分时，边界项为
+\begin{equation}
+\delta S \supset -T \int d\tau \left[ X'^\mu \delta X_\mu \right]_{\sigma=0}^{\sigma=\pi}.
+\end{equation}
+为使其为零，需对每个端点施加边界条件。常见的有：
+
+\begin{itemize}
+    \item \textbf{开弦}：通常取\textbf{诺伊曼边界条件}，即端点在时空中的运动自由：
+    \begin{equation}
+    X'^\mu(\tau,0) = 0,\qquad X'^\mu(\tau,\pi) = 0.
+    \end{equation}
+    这对应于弦端点自由，动量不流出。也可以考虑\textbf{狄利克雷边界条件}，固定端点位置 $X^\mu(\tau,0)=$ 常数，此时端点黏在某个物理对象（D-膜）上。经典玻色弦通常讨论诺伊曼条件。
+    \item \textbf{闭弦}：由于 $\sigma$ 是圆周，需要周期性条件：
+    \begin{equation}
+    X^\mu(\tau,\sigma+2\pi) = X^\mu(\tau,\sigma),\qquad X'^\mu(\tau,\sigma+2\pi) = X'^\mu(\tau,\sigma).
+    \end{equation}
+\end{itemize}
+
+\subsection*{经典解与模展开}
+
+在共形规范和平直世界面下，波动方程的通解可分解为左行波和右行波：
+\begin{equation}
+X^\mu(\tau,\sigma) = X^\mu_L(\tau+\sigma) + X^\mu_R(\tau-\sigma).
+\end{equation}
+
+\subsubsection*{开弦（诺伊曼边界条件）}
+边界条件 $X'^\mu(\tau,0)=X'^\mu(\tau,\pi)=0$ 迫使左右行波反射合成驻波模式。展开式为：
+\begin{equation}
+X^\mu(\tau,\sigma) = x^\mu + \frac{p^\mu}{T} \tau + i \sqrt{\frac{1}{2\pi T}} \sum_{n\neq 0} \frac{1}{n} \alpha_n^\mu e^{-in\tau} \cos(n\sigma),
+\end{equation}
+其中 $x^\mu$ 是弦的质心位置，$p^\mu$ 是总动量（$\mu=0$ 分量给出能量）。振荡模式 $\alpha_n^\mu$ 满足 $\alpha_{-n}^\mu = (\alpha_n^\mu)^*$（若要求 $X^\mu$ 为实）。为了后面量子化方便，通常引入 $a_n^\mu = \frac{\alpha_n^\mu}{\sqrt{n}}$，但经典层面不需要。
+
+\subsubsection*{闭弦}
+周期性条件允许独立的左行和右行振荡：
+\begin{equation}
+X^\mu(\tau,\sigma) = x^\mu + \frac{p^\mu}{T} \tau + \frac{i}{2} \sqrt{\frac{1}{2\pi T}} \sum_{n\neq 0} \frac{1}{n} \left( \alpha_n^\mu e^{-2in(\tau-\sigma)} + \tilde{\alpha}_n^\mu e^{-2in(\tau+\sigma)} \right).
+\end{equation}
+此处 $\alpha_n^\mu$ 和 $\tilde{\alpha}_n^\mu$ 是两组独立的振荡模，分别对应右行波和左行波。动量 $p^\mu$ 仍为弦的总动量。
+
+\subsection*{Virasoro 约束与质量公式}
+
+Virasoro 约束 $T_{00}=T_{11}=0$ 和 $T_{01}=0$ 在经典理论中必须作为初始条件满足，并且随演化自动保持。用模展开后，这些约束等价于要求傅里叶分量为零。定义 Virasoro 生成元（开弦情形）：
+\begin{equation}
+L_m = \frac12 \sum_{n=-\infty}^{\infty} \alpha_{m-n} \cdot \alpha_n,\qquad m\in\mathbb{Z},
+\end{equation}
+其中 $\alpha_0^\mu = \sqrt{\frac{T}{2}} p^\mu$（此处的归一化取决于约定）。约束 $T_{\tau\tau}+T_{\sigma\sigma}=0$ 给出 $L_0=0$，而 $T_{\tau\sigma}=0$ 给出 $L_m=0$（$m\neq 0$）。特别地，$L_0$ 为：
+\begin{equation}
+L_0 = \frac{1}{2} \alpha_0^2 + \sum_{n=1}^{\infty} \alpha_{-n}\cdot \alpha_n.
+\end{equation}
+利用 $\alpha_0^2 = \frac{T}{2} p^\mu p_\mu = -\frac{T}{2} M^2$（因为 $p^0 = E = \sqrt{\mathbf{p}^2+M^2}$，在质心系中 $p^\mu=(M,\mathbf{0})$，故 $p^2 = -M^2$），约束 $L_0=0$ 给出经典质量公式：
+\begin{equation}
+-\frac{T}{2} M^2 + \sum_{n=1}^{\infty} \alpha_{-n}\cdot \alpha_n = 0 \quad\Longrightarrow\quad M^2 = \frac{2}{T} \sum_{n=1}^{\infty} \alpha_{-n}\cdot \alpha_n = \frac{4\pi}{\alpha'} \sum_{n=1}^{\infty} \alpha_{-n}\cdot \alpha_n.
+\end{equation}
+对于闭弦，类似地有 $L_0=\tilde{L}_0=0$，且总动量 $p^\mu$ 由左右模共同决定，质量公式为：
+\begin{equation}
+M^2 = \frac{2}{T} \left( \sum_{n=1}^{\infty} \alpha_{-n}\cdot \alpha_n + \sum_{n=1}^{\infty} \tilde{\alpha}_{-n}\cdot \tilde{\alpha}_n \right).
+\end{equation}
+
+经典地，振荡模式 $\alpha_n^\mu$ 是复数，且 $\alpha_{-n}^\mu = (\alpha_n^\mu)^*$。每个非零模式都可以被任意激发，因此经典弦的质量谱是连续的，并且可以取任意非负实数（包括零）。这对应于经典弦的振动幅度可以连续变化。
+
+\subsection*{经典玻色弦的讨论}
+
+从经典角度，玻色子弦理论在任意时空维度 $d$ 下都是自洽的：作用量和运动方程对于 $d$ 没有限制。然而，当我们尝试量子化时，会出现反常——共形反常必须消失，这要求 $d=26$（对于玻色弦）。此外，经典理论中存在类时振荡模式（$\mu=0$ 分量）将导致负范数态（鬼态），但在经典层面这些模式仍受 Virasoro 约束限制，只有当量子化后且满足临界维度时，鬼态才能被完全消除。
+
+经典玻色弦还包含了著名的\textbf{塔赫利（tachyon）}：基态（所有振荡模为零）具有 $M^2 = -\frac{2}{T}\sum \cdots = 0$？实际上，经典基态质量由零点能决定——但在经典理论中，零点能不存在，故经典基态质量为零。塔赫隆出现于量子化后的零点能重整化，在经典层面没有不稳定性。因此经典玻色弦是一个良定义的经典系统。
+
+\subsection*{经典对称性的残余}
+
+在共形规范下，Polyakov 作用量仍然保留了一类特殊的对称性：共形规范下的\textbf{残余重参数化}，即保持度规 $\eta_{\alpha\beta}$ 不变的变换。在二维中，这些变换恰好是\textbf{共形变换}（全纯坐标变换）：
+\begin{equation}
+\sigma^+ = \tau+\sigma \to f(\sigma^+),\quad \sigma^- = \tau-\sigma \to g(\sigma^-).
+\end{equation}
+经典玻色弦的 Virasoro 约束生成这些共形变换，即 $L_m$ 是共形变换的生成元（满足 Witt 代数）。经典泊松括号下，$L_m$ 满足：
+\begin{equation}
+\{L_m, L_n\} = (m-n)L_{m+n}.
+\end{equation}
+这无穷维对称性正是二维共形场论在经典弦理论中的体现。量子化后，该代数出现中心扩展（Virasoro 代数），其中心荷 $c=d$（每个 $X^\mu$ 贡献 1）。要求量子理论无反常（即中心荷抵消）是导出临界维度的关键
+
+
+% Polyakov作用量
+% \begin{equation}
+%     \mathcal{S} = \frac{T}{2} \int\mathrm{d}^2\sigma\, \sqrt{-h}\,h^{ab}  \partial_a X^\mu \partial_b X_\mu
+% \end{equation}
+% \subsection{费米子超弦}
+% \begin{equation}
+%     \mathcal{S} = -\frac{1}{8\pi} \int\mathrm{d}^2\sigma\, \sqrt{-h}\Big(h^{\alpha\beta}  \partial_\alpha X^\mu \partial_\beta X_\mu + 2i \bar{\psi}^\mu\rho^\alpha\partial_\alpha\psi_\mu -i\bar{\chi}_\alpha \rho^\beta\rho^\alpha\psi^\mu(\partial_\beta X_\mu-\frac{i}{4}\bar{\chi}_\beta\psi_\mu) \Big)
+% \end{equation}
+% \section{南部-后藤作用量}
+% \section{Polyakov弦}
+% \section{Virasoro代数及弦的量子化}
+% \section{有限温度下的单圈修正有效理论}

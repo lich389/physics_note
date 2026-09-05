@@ -1,0 +1,396 @@
+\appendix
+\chapter{李群及李代数}
+\section{李群}
+\paragraph{群的定义} 一个群$G$是一个具有元素$\{a,b,c,\cdots\}$的集合以及其相关的代数运算$f$，并具有如下性质
+\begin{itemize}
+    \item \textit{封闭性} ~如果$a,b\in G$，则$c=f(a,b)\in G$；
+    \item \textit{结合律} ~如果$a,b,c\in G$，$f(a, f(b,c)) = f(f(a,b),c)$；
+    \item \textit{单位元} ~必然存在$\mathbb{I}\in G $，使得$f(a,\mathbb{I}) = f(\mathbb{I},a) = a$，$\forall a\in G$；
+    \item \textit{逆运算} ~$\forall a \in G$，必然存在$a^{-1}$使得$f(a,a^{-1}) = f(a^{-1}, a) = \mathbb{I}$。
+\end{itemize}
+
+\paragraph{李群的定义} 李群是一个具有连续光滑映射$f$的群，同时也是一个$n$维光滑流形。
+
+\noindent 通常我们有如下李群：
+\begin{itemize}
+    \item 对于一个$n\times n$的可逆矩阵$A$：\begin{equation}
+        A = a_i^j,\quad \operatorname{det}A\neq 0,\qquad\qquad i,j = 1,2,\cdots n
+    \end{equation}
+    则构成了\textit{广义线性群}$\mathrm{GL}(n)$。群元素之间的运算$C=AB$则为矩阵的乘法：
+    \begin{equation}
+        c_i^j = a_i^k b_k^j
+    \end{equation}
+    对于定义在实数空间或复数空间的广义线性群，其自由度分别为：
+    \begin{equation}
+        \operatorname{dim}[\mathrm{GL}(n,\mathbb{R})]=n^2,\qquad\qquad \operatorname{dim}[\mathrm{GL}(n,\mathbb{C})]=2n^2
+    \end{equation}
+    \item \textit{特殊线性群}~$\mathrm{SL}(n)$为一种线性群且满足：
+    \begin{equation}
+        \operatorname{det}A = 1,~\forall A\in \mathrm{SL}(n)
+    \end{equation}
+    特殊线性群的自由度为：
+    \begin{equation}
+                \operatorname{dim}[\mathrm{SL}(n,\mathbb{R})]=n^2-1,\qquad\qquad \operatorname{dim}[\mathrm{
+SL}(n,\mathbb{C})]=2n^2-2
+    \end{equation}
+    \item \textit{正交群}$\mathrm{O}(n)$及\textit{特殊正交群}$\mathrm{SO}(n)$为一种实线性群且群元素为$n\times n$正交矩阵，即分别满足：
+    \begin{gather}
+    O^T O = \mathbbm{1},\qquad\forall O \in \mathrm{O}(n)\\
+        O^T O = \mathbbm{1},~\operatorname{det}O=1,\qquad\forall O \in \mathrm{SO}(n)
+    \end{gather}
+    由于正交矩阵本身有行列式$(\operatorname{det}O)^2=1$，因此正交群和特殊正交群的自由度相同，只有行列式的符号不同。对于定义在实数域上的正交群而言，本身具有$n^2$个变量，由于正交性提供了额外$\frac{n(n+1)}{2}$个约束方程，因此其自由度为：
+    \begin{equation}
+\operatorname{dim}[\mathrm{O}(n)]=\operatorname{dim}[\mathrm{
+SO}(n)]=\frac{n(n-1)}{2}
+    \end{equation}
+    \item \textit{幺正群}$\mathrm{U}(n)$及\textit{特殊幺正群}$\mathrm{SU}(n)$为一种复线性群且群元素为$n\times n$幺正矩阵，即分别满足：
+    \begin{gather}
+    U^\dagger U = \mathbbm{1},\qquad\forall U \in \mathrm{U}(n)\\
+        U^\dagger U = \mathbbm{1},~\operatorname{det}U=1,\qquad\forall U \in \mathrm{SU}(n)
+    \end{gather}
+    对于定义在复数域上的幺正群而言，本身具有$2n^2$个变量，由于幺正性提供了额外$n+n(n-1) = n^2$个约束方程，因此其自由度为：
+    \begin{equation}
+\operatorname{dim}[\mathrm{U}(n)]=n^2,\qquad\qquad
+\operatorname{dim}[\mathrm{
+SU}(n)]=n^2-1
+    \end{equation}
+    \item \textit{赝正交群}$\mathrm{O}(p,q)$和\textit{赝幺正群}$\mathrm{U}(p,q)$ ~对于矩阵$\eta$
+    \begin{equation}
+        \eta = \mathrm{diag}(\underbrace{1,\cdots,1}_{p},\underbrace{-1,\cdots,-1}_{q})
+    \end{equation}
+    $\mathrm{O}(p,q)$和$\mathrm{U}(p,q)$ 分别满足：
+    \begin{gather}
+        O^T\eta O = \eta,\qquad \forall O \in \mathrm{O}(p,q)\\
+        U^\dagger\eta U = \eta,\qquad \forall U \in \mathrm{U}(p,q)
+    \end{gather}
+\item \textit{辛群}$\mathrm{Sp}(2n)$满足
+\begin{equation}
+    A^T J A = J,\quad \forall A \in \mathrm{Sp}(2n),\qquad J = \begin{pmatrix}
+        0& \mathbbm{1}\\
+        -\mathbbm{1}&   0
+    \end{pmatrix}
+\end{equation}
+对于定义在实数域上的辛群$\mathrm{Sp}(2n,\mathbb{R})$，其自由度为
+\begin{equation}
+    \operatorname{dim}[\mathrm{Sp}(n,\mathbb{R})]=n(2n+1)
+\end{equation}
+\end{itemize}
+李群通常有矩阵表示和指数表示，矩阵表示即为线性映射$A$为$n\times n$矩阵，而指数表示则意味着线性映射$A$可以写为矩阵的指数形式。
+\section{李代数}
+对于李群而言，其在向量空间上的线性映射即为该群的表示。而对于李群表示的微分形式，则为李代数的表示。
+\paragraph{李代数的无穷小表示} 
+考虑李群的变换$A$，进行一个参数$\epsilon$为无穷小的变换：
+\begin{equation}
+    A = \mathbbm{1} + \epsilon \cdot a + \mathcal{O}(\epsilon^2)+\cdots\qquad \forall \epsilon \in \mathbb{R}
+\end{equation}
+则
+\begin{equation}
+    a=\frac{\delta A}{\delta \epsilon}\Big|_{\epsilon=0}
+\end{equation}
+即$a$为李代数的无穷小表示，同时也称之为李群的生成元，即意味着李群可以通过生成元生成任意参数的李群变换。
+
+以SU($N$)群为例，我们有：
+\begin{equation}
+    U \approx \mathbbm{1} + i{\epsilon}^a \cdot \boldsymbol{T}^a
+\end{equation}
+则带入幺正性条件，得：
+\begin{equation}
+    U^\dagger U = (\mathbbm{1} - i\epsilon^a \cdot {\boldsymbol{T}^a}^\dagger)(\mathbbm{1} + i\epsilon^a \cdot {\boldsymbol{T}^a}) \approx \mathbbm{1} + i\epsilon^a\cdot (\boldsymbol{T}^a - {\boldsymbol{T}^a}^\dagger) = \mathbbm{1}
+\end{equation}
+则我们可得矩阵$\boldsymbol{T}^a$为Hermitian矩阵$\boldsymbol{T} = \boldsymbol{T}^\dagger$。
+% ，满足条件：
+% \begin{equation}
+% U^\dagger U=\mathbbm{1},\qquad \mathrm{det}U=1
+% \end{equation}
+矩阵$\boldsymbol{T}^a$即为SU($N$)群的生成元，其中由于SU($N$)群具有$N^2-1$个自由度，则生成元个数也有$N^2-1$个，即$(a = 1,\cdots,N^2-1)$。我们有
+\begin{equation}
+\mathrm{tr}\,\boldsymbol{T}^a\boldsymbol{T}^b=\frac{1}{2}\delta^{ab}
+\end{equation}
+\paragraph{李代数的伴随表示} 
+考虑李群为作用在$n$维矢量$\boldsymbol{X}$上的线性变换（$\boldsymbol{X}\mapsto \boldsymbol{X}' = A \boldsymbol{X}$），则对于$n\times n$矩阵$B$的矢量乘积$\boldsymbol{X}B\boldsymbol{X}^{-1}$，有变换：
+\begin{equation}
+    \boldsymbol{X}B\boldsymbol{X}^{-1} \mapsto \boldsymbol{X} AB A^{-1}\boldsymbol{X}^{-1}
+\end{equation}
+则映射$M =\operatorname{Ad}_A (B)$为群的伴随表示，即：
+\begin{equation}
+    \operatorname{Ad}_A (B): B\mapsto ABA^{-1}
+\end{equation}
+对于李群$G$，我们可以写为无穷小指数表示$G=e^{\epsilon A}$，则其伴随表示为：
+\begin{equation}
+    \operatorname{Ad}_G (B): B\mapsto e^{\epsilon A} B e^{-\epsilon A}
+\end{equation}
+根据Baker-Campbell-Hausdorff公式：
+\begin{equation}
+    e^A B e^{-A}= B + [A,B]+\frac{1}{2!}[A,[A,B]]+\frac{1}{3!}[A,[A,[A,B]]]+\cdots
+\end{equation}
+我们可得：
+\begin{equation}
+    \operatorname{Ad}_G (B) : B\mapsto B + \epsilon [A, B] + \mathcal{O}(\epsilon^2)+\cdots
+\end{equation}
+其中$[A,B]=AB-BA$为$A$和$B$的对易关系，即为李代数的伴随表示，可记为；
+\begin{equation}
+    \frac{\delta B}{\delta \epsilon}\Big|_{\epsilon=0} = \operatorname{ad}_A(B) = [A,B]
+\end{equation}
+当我们考虑$B$同时也是李群的变换矩阵时，由于$A$和$B$都为群元素，根据群的封闭性$A$和$B$作用产生另一个群元$C$，则我们有：
+\begin{equation}
+    \operatorname{ad}_A([B,C]) = [\operatorname{ad}_A (B), C] + [B,\operatorname{ad}_A(C)]
+\end{equation}
+可得Jacobi恒等式：
+\begin{equation}
+    [A, [B,C]] + [C, [A,B]] + [B, [C,A]] = 0
+\end{equation}
+
+考虑SU($N$)群，其生成元之间满足SU($N$)李代数：
+\begin{equation}
+[\boldsymbol{T}^a,\boldsymbol{T}^b]=iC^{ab}_c\boldsymbol{T}^c
+\end{equation}
+$C^{ab}_c$称之为群的结构常数。由于对易关系的性质，我们可以得到关于结构常数的Jacobi恒等式：
+\begin{equation}
+C^{ad}_e C^{bc}_d + C^{cd}_e C^{ab}_d +C^{bd}_e C^{ca}_d=0
+    % f^{ade}f^{bcd} + f^{cde}f^{abd} + f^{bde}f^{cad}=0
+\end{equation}
+其三个指标$abc$具有全反对称性。%我们可得：
+
+常见几种李群及其李代数：
+\begin{itemize}
+    \item \textbf{SO(2)群}描述了在二维平面的一维转动，只有一个自由度，其变换矩阵为：
+    \begin{equation}
+        O(\theta) = \begin{pmatrix}
+            \cos\theta& \sin\theta\\
+            -\sin\theta& \cos\theta
+        \end{pmatrix}
+    \end{equation}
+    SO(2)群的基础表示为描述2维向量的变换，因此其基础表示的维度为2，而其伴随表示$O(\theta)$只有一个自由度，因此伴随表示的维度为1。
+\item \textbf{U(1)群}描述了复平面的一维转动，其变换为：
+    \begin{equation}
+        U(\theta) = e^{i\theta}
+    \end{equation}
+    由于U(1)群和SO(2)群都具有一个自由度，且结构相似，因此U(1)群同构于SO(2)群。
+    
+    \item \textbf{SO(3)群}描述了三维空间中的转动，具有三个自由度，其变换矩阵为：
+    \begin{equation}
+        O(\theta_1, \theta_2, \theta_3) = \begin{pmatrix}
+            \cos\theta_1& -\sin\theta_1& 0\\
+            \sin\theta_1& \cos\theta_1& 0\\
+            0& 0& 1
+        \end{pmatrix}\begin{pmatrix}
+            \cos\theta_2& 0& \sin\theta_2\\
+            0& 1& 0\\
+            -\sin\theta_2& 0& \cos\theta_2\\
+        \end{pmatrix}\begin{pmatrix}
+        1& 0& \\
+           0& \cos\theta_3& -\sin\theta_3\\
+           0& \sin\theta_3& \cos\theta_3\\
+        \end{pmatrix}
+    \end{equation}
+    SO(3)群具有生成元：
+    \begin{equation}
+        L_1 = \begin{pmatrix}
+            0& -1& 0\\
+            1& 0& 0\\
+            0& 0& 0
+        \end{pmatrix},~L_2 = \begin{pmatrix}
+            0& 0& 1\\
+            0& 0& 0\\
+            -1& 0& 0
+        \end{pmatrix},~L_3 = \begin{pmatrix}
+            0& 0& 0\\
+            0& 0& -1\\
+            0& 1& 0
+        \end{pmatrix}
+    \end{equation}
+    这三个生产元满足SO(3)群的李代数：
+    \begin{equation}
+        [L_i, L_j]=\varepsilon_{ijk}L_k
+    \end{equation}
+    Levi-Civita全反对称张量$\varepsilon_{ijk}$即为SO(3)群的结构常数。SO(3)群的基础表示维度和伴随表示维度皆为3。
+    \item\textbf{SU(2)群}描述了$2\times2$的复空间中的转动，具有三个自由度，其变换为：
+        \begin{equation}
+        U(\boldsymbol{\theta}) = e^{i\boldsymbol{\theta}\cdot\boldsymbol{\sigma}}
+    \end{equation}
+    其中泡利矩阵$\boldsymbol{\sigma}$即为SU(2)群的生成元，且满足SU(2)群李代数：
+    \begin{equation}
+        [\sigma_i, \sigma_j] = i\varepsilon_{ijk}\sigma_k
+    \end{equation}
+    由于SU(2)群和SO(3)群都具有相同的三个自由度，且具有相同结构常数，因此SU(2)群同构于SO(3)群。然而SU(2)的基础表示维度为2。
+    \item\textbf{SU(3)}群具有8个自由度，其的生成元是Gell-Mann矩阵：
+    \begin{align}
+        \lambda_1&= \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}& \lambda_2& = \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} &\lambda_3 &= \begin{pmatrix} 1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0 \end{pmatrix}&\lambda_4& = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix}\\
+        \lambda_5& = \begin{pmatrix} 0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0 \end{pmatrix} &\lambda_6& = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix} &\lambda_7& = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix} &\lambda_8& = \frac{1}{\sqrt{3}} \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -2 \end{pmatrix}
+    \end{align}
+    而这些生成元满足SU(3)群的李代数：
+    \begin{equation}
+        [\lambda_a, \lambda_b] = 2i f^{abc}\lambda_c,\qquad a,b,c = 1,\cdots,8
+    \end{equation}
+    其中SU(3)群的结构常数为：
+    \begin{equation}
+        f^{123} = 1, \quad f^{147} = f^{165} = f^{246} = f^{257} = f^{345} = f^{376} = \frac{1}{2} \ , \quad f^{458} = f^{678} = \frac{\sqrt{3}}{2}
+    \end{equation}
+    因此SU(3)的基础表示维度为3，伴随表示维度为8。
+\end{itemize}
+
+
+% 对于场（标量场或旋量场），其在SU($N$)变换下的无穷小变换表示为：
+% \begin{equation}
+% \delta\psi=i\omega^a \boldsymbol{T}^a\psi
+% \end{equation}
+% 即为SU($N$)群的基础表示。
+
+% 而对于算符$\boldsymbol{M}$，考虑其为$N\times N$无迹矩阵，则其变换形式为：
+% \begin{equation}
+% \boldsymbol{M}\rightarrow U\boldsymbol{M}U^\dagger
+% \end{equation}
+% 则无穷小变换表示为：
+% \begin{equation}
+% \delta \boldsymbol{M}=i\omega^a[\boldsymbol{T}^a,\boldsymbol{M}]
+% \end{equation}
+% 即为SU($N$)群的伴随表示
+
+
+\chapter{狄拉克矩阵\texorpdfstring{$\gamma^\mu$}{gamma}和Clifford代数}
+狄拉克矩阵$\gamma^\mu$满足Clifford代数的反对易关系：
+\begin{equation}
+\{\gamma^\mu,\gamma^\nu\}=2\eta^{\mu\nu}
+\end{equation}
+具体而言，我们可以在狄拉克表象下讨论$\gamma^\mu$矩阵：
+\begin{align}
+&\gamma^0=\begin{pmatrix}
+1& 	0&	0&	0\\
+0&	1&	0&	0\\
+0&	0&	-1&	0\\
+0&	0&	0&	-1
+\end{pmatrix},
+&\gamma^1=\begin{pmatrix}
+0&	0&	0&	1\\
+0&	0&	1&	0\\
+0&	-1&	0&	0\\
+-1&	0&	0&	0
+\end{pmatrix}\notag\\
+&\gamma^2=\begin{pmatrix}
+0&	0&	0&	-i\\
+0&	0&	i&	0\\
+0&	i&	0&	0\\
+-i&	0&	0&	0
+\end{pmatrix},
+&\gamma^3=\begin{pmatrix}
+0&	0&	1&	0\\
+0&	0&	0&	-1\\
+-1&	0&	0&	0\\
+0&	1&	0&	0
+\end{pmatrix}
+\end{align}
+在狄拉克表象下，$\gamma^0$为对角矩阵。
+
+然而对于Clifford代数而言，这四个$\gamma^\mu$的矩阵并不构成代数的完备集，除此之外还有线性独立基：
+\begin{align}
+\gamma^5=i\gamma^0\gamma^1\gamma^2\gamma^3
+%=\frac{i}{4!}\epsilon_{\mu\nu\rho\sigma}\gamma^\mu\gamma^\nu\gamma^\rho\gamma^\sigma\notag\\
+=\begin{pmatrix}
+0&	0&	1&	0\\
+0&	0&	0&	1\\
+1&	0&	0&	0\\
+0&	1&	0&	0
+\end{pmatrix}
+\end{align}
+还有另外4个矩阵：
+\begin{equation}
+\tau^\mu=\gamma^\mu\gamma^5
+\end{equation}
+以及张量：
+\begin{equation}
+\sigma^{\mu\nu}=\frac{i}{2}[\gamma^\mu,\gamma^\nu]
+\end{equation}
+加上$4\times4$的单位矩阵，这样最终我们用16个线性独立的矩阵构成Clifford代数的完备基：
+\begin{equation}
+\mathbbm{1},\qquad\gamma^5,\qquad\gamma^\mu,\qquad\tau^\mu,\qquad\sigma^{\mu\nu}
+\end{equation}
+并且这5种量分别对应了标量，赝标量，极矢量，轴矢量和张量。
+
+除此之外，我们还有自旋角动量算符：
+\begin{equation}
+    \Sigma_k=\frac{i}{2}\gamma^i\gamma^j\epsilon_{ijk}
+\end{equation}
+对于$\gamma^\mu$矩阵，我们有：
+\begin{equation}
+{\gamma^\mu}^\dagger=\gamma^0\gamma^\mu\gamma^0
+\end{equation}
+即${\gamma^0}^\dagger=\gamma^0$和${\gamma^i}^\dagger=-\gamma^i$。而且${\gamma^0}^2=\mathbbm{1}$，${\gamma^i}^2=-\mathbbm{1}$。
+
+而对于$\gamma^5$矩阵，则有：
+\begin{equation}
+(\gamma^5)^2=\mathbbm{1},\qquad{\gamma^5}^\dagger=\gamma^5
+\end{equation}
+即$\gamma^5$本身为厄密矩阵，且与4个狄拉克矩阵反对易$\{\gamma^5,\gamma^\mu\}=0$
+
+同样，我们也可以定义$\gamma^\mu$矩阵的协变分量：
+\begin{equation}
+\gamma_\mu=\eta_{\mu\nu}\gamma^\nu
+\end{equation}
+这样我们有一系列等式：
+\begin{align}
+&\gamma^\mu\gamma_\mu=4\notag\\
+&\gamma^\mu\gamma^\nu\gamma_\mu=-2\gamma^\nu\notag\\
+&\gamma^\mu\gamma^\nu\gamma^\rho\gamma_\mu=4\eta^{\nu\rho}\notag\\
+&\gamma^\mu\gamma^\nu\gamma^\rho\gamma^\sigma\gamma_\mu=-2\gamma^\sigma\gamma^\rho\gamma^\nu\notag\\
+&\gamma^\mu\gamma^\nu\gamma^\rho=\eta^{\mu\nu}\gamma^\rho+\eta^{\nu\rho}\gamma^\mu-\eta^{\mu\rho}\gamma^\nu-i\epsilon^{\sigma\mu\nu\rho}\gamma_\sigma\gamma^5\notag\\
+\end{align}
+对狄拉克矩阵求迹，我们可得：
+\begin{align}
+&\operatorname {tr} \left(\gamma ^{\mu }\right)=0\notag\\
+&\operatorname {tr} \left(\gamma ^{\mu }\gamma ^{\nu }\right)=4\eta ^{\mu \nu }\notag\\
+&\operatorname {tr} \left(\gamma ^{\mu }\gamma ^{\nu }\gamma ^{\rho }\gamma ^{\sigma }\right)=4\left(\eta ^{\mu \nu }\eta ^{\rho \sigma }-\eta ^{\mu \rho }\eta ^{\nu \sigma }+\eta ^{\mu \sigma }\eta ^{\nu \rho }\right)\notag\\
+&\operatorname {tr} \left(\gamma ^{5}\right)=\operatorname {tr} \left(\gamma ^{\mu }\gamma ^{\nu }\gamma ^{5}\right)=0\notag\\
+&\operatorname {tr} \left(\gamma ^{\mu }\gamma ^{\nu }\gamma ^{\rho }\gamma ^{\sigma }\gamma ^{5}\right)=-4i\epsilon ^{\mu \nu \rho \sigma }
+\label{eq:gmtr}
+\end{align}
+我们可以看出，奇数个$\gamma^\mu$矩阵求迹为0，而偶数个$\gamma^\mu$矩阵求迹可以有：
+\begin{equation}
+\operatorname{tr}(\gamma^{\mu_1}\gamma^{\mu_2}\cdots\gamma^{\mu_{2n}})=\operatorname{tr}(\gamma^{\mu_{2n}}\gamma^{\mu_{2n-1}}\cdots\gamma^{\mu_1})
+\end{equation}
+\chapter{Grassmann代数}
+在量子理论中，由于费米子具有独特的反对易性质，因此我们并不能用一般的代数形式来直接描述费米子场函数。所以我们引入另一种代数结构，称为Grassmann代数，也叫外代数。
+
+对于一组变量$\theta_i$，我们有其反对易关系：
+\begin{equation}
+\{\theta_i,\theta_j\}=0,\qquad i,j=1,\cdots,n
+\end{equation}
+那么我们易得\(\theta_i^2=0\)。同时，任意的以$\theta_i$为自变量的函数都可以展开为：
+\begin{equation}
+f(\theta_i)=a_0+a_i\theta_i+a_{ij}\theta_i \theta_j+a_{ijk}\theta_i\theta_j\theta_k+\cdots+a_{1\cdots n}\theta_1\cdots \theta_n
+\end{equation}
+而对于$\theta_i$的导数，我们可得反对易关系：
+\begin{equation}
+\Big\{\theta_i,\frac{\partial}{\partial \theta_j}\Big\}=\delta_{ij},\qquad\Big\{\frac{\partial}{\partial \theta_i},\frac{\partial}{\partial \theta_j}\Big\}=0
+\end{equation}
+之后，我们则可以定义对Grassmann变量的积分：
+\begin{equation}
+\int\mathrm{d}\theta_i=0,\qquad\int\mathrm{d}\theta_i\;\theta_i=1
+\end{equation}
+
+若我们在复空间中进行讨论，则有Grassmann变量$\theta$的复共轭$\bar{\theta}$，且为相互独立的变量。考虑1维情形，则我们有：
+\begin{equation}
+\int\mathrm{d}\theta=\int\mathrm{d}\bar{\theta}=0,\qquad\int\mathrm{d}\theta\;\theta=\int\mathrm{d}\bar{\theta}\;\bar{\theta}=1
+\end{equation}
+由于Grassmann变量的平方必然为0，即$\theta^2=\bar{\theta}^2=0$。则对于函数$e^{-\theta\bar{\theta}}$，我们可以展开为\(f(\theta,\bar{\theta})=e^{-\theta\bar{\theta}}=1-\theta\bar{\theta}\)。那么我们对其积分可得：
+\begin{equation}
+\int\mathrm{d}\theta\mathrm{d}\bar{\theta}\;e^{-\theta\bar{\theta}}=1
+\end{equation}
+
+对于一般情形，我们有$2n$个Grassmann变量$\theta_1,\cdots,\theta_n; \bar{\theta}_1,\cdots\bar{\theta}_n$。则以此为变量的函数对其积分得：
+\begin{equation}
+\int f(\theta_i,\bar{\theta}_i)\;\mathrm{d}\theta_1\mathrm{d}\bar{\theta}_1,\cdots\mathrm{d}\theta_n\mathrm{d}\bar{\theta}_n=a_{1\cdots n;n\cdots 1}
+\end{equation}
+即为函数的$n$阶展开系数。
+\newpage
+
+若函数的形式为类似于高斯函数的形式，我们可以展开为：
+\begin{equation}
+f(\theta_j,\bar{\theta}_i)=e^{-\bar{\theta}_iA_{ij}\theta_j}=\sum_k\frac{(-1)^k}{k!}\bar{\theta}_{i_1}A_{i_1 j_1}\theta_{j_1}\cdots \bar{\theta}_{i_k}A_{i_k j_k}\theta_{j_k}
+\end{equation}
+因此对此函数积分，我们可得：
+\begin{equation}
+\int\mathrm{d}\theta_j\mathrm{d}\bar{\theta}_i\;e^{-\bar{\theta}_iA_{ij}\theta_j}=\det A
+\label{eq:grassintegal}
+\end{equation}
+
+\printglossaries
