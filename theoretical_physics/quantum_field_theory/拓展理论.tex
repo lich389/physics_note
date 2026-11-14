@@ -420,6 +420,112 @@
 \end{equation}
 此时，$\boldsymbol{\phi_0}$为三维有效场，其量纲为$[\boldsymbol{\phi_0}]=\frac{1}{2}$，于四维理论的标量场量纲不同。其中有效热质量$m_T^2 = m^2 + \frac{\lambda T^2}{24} $，而有效热耦合常数则为$\lambda_T = \lambda T$，具有量纲$[\lambda_T] = 1$。
 
+\section{相变理论}
+
+在上文得到有限温度有效势之后，相变问题自然归结为研究巨势密度
+\begin{equation}
+\Omega[\varphi,T]=\int \mathrm d^3x\,\mathscr V_{\mathrm{eff}}(\varphi,T)
+\end{equation}
+的极小随温度的变化。平衡态序参量 \(\varphi_0\) 由
+\begin{equation}
+\frac{\partial \mathscr V_{\mathrm{eff}}}{\partial \varphi}=0,\qquad
+\frac{\partial^2 \mathscr V_{\mathrm{eff}}}{\partial \varphi^2}\ge 0
+\end{equation}
+决定。若全局极小在 \(\varphi=0\)，则对称性未破缺；若极小位于 \(\varphi\neq0\)，则发生自发对称性破缺。
+
+利用前文高温展开，忽略与 \(\varphi\) 无关的常数项，有
+\begin{equation}
+\mathscr V_{\mathrm{eff}}(\varphi,T)
+\simeq \mathscr V(\varphi)
++\frac{T^2}{24}\tilde m^2(\varphi)
+-\frac{T}{12\pi}\tilde m^3(\varphi)+\cdots,
+\end{equation}
+其中
+\begin{equation}
+\tilde m^2(\varphi)=m^2+\mathscr V''(\varphi).
+\end{equation}
+下面以实标量场的 \(Z_2\) 对称双井势为例：
+\begin{equation}
+\mathscr V(\varphi)=\frac{\lambda}{4}(\varphi^2-v^2)^2.
+\end{equation}
+取 \(m^2=0\)，则
+\begin{equation}
+\tilde m^2(\varphi)=\mathscr V''(\varphi)=\lambda(3\varphi^2-v^2).
+\end{equation}
+于是高温有效势为
+\begin{equation}
+\mathscr V_{\mathrm{eff}}(\varphi,T)
+\simeq
+\frac{\lambda}{4}(\varphi^2-v^2)^2
++\frac{\lambda T^2}{24}(3\varphi^2-v^2)
+-\frac{T}{12\pi}\big[\lambda(3\varphi^2-v^2)\big]^{3/2}
++\cdots .
+\end{equation}
+在 \(\varphi=0\) 附近，前两项给出
+\begin{equation}
+\mathscr V_{\mathrm{eff}}(\varphi,T)
+=
+\mathscr V_{\mathrm{eff}}(0,T)
++\frac{\lambda}{8}(T^2-4v^2)\varphi^2
++\cdots .
+\end{equation}
+因此若暂时忽略立方项，则有效二次项系数在
+\begin{equation}
+T_0=2v
+\end{equation}
+处变号。于是序参量为
+\begin{equation}
+\langle\varphi\rangle=
+\begin{cases}
+0, & T>T_0,\\[4pt]
+\pm v\sqrt{1-\dfrac{T^2}{T_0^2}}, & T<T_0.
+\end{cases}
+\end{equation}
+这是典型的二级相变：当 \(T>T_0\) 时，\(\varphi=0\) 是唯一极小，\(Z_2\) 对称性恢复；当 \(T<T_0\) 时，\(\varphi=0\) 变为不稳定极大，出现两个简并极小 \(\pm\varphi_0\)，对称性自发破缺。
+
+若保留高温展开中的立方项，则有效势可写成标准形式
+\begin{equation}
+\mathscr V_{\mathrm{eff}}(\varphi,T)
+\simeq
+D(T^2-T_0^2)\varphi^2
+-ET\varphi^3
++\frac{\lambda}{4}\varphi^4,
+\end{equation}
+其中
+\begin{equation}
+D=\frac{\lambda}{8},\qquad T_0=2v,\qquad
+E=\frac{(3\lambda)^{3/2}}{12\pi}.
+\end{equation}
+立方项会在 \(\varphi=0\) 与 \(\varphi\neq0\) 之间产生势垒，使相变从二级变为一级。此时临界温度 \(T_c\) 由两个极小简并条件确定：
+\begin{equation}
+\mathscr V_{\mathrm{eff}}(0,T_c)=\mathscr V_{\mathrm{eff}}(\varphi_c,T_c),\qquad
+\frac{\partial \mathscr V_{\mathrm{eff}}}{\partial \varphi}\Big|_{\varphi_c}=0.
+\end{equation}
+由此得到
+\begin{equation}
+T_c^2=\frac{T_0^2}{1-\dfrac{E^2}{\lambda D}},
+\qquad
+\varphi_c=\frac{2ET_c}{\lambda}.
+\end{equation}
+在 \(T_c\) 处序参量发生跳跃，潜热
+\begin{equation}
+L=T_c\Delta S
+=
+-T_c\left[
+\frac{\partial \mathscr V_{\mathrm{eff}}(\varphi_c,T)}{\partial T}
+-
+\frac{\partial \mathscr V_{\mathrm{eff}}(0,T)}{\partial T}
+\right]_{T_c}
+\neq 0,
+\end{equation}
+因此为一级相变。若只保留二次项，则 \(L=0\)，但比热会出现跳变，对应二级相变。
+
+进一步地，若考虑 Daisy 重求和，需将热质量计入内线传播子，即
+\begin{equation}
+\tilde m^2(\varphi)\to \tilde m^2(\varphi)+\Pi(\varphi,T),
+\end{equation}
+其中 \(\Pi(\varphi,T)\) 为有限温度下产生的热质量修正。该重求和会屏蔽立方项，从而改变一级相变的强度，甚至可能使相变重新变为二级或弱一级。因此，有限温度相变的所有信息都编码在 \(\mathscr V_{\mathrm{eff}}(\varphi,T)\) 的极小结构及其随温度演化之中。
+
 %--------------------------------
 
 

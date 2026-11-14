@@ -1,46 +1,648 @@
-\documentclass[a4paper]{report}
+\documentclass[b5paper]{book}
 % \usepackage{predefine}
 \input{predef.tex}
 
 \author{Cheng Li}
-\title{\textbf{{\Huge 经典场论}}\\{\normalsize 连续介质提力学与电动力学}}
+\title{\textbf{{\Huge 经典场论}\\{\Huge The Classical Theory of Fields}}\\\normalsize 流体力学与电动力学\\Fluid Mechanics \& Electrodynamics}
 \begin{document}
 \maketitle
 \tableofcontents
 
-\part{连续介质体力学}
-\chapter{弹性体力学}
-\section{位移场}
-\section{应力与应变张量}
-Navi-Cauchy
+
+\chapter*{绪论}
+在经典力学中，我们通常在研究质点与质点的相互作用，而忽略了质点之外的空间。例如Newtonian万有引力，我们考虑质点与质点之间的引力呈$1/r^2$关系，即
 \begin{equation}
-    (\lambda+\mu) \nabla(\nabla\cdot \uf) + \mu \nabla^2 \uf + \boldsymbol{f} = \rho \frac{\partial^2\uf}{\partial t^2}
+    \boldsymbol{g} = -\frac{GM}{r^2}\hat{\boldsymbol{r}}
 \end{equation}
-\section{弹性波}
-\chapter{流体力学}
-\section{流速场}
+看上去力的相互作用仅仅只是点对点的，然而当质点在空间运动起来，问题就不那么简洁：引力似乎并非只存在于两个质点之间那根看不见的直线上，而是随着质点位置变化，其方向和力的大小在整个空间中重新编织。似乎每一个空间位置都“知道”该受多大、朝哪个方向的引力加速度。于是，为了描述这种弥漫于空间、随时间演化的物理量，我们便引入“场”的概念。
+
+场是连续物理中最基本的语言，它不再只问“质点受什么力”，而是问“在每一点所处的空间位置$\boldsymbol{x}$、每一时刻$t$，物理量取什么值”。数学上，把系统看成无数无穷小体积元，而这些无穷小体积元构成的连续分布的宏观物理量，则可以用空间微积分与矢量分析来处理。
+
+还是以Newtonian Gravity万有引力为例，若考察一个轻物体在一个重物体引力作用下的运动，可以取重物体为静止参考系：重物体在周围激发引力场，轻物体则在它所经过的每一点局域地响应这个场。我们用引力势$\Phi(\boldsymbol x)$来描述引力场的空间分布，引力可写成引力势的梯度场
+\begin{equation}
+    \boldsymbol g = -\nabla \Phi,\qquad \Phi = -\frac{GM}{r}
+\end{equation}
+势$\Phi$像一张看不见的起伏地形图：梯度$\nabla\Phi$指向最陡上升方向（详见附录\ref{app:vector_analysis}矢量分析），而$-\nabla\Phi$指向最陡下降方向；引力加速度正如小球沿最陡下坡方向滚动。于是，场把点对点的相互作用改写成空间每一点的局域关系。更进一步，当物体不再是简单的质点，而是有了体积大小，且质量可能为非均匀分布，质点力学则显得相形见绌，必须要引用场论才能描述这样的连续且非均匀的分布。假设存在一个连续质量分布的物体，其密度分布为$\rho(\boldsymbol{x})$，那么其产生的引力势可以写为
+\begin{equation}
+    \Phi(\boldsymbol{x}) = -G\int\frac{\rho(\boldsymbol{x}')}{|\boldsymbol{x}-\boldsymbol{x}'|}\mathrm{d}^3\boldsymbol{x}'
+\end{equation}
+由于我们从矢量分析里面可以得到关系
+\begin{equation}
+    \nabla^2\frac{1}{|\boldsymbol{x}-\boldsymbol{x}'|} = -4\pi\delta^3(\boldsymbol{x}-\boldsymbol{x}')
+\end{equation}
+带入到引力势中可以得到
+\begin{equation}
+    \nabla^2\Phi = 4\pi G\rho
+\end{equation}
+即为Poisson方程。意味着我们只需要知道物体的密度分布，即可以通过此方程求解出对应的引力场。而知道引力场之后，我们便可以求解物质在引力场中的运动方程，即可得如下微分方程与积分方程
+\begin{equation}
+    \nabla\cdot \boldsymbol{g} = -4\pi G \rho,\qquad \oiint_\mathbb{S} ~\boldsymbol{g}\cdot\mathrm{d}\boldsymbol{S} = -4\pi G M
+\end{equation}
+这便是Newtonian引力场的相关内容，同样Coulomb力与Newtonian引力具有相似的形式，因此电场也与引力场具有相似形式的方程，这些公式的具体含义将在后续篇章中具体介绍。
+
+除此之外，场不仅仅能够描述这种相互作用力在空间的分布，凡是在空间中连续分布的物理量，都可以用场来描述。另一个例子同样来自于经典力学，即弹性体内部各点的位移便构成一个位移场。我们以最简单的一维弹性体为例，这时我们可以将这段弹性体分割为一系列无穷小的体积元，每个位于坐标$x$的小体积元产生一个微小的位移$u_i(x,t)$，而且所有的微小位移都会随着时间运动发生变化，此时离散系统的作用量即为
+\begin{equation}
+    \action = \int\sum_i \left(\frac{1}{2}m_i \dot u_i^2 -\frac{1}{2}k (u_{i+1}-u_i)^2 \right) \mathrm{d}t
+\end{equation}
+此时我们可以提取出$\Delta x$
+\begin{equation}
+    \action = \int \frac{1}{2}\sum_i\left[\frac{m_i}{\Delta x} \dot u_i^2 -k\Delta x \left(\frac{u_{i+1}-u_i}{\Delta x}\right)^2 \right]\Delta x~ \mathrm{d}t
+\end{equation}
+取极限$ \Delta x\rightarrow 0$，则可以将$\Delta x$的求和转化为对空间的积分
+\begin{equation}
+    \action = \frac{1}{2}\int\left[\rho \left(\frac{\partial u}{\partial t}\right)^2 -\kappa\left(\frac{\partial u}{\partial x}\right)^2 \right] \mathrm{d} x~ \mathrm{d}t 
+\end{equation}
+其中$\rho = \lim_{\Delta\rightarrow0}\frac{m}{\Delta x}$可以表示为一维的线密度，以及$\kappa = \lim_{\Delta\rightarrow0}{k}{\Delta x}$。此时对于作用量而言，每个位置的位移$u$才是广义坐标，而实际的坐标$x$变为和时间$t$地位相同的独立参数。因此我们可以定义Lagrangian密度，即Lagrangian在空间中的分布，来描述场的各种行为性质：
+\begin{equation}
+    \action[u(x,t)] = \int \mathscr{L}\left(u,\dot u, {\partial_x u}\right) \mathrm{d}x ~\mathrm{d}t,\qquad \mathscr{L} = \frac{1}{2}\left[\rho \left(\frac{\partial u}{\partial t}\right)^2 -\kappa\left(\frac{\partial u}{\partial x}\right)^2 \right]
+\end{equation}
+因此在场论中，我们通常会将$\mathscr{L}$表述为场的Lagrangian。
+对于此时的作用量，我们以位移场$u$为广义坐标，进行变分可得运动方程
+\begin{equation}
+\begin{split}
+        \delta \action &= \int \Big[ \frac{\partial\mathscr{L}}{\partial u}\delta u + \frac{\partial \mathscr{L}}{\partial \dot u}\delta \dot u + \frac{\partial\mathscr{L}}{\partial (\partial u /\partial x)}\delta(\frac{\partial u}{\partial x}) \Big]  \mathrm{d}x ~\mathrm{d}t 
+        \\&= \int \Big[ \frac{\partial\mathscr{L}}{\partial u} -\frac{\partial }{\partial t} \left(\frac{\partial \mathscr{L}}{\partial \dot u}\right)- \frac{\partial }{\partial x}\left( \frac{\partial\mathscr{L}}{\partial (\partial u /\partial x)} \right) \Big]\delta u  ~\mathrm{d}x ~\mathrm{d}t = 0
+\end{split}
+\end{equation}
+将上述一维弹性体Lagrangian带入到运动方程中，可得
+\begin{equation}
+    \frac{\partial^2 u}{\partial t^2}-\frac{\kappa}{\rho} \frac{\partial^2 u}{\partial x^2} = 0
+\end{equation}
+该方程实际上正是波动方程，意味着弹性体位移场会按照波动方程的解进行运动，产生了所谓的弹性波。具体的波动方程求解以及其理论将在后续篇幅具体展开，这里不过多赘述。
+
+实际上场的概念在物理学中应用相当广泛，无论是微观还是宏观乃至于介观层面，都离不开场论的语言描述。然而有趣的是，在我们上述的例子中，弹性体的波动需要通过弹性体介质本身进行承载和传递，从另一种角度来看，弹性体每一个体积元之间的相互作用仿佛是通过弹性波进行了传播，但是我们转而看万有引力的时候，却发现引力场并不存在力的传播过程。这是因为在经典的时空观中，引力场是具有Galilean不变性的，也即引力场在任意速度的参考系中都不变，意味着引力就是一种超距作用，也就是说引力像是一种一旦质量存在就会瞬间产生的场。在电动力学发展之处，人们仿照万有引力构建了静电场，然而在这之后，人们发现电磁场同样会产生电磁波，在空间中传播，并且电磁波的传播并不符合Galilean不变性。为了在经典时空观解释这种理论的不自洽，人们人为的假定了一种绝对静止介质“Ether以太”，而电磁场则是以此为介质进行传播的。虽然后面的故事告诉我们，实际上并不存在以太这种介质，而场的超距作用也是不存在的，取而代之的则是相对论的时空观。但是本篇在讨论经典物理中的场论时仍沿用了经典的时空观，而相对论时空观则在经典场论的后续中进行讨论。
+
+本篇经典场论主要讨论经典物理中的流体力学与电动力学。在这个范围内，场首先是一种数学语言，是描述物理行为的工具，并不一定代表实在物质。但在现代物理中，场的地位发生了转变：在广义相对论中，引力场与时空本身的几何结构紧密相连；在量子场论中，场则成为物质的基本存在形态，并引出量子化与波粒二象性。不过，本篇不打算过度展开这些现代发展，而仍将在经典物理框架内讨论场论。而在经典场论的下一篇章“相对论与宇宙学”中，我们将讨论相对论形式的场以及时空本身；那里虽已超出经典物理范围，但由于尚未量子化，场仍保持连续、光滑的性质，因此仍然属于经典场论的范畴。至于量子场论篇，我们将具体讨论量子化后的场应如何描述。
+
+\part{流体力学}
+
+\chapter{理想流体}
+
+\section{连续介质}
+\label{sec:continuity}
+连续介质假设是宏观力学中最基本的一条模型假设。它认为：在人们关心的宏观尺度上，真实物质虽然由大量离散的分子、原子或颗粒组成，但可以近似看成连续地充满其所占据的空间，内部没有空隙。于是，物质的密度、速度、压强、温度、应力等物理量可以在空间每一点和时间每一时刻定义，并随空间和时间连续变化。
+
+换句话说，连续介质假设把离散的分子系统“抹平”为一个连续场。它并不否认分子和原子的存在，而是说：当我们研究宏观流动、变形和传热时，分子尺度上的离散性和随机涨落可以忽略，物质可当作连续体处理。
+
+从数学上看，我们可以把宏观的物体分割为一系列无穷小的体积元考虑其局部微观的力学性质，但是这些无穷小的体积元测度又同时相对于原子分子而言是极大的，这每个体积元都包含了趋近于无穷多的原子分子，因此其又体现了宏观的热力学性质。这样的“相对于宏观而言为无穷小，相对于微观而言又无穷大”的尺度通常也称之为介观尺度。
+
+
+质量守恒
+
 连续性方程
-\begin{equation}
-    \frac{\partial\rho}{\partial t}+ \nabla\cdot(\rho\uf)=0
-\end{equation}
-\section{流体静力学}
-\begin{equation}
-    \nabla p = \rho \boldsymbol{f}
-\end{equation}
-\section{理想流体动力学}
-\begin{equation}
-    \nabla\cdot\uf = 0
-\end{equation}
+\section{Lagrange图像与流线法}
+\label{sec:lagrange_picture}
+从拉格朗日（物质）图像出发，把流体看成连续标记的质点系。设流体元用拉格朗日坐标 \(a\) 标记，其空间位置为  
+\[
+x=x(t,a),\qquad \dot x=\left.\frac{\partial x}{\partial t}\right|_a=v(t,a).
+\]
+初始质量密度为 \(\rho_0(a)\)，初始熵为 \(s_0(a)\)。定义形变梯度与雅可比行列式
+\[
+F_{ij}=\frac{\partial x_i}{\partial a_j},\qquad J=\det F.
+\]
+质量守恒给出
+\[
+\rho_0\,d^3a=\rho\,d^3x=\rho J\,d^3a,
+\]
+故
+\[
+\rho=\frac{\rho_0}{J}.
+\]
+单位质量内能记为 \(\varepsilon(\rho,s)\)，熵随流体元守恒：
+\[
+s(t,x)=s_0(a).
+\]
+热力学关系为
+\[
+d\varepsilon=T\,ds+\frac{p}{\rho^2}\,d\rho,
+\]
+因此在等熵变分下
+\[
+\left(\frac{\partial \varepsilon}{\partial \rho}\right)_s=\frac{p}{\rho^2}.
+\]
+
+1. 拉格朗日图像下的流体作用量
+
+取作用量为“动能减内能”：
+\[
+S[x]=\int dt\int d^3a\;\rho_0(a)\left[\frac12 \dot x^2-\varepsilon(\rho,s)\right],
+\]
+其中
+\[
+\rho=\frac{\rho_0}{J},\qquad s=s_0(a).
+\]
+等价地，由于 \(\rho_0 d^3a=\rho d^3x\)，也可写成
+\[
+S=\int dt\int d^3x\;\rho\left[\frac12 v^2-\varepsilon(\rho,s)\right].
+\]
+但在拉格朗日图像中，质量守恒已自动包含在 \(\rho=\rho_0/J\) 中，因此只需对轨迹 \(x(t,a)\) 变分。
+
+2. 对轨迹变分
+
+令
+\[
+L=\rho_0\left[\frac12 \dot x^2-\varepsilon(\rho,s)\right].
+\]
+变分 \(x\to x+\delta x\)。由于
+\[
+J=\det\left(\frac{\partial x}{\partial a}\right),
+\]
+有
+\[
+\delta J=J\,(F^{-1})_{ji}\,\frac{\partial \delta x_i}{\partial a_j},
+\]
+其中
+\[
+(F^{-1})_{ji}=\frac{\partial a_j}{\partial x_i}.
+\]
+又
+\[
+\rho=\frac{\rho_0}{J}\implies 
+\delta \rho=-\frac{\rho}{J}\delta J.
+\]
+内能项对 \(J\) 的导数为
+\[
+\frac{\partial}{\partial J}\left[-\rho_0\varepsilon(\rho,s)\right]
+=
+-\rho_0\left(\frac{\partial \varepsilon}{\partial \rho}\right)_s
+\left(-\frac{\rho_0}{J^2}\right)
+=
+\rho^2\left(\frac{\partial \varepsilon}{\partial \rho}\right)_s
+=p.
+\]
+因此
+\[
+\frac{\partial L}{\partial F_{ij}}
+=
+p\,J\,(F^{-1})_{ji}.
+\]
+拉格朗日方程为
+\[
+\frac{d}{dt}\frac{\partial L}{\partial \dot x_i}
++
+\frac{\partial}{\partial a_j}
+\frac{\partial L}{\partial F_{ij}}
+=0,
+\]
+即
+\[
+\rho_0 \ddot x_i
+=
+-\frac{\partial}{\partial a_j}
+\left[
+p\,J\,(F^{-1})_{ji}
+\right].
+\]
+这就是拉格朗日形式的动量方程。
+
+3. 化为欧拉方程
+
+利用 Piola 恒等式
+\[
+\frac{\partial}{\partial a_j}\left[J\,(F^{-1})_{ji}\right]=0,
+\]
+有
+\[
+\frac{\partial}{\partial a_j}
+\left[
+p\,J\,(F^{-1})_{ji}
+\right]
+=
+J\,(F^{-1})_{ji}
+\frac{\partial p}{\partial a_j}
+=
+J\,\frac{\partial p}{\partial x_i}.
+\]
+因此
+\[
+\rho_0 \ddot x_i=-J\frac{\partial p}{\partial x_i}.
+\]
+但
+\[
+\rho_0=\rho J,\qquad \ddot x_i=\frac{Dv_i}{Dt},
+\]
+所以
+\[
+\rho\frac{Dv_i}{Dt}=-\frac{\partial p}{\partial x_i},
+\]
+即矢量形式
+\[
+\rho\frac{D\boldsymbol v}{Dt}=-\nabla p,
+\qquad
+\frac{D}{Dt}=\frac{\partial}{\partial t}+\boldsymbol v\cdot\nabla.
+\]
+
+质量守恒在欧拉图像中为
+\[
+\frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\boldsymbol v)=0.
+\]
+熵守恒为
+\[
+\frac{Ds}{Dt}=0,
+\qquad
+\frac{\partial s}{\partial t}+\boldsymbol v\cdot\nabla s=0.
+\]
+状态方程为
+\[
+p=p(\rho,s).
+\]
+若流体正压，则 \(p=p(\rho)\)。
+
+于是得到无粘、无热传导的理想流体方程组：
+\[
+\boxed{
+\begin{aligned}
+&\frac{\partial \rho}{\partial t}+\nabla\cdot(\rho\boldsymbol v)=0,\\[2mm]
+&\frac{\partial \boldsymbol v}{\partial t}+(\boldsymbol v\cdot\nabla)\boldsymbol v
+=-\frac{1}{\rho}\nabla p,\\[2mm]
+&\frac{\partial s}{\partial t}+\boldsymbol v\cdot\nabla s=0,\\[2mm]
+&p=p(\rho,s).
+\end{aligned}}
+\]
+正压情形下最后只需 \(p=p(\rho)\)。这就是从拉格朗日图像构造流体作用量并变分得到的理想流体欧拉方程。
+
+\section{Euler图像与流速场}
+\label{sec:euler_eq}
+欧拉图像中，基本场是 \((\rho,\boldsymbol v,s)\)，但质量守恒和熵守恒不再像拉格朗日图像那样自动包含在坐标中，因此要用拉格朗日乘子作为约束引入。设
+\[
+D_t=\partial_t+\boldsymbol v\cdot\nabla,\qquad 
+d\varepsilon=T\,ds+\frac{p}{\rho^2}\,d\rho,
+\]
+于是
+\[
+T=\left(\frac{\partial\varepsilon}{\partial s}\right)_\rho,\qquad
+p=\rho^2\left(\frac{\partial\varepsilon}{\partial\rho}\right)_s,
+\qquad
+h=\varepsilon+\frac{p}{\rho}.
+\]
+
+ 1. 欧拉图像下的作用量
+
+取动能密度减内能密度，并加入质量守恒与熵守恒（绝热条件）约束：
+\[
+\boxed{
+S[\rho,\boldsymbol v,s,\phi,\theta]
+=
+\int dt\,d^3x\,
+\left[
+\rho\left(\frac12|\boldsymbol v|^2-\varepsilon(\rho,s)\right)
++\phi\bigl(\partial_t\rho+\nabla\cdot(\rho\boldsymbol v)\bigr)
++\rho\theta\bigl(\partial_t s+\boldsymbol v\cdot\nabla s\bigr)
+\right].
+}
+\]
+其中 \(\phi(t,\boldsymbol x)\)、\(\theta(t,\boldsymbol x)\) 是拉格朗日乘子。假设边界项可忽略。
+
+ 2. 变分
+
+ 对 \(\phi\) 变分
+得到质量守恒：
+\[
+\partial_t\rho+\nabla\cdot(\rho\boldsymbol v)=0.
+\]
+
+ 对 \(\theta\) 变分
+得到熵守恒：
+\[
+\partial_t s+\boldsymbol v\cdot\nabla s=0,
+\qquad D_t s=0.
+\]
+
+ 对 \(\boldsymbol v\) 变分
+作用量中与 \(\boldsymbol v\) 有关的部分为
+\[
+\rho\frac12|\boldsymbol v|^2
++\phi\nabla\cdot(\rho\boldsymbol v)
++\rho\theta\,\boldsymbol v\cdot\nabla s.
+\]
+分部积分后令变分为零：
+\[
+\rho\boldsymbol v-\rho\nabla\phi+\rho\theta\nabla s=0,
+\]
+故
+\[
+\boldsymbol v=\nabla\phi-\theta\nabla s.
+\]
+这是 Clebsch 型表示。
+
+ 对 \(\rho\) 变分
+利用
+\[
+\delta(\rho\varepsilon)=\bigl(\varepsilon+\rho\varepsilon_\rho\bigr)\delta\rho,
+\qquad
+\varepsilon_\rho=\frac{p}{\rho^2},
+\]
+得到
+\[
+D_t\phi=\frac12|\boldsymbol v|^2-\varepsilon-\rho\varepsilon_\rho
+=\frac12|\boldsymbol v|^2-h.
+\]
+
+ 对 \(s\) 变分
+由
+\[
+\varepsilon_s=T,
+\]
+可得
+\[
+\partial_t(\rho\theta)+\nabla\cdot(\rho\theta\boldsymbol v)=-\rho T.
+\]
+利用质量守恒，左边化为
+\[
+\partial_t(\rho\theta)+\nabla\cdot(\rho\theta\boldsymbol v)
+=\rho D_t\theta,
+\]
+所以
+\[
+D_t\theta=-T.
+\]
+
+3. 推出动量方程
+
+由
+\[
+\boldsymbol v=\nabla\phi-\theta\nabla s,
+\]
+取物质导数。利用 \(D_t s=0\)、\(D_t\phi=\frac12|\boldsymbol v|^2-h\)、\(D_t\theta=-T\)，以及
+\[
+D_t\nabla f=\nabla(D_t f)-(\nabla\boldsymbol v)^T\nabla f,
+\]
+可得
+\[
+\begin{aligned}
+D_t\boldsymbol v
+&=
+\nabla(D_t\phi)-(D_t\theta)\nabla s-\theta D_t\nabla s\\
+&=
+\nabla\left(\frac12|\boldsymbol v|^2-h\right)+T\nabla s
+-(\nabla\boldsymbol v)^T(\nabla\phi-\theta\nabla s)\\
+&=
+\nabla\left(\frac12|\boldsymbol v|^2-h\right)+T\nabla s-\nabla\left(\frac12|\boldsymbol v|^2\right)\\
+&=-\nabla h+T\nabla s.
+\end{aligned}
+\]
+又由热力学关系
+\[
+dh=T\,ds+\frac{1}{\rho}\,dp,
+\]
+有
+\[
+\nabla h=T\nabla s+\frac{1}{\rho}\nabla p.
+\]
+因此
+\[
+D_t\boldsymbol v=-\frac{1}{\rho}\nabla p,
+\]
+即
+\[
+\partial_t\boldsymbol v+(\boldsymbol v\cdot\nabla)\boldsymbol v
+=-\frac{1}{\rho}\nabla p.
+\]
+
+4. 理想流体方程组
+
+综合得到欧拉图像下的理想流体方程：
+\[
+\boxed{
+\begin{aligned}
+&\partial_t\rho+\nabla\cdot(\rho\boldsymbol v)=0,\\[1mm]
+&\partial_t\boldsymbol v+(\boldsymbol v\cdot\nabla)\boldsymbol v
+=-\frac{1}{\rho}\nabla p,\\[1mm]
+&\partial_t s+\boldsymbol v\cdot\nabla s=0,\\[1mm]
+&p=p(\rho,s).
+\end{aligned}}
+\]
+若流体正压，则 \(p=p(\rho)\)，此时熵方程可不再独立写出。该结果与从拉格朗日图像变分得到的结果完全一致。
+
+% 连续性方程
+% \begin{equation}
+%     \frac{\partial\rho}{\partial t}+ \nabla\cdot(\rho\uf)=0
+% \end{equation}
+% \section{流体静力学}
+% \begin{equation}
+%     \nabla p = \rho \boldsymbol{f}
+% \end{equation}
+% \section{理想流体动力学}
+% \begin{equation}
+%     \nabla\cdot\uf = 0
+% \end{equation}
 Euler-equations
 \begin{equation}
     \rho \left( \frac{\partial\uf}{\partial t}+ (\uf\cdot\nabla)\uf \right) = -\nabla p + \rho\boldsymbol{f}
 \end{equation}
-\section{粘性流体动力学}
+
+\section{流体静力学}
+\label{sec:hydrostatics}
+
+\section{能量与动量流}
+\label{sec:flux}
+
+\section{不可压缩流体}
+\label{sec:incompressible}
+\section{波动}
+\label{sec:waves}
+
+
+\chapter{粘性流体}
+\section{Navi-Stokes方程}
 Navi-Stokes equations
 \begin{equation}
     \rho \left( \frac{\partial\uf}{\partial t}+ (\uf\cdot\nabla)\uf \right) = -\nabla p + \mu\nabla^2 \uf+ \rho\boldsymbol{f}
 \end{equation}
-\section{空气动力学}
+考虑粘性后，流体出现不可逆耗散，严格说不再存在通常意义下的保守作用量。但可以把变分原理推广为  
+\[
+\delta S_0+\delta \mathcal R=0,
+\]
+其中 \(S_0\) 是理想流体的作用量，\(\mathcal R\) 是 Rayleigh 耗散函数。这样仍可从“作用量 + 耗散函数”出发得到粘性流体方程。
+
+下面以欧拉图像为主，并简述拉格朗日图像。
+
+---
+
+ 1. 理想流体作用量回顾
+
+欧拉图像下，理想流体作用量取为
+\[
+S_0[\rho,\mathbf v,s,\phi,\theta]
+=
+\int dt\,d^3x\,
+\left[
+\rho\left(\frac12|\mathbf v|^2-\varepsilon(\rho,s)\right)
++\phi\bigl(\partial_t\rho+\nabla\cdot(\rho\mathbf v)\bigr)
++\rho\theta\bigl(\partial_t s+\mathbf v\cdot\nabla s\bigr)
+\right].
+\]
+其中 \(\phi,\theta\) 是拉格朗日乘子，分别对应质量守恒和熵守恒。对 \(\mathbf v\) 变分可得到 Clebsch 表示，最终给出理想欧拉方程：
+\[
+\rho\frac{D\mathbf v}{Dt}=-\nabla p,
+\qquad
+\frac{D}{Dt}=\partial_t+\mathbf v\cdot\nabla.
+\]
+
+---
+
+ 2. 引入粘性：Rayleigh 耗散函数
+
+定义牛顿粘性应力张量
+\[
+\tau_{ij}
+=
+\mu\left(\partial_i v_j+\partial_j v_i-\frac23\delta_{ij}\partial_k v_k\right)
++\zeta\,\delta_{ij}\partial_k v_k,
+\]
+其中 \(\mu\) 为剪切粘性系数，\(\zeta\) 为体积粘性系数。粘性耗散函数为
+\[
+\Phi=\frac12\tau_{ij}\partial_j v_i
+=
+\frac{\mu}{2}\left(\partial_i v_j+\partial_j v_i-\frac23\delta_{ij}\partial_k v_k\right)^2
++\frac{\zeta}{2}(\partial_k v_k)^2\ge 0.
+\]
+定义 Rayleigh 耗散泛函
+\[
+\mathcal R=\int d^3x\,\Phi.
+\]
+
+对 \(\mathcal R\) 关于 \(v_i\) 变分：
+\[
+\delta \mathcal R
+=
+\int d^3x\,\tau_{ij}\partial_j\delta v_i
+=
+-\int d^3x\,(\partial_j\tau_{ij})\delta v_i
++\text{边界项}.
+\]
+因此粘性力为
+\[
+f_i^{\rm visc}=-\frac{\delta \mathcal R}{\delta v_i}=\partial_j\tau_{ij}.
+\]
+
+将理想变分与耗散变分合并：
+\[
+\delta S_0+\delta \mathcal R=0,
+\]
+对 \(\mathbf v\) 变分即得到
+\[
+\rho\frac{D v_i}{Dt}=-\partial_i p+\partial_j\tau_{ij}.
+\]
+写成矢量形式：
+\[
+\boxed{
+\rho\left(\partial_t\mathbf v+\mathbf v\cdot\nabla\mathbf v\right)
+=-\nabla p+\nabla\cdot\boldsymbol\tau.
+}
+\]
+代入 \(\tau_{ij}\) 即得 Navier–Stokes 动量方程：
+\[
+\rho\frac{D\mathbf v}{Dt}
+=
+-\nabla p
++\nabla\cdot\left[
+\mu\left(\nabla\mathbf v+(\nabla\mathbf v)^T-\frac23(\nabla\cdot\mathbf v)I\right)
++\zeta(\nabla\cdot\mathbf v)I
+\right].
+\]
+
+---
+
+ 3. 熵与能量方程
+
+粘性耗散使熵不再守恒，而是产生熵。由耗散函数可得熵产生率：
+\[
+\rho T\frac{Ds}{Dt}
+=
+\tau_{ij}\partial_j v_i
+=
+2\mu\,\mathbb S:\mathbb S+\zeta(\nabla\cdot\mathbf v)^2\ge 0,
+\]
+其中
+\[
+\mathbb S=\frac12\left(\nabla\mathbf v+(\nabla\mathbf v)^T-\frac23(\nabla\cdot\mathbf v)I\right)
+\]
+为偏应变率张量。若再考虑热传导，则
+\[
+\rho T\frac{Ds}{Dt}
+=
+\tau_{ij}\partial_j v_i+\nabla\cdot(k\nabla T).
+\]
+
+能量方程可写为
+\[
+\partial_t\left(\frac12\rho|\mathbf v|^2+\rho\varepsilon\right)
++\nabla\cdot\left[\left(\frac12\rho|\mathbf v|^2+\rho h\right)\mathbf v\right]
+=
+\nabla\cdot(\mathbf v\cdot\boldsymbol\tau)-\Phi,
+\]
+其中 \(h=\varepsilon+p/\rho\) 为比焓。
+
+---
+
+ 4. 拉格朗日图像简述
+
+拉格朗日图像中，理想作用量为
+\[
+S_0=\int dt\,d^3a\,
+\rho_0(a)\left[\frac12\dot x^2-\varepsilon(\rho,s)\right],
+\qquad
+\rho=\frac{\rho_0}{J},\quad J=\det\left(\frac{\partial x}{\partial a}\right).
+\]
+引入耗散泛函
+\[
+\mathcal R=\int dt\,d^3a\,\rho_0\,\Phi,
+\]
+其中 \(\Phi\) 用形变梯度 \(F_{ij}=\partial x_i/\partial a_j\) 和 \(\dot F\) 表示。变分 \(x\to x+\delta x\)，并利用
+\[
+\partial_i v_j=\dot F_{jk}(F^{-1})_{ki},
+\]
+可得拉格朗日形式的粘性动量方程：
+\[
+\rho_0\ddot x_i
+=
+-\frac{\partial}{\partial a_j}\left[pJ(F^{-1})_{ji}\right]
++\frac{\partial}{\partial a_j}\left[\tau_{ik}J(F^{-1})_{jk}\right].
+\]
+再利用 Piola 恒等式转换到欧拉图像，即得到与上面相同的 Navier–Stokes 方程。
+
+---
+
+ 5. 最终方程组
+
+综上，考虑粘性后的不可压缩/可压缩牛顿流体方程组为
+\[
+\boxed{
+\begin{aligned}
+&\partial_t\rho+\nabla\cdot(\rho\mathbf v)=0,\\[1mm]
+&\rho\left(\partial_t\mathbf v+\mathbf v\cdot\nabla\mathbf v\right)
+=-\nabla p+\nabla\cdot\boldsymbol\tau,\\[1mm]
+&\boldsymbol\tau
+=
+\mu\left(\nabla\mathbf v+(\nabla\mathbf v)^T-\frac23(\nabla\cdot\mathbf v)I\right)
++\zeta(\nabla\cdot\mathbf v)I,\\[1mm]
+&\rho T\left(\partial_t s+\mathbf v\cdot\nabla s\right)
+=
+\boldsymbol\tau:\nabla\mathbf v+\nabla\cdot(k\nabla T),\\[1mm]
+&p=p(\rho,s).
+\end{aligned}}
+\]
+若忽略热传导，则熵方程右端只剩粘性耗散项。若流体不可压缩，则 \(\nabla\cdot\mathbf v=0\)，粘性应力简化为
+\[
+\boldsymbol\tau=\mu\left(\nabla\mathbf v+(\nabla\mathbf v)^T\right),
+\]
+动量方程化为常见的不可压缩 Navier–Stokes 方程：
+\[
+\rho\left(\partial_t\mathbf v+\mathbf v\cdot\nabla\mathbf v\right)
+=-\nabla p+\mu\nabla^2\mathbf v.
+\]
+
+关键点：粘性对应不可逆耗散，因此不能从单一保守作用量严格变分得到；必须采用“作用量 + 耗散函数”的广义变分原理，或 Onsager 变分原理，才能把粘性项纳入变分框架。
+\section{Reynolds数}
+
+\section{粘性力}
+
+\chapter{湍流}
+
+\chapter{表面现象}
+
+\chapter{声波}
 
 \part{电动力学}
 Gaussian Units
@@ -48,7 +650,10 @@ Gaussian Units
     \varepsilon_0 = \frac{1}{4\pi}, \qquad \mu_0 = \frac{4\pi}{c^2}
 \end{equation}
 \chapter{电磁场基本理论}
-\section{麦克斯韦方程组}
+\section{电磁场中的电荷}
+\section{电标势}
+\section{库伦规范与磁矢势}
+\section{电磁场Maxwell方程组}
 \begin{equation}
     \begin{split}
         \nabla\cdot \boldsymbol{E} &= 4\pi{\rho_c}\\
@@ -59,32 +664,52 @@ Gaussian Units
 \end{equation}
 
 \begin{equation}
-    \action = \int \bd t~\bd^3\boldsymbol{x}~\frac{1}{2}\Big[ (\nabla\phi)^2-(\nabla\times\boldsymbol{A})^2  \Big]
+    \action = \int \bd t~\bd^3\boldsymbol{x}~\frac{1}{2}\Big[ (\nabla\phi+\frac{\partial\boldsymbol{A}}{\partial t})^2-(\nabla\times\boldsymbol{A})^2  \Big] +\rho_c\phi-\boldsymbol{A}\cdot\boldsymbol{J}
 \end{equation}
-\section{极化与磁化}
-\section{电磁场边界条件}
-\chapter{静电场}
-\section{电标势}
+
+\chapter{静态电磁场}
 \section{电偶极子}
 \section{连续电荷系统及电偶极展开}
-\section{导体的静电场}
-\chapter{静磁场}
-\section{库伦规范与磁矢势}
 \section{磁偶极子}
+
+\chapter{介质中的电磁场}
+\section{极化与磁化}
+\section{电磁场边界条件}
+\section{导体的静电场}
 \section{铁磁体}
+
+
+
+
 \chapter{电磁波}
 \section{洛伦兹规范与达朗贝尔方程}
-\section{电磁辐射}
-% \section{电磁波的传播}
-\chapter{动体的电动力学}
-\section{运动带电粒子与电磁场的相互作用}
-\section{运动带电粒子的辐射}
-% \chapter{协变形式的电磁场理论}
-% \section{闵可夫斯基空间与四维协变量}
-% \section{电磁场张量}
+\section{平面电磁波解}
+\section{电磁波极化}
+\section{光的衍射}
+
+\chapter{电磁辐射}
+\section{运动电荷与推迟势}
+\section{偶极辐射}
+\section{轫致辐射}
+\section{切伦科夫辐射}
+
+
 \appendix
 \chapter{矢量分析}
+\label{app:vector_analysis}
+
+\section{梯度、散度与旋度}
+
+\section{曲面与曲线积分}
+
+\section{Gauss定理与Stokes定理}
+
 \chapter{偏微分方程与特殊函数}
+\label{app:pde}
+
+\section{Laplace方程与球谐函数}
+
+\section{d'Alembert方程与球Bessel函数}
 
 
 \end{document}

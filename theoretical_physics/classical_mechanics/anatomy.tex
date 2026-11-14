@@ -1,0 +1,237 @@
+\chapter{泛函与变分法}
+\label{sec:variation}
+\section{泛函分析}
+\label{sec:functional}
+
+泛函（functional）简单说就是：“输入一个函数，输出一个数”的映射。当我们输入一个函数 
+f，再输出一个实数或复数F，记为
+\begin{equation}
+    F:~f\mapsto F[f]
+\end{equation}
+此时函数$f$的具体形式本身就是一种变量。例如定积分就是一种常见的泛函。
+
+设泛函为
+\begin{equation}
+    J[y]=\int_a^b F(x,y,y')\,dx,
+\end{equation}
+给函数 \(y\) 一个微小扰动：
+\begin{equation}
+   y_\varepsilon(x)=y(x)+\varepsilon \eta(x),
+\end{equation}
+其中 \(\eta(x)\) 是任意小扰动函数，\(\varepsilon\) 是小参数。则泛函的第一变分定义为
+\begin{equation}
+    \delta J[y;\eta]
+=\left.\frac{d}{d\varepsilon}J[y+\varepsilon\eta]\right|_{\varepsilon=0}.
+\end{equation}
+计算得
+\begin{equation}
+    \delta J
+=\int_a^b\left(
+\frac{\partial F}{\partial y}\eta
++\frac{\partial F}{\partial y'}\eta'
+\right)dx.
+\end{equation}
+对第二项分部积分：
+\begin{equation}
+    \delta J
+=\int_a^b\left(
+\frac{\partial F}{\partial y}
+-\frac{\bd}{\bd x}\frac{\partial F}{\partial y'}
+\right)\eta\,dx
++\left[
+\frac{\partial F}{\partial y'}\eta
+\right]_a^b.
+\end{equation}
+
+如果端点不固定，即 \(y(a),y(b)\) 可以变化，则边界项也必须为零：
+\begin{equation}
+    \left[
+\frac{\partial F}{\partial y'}\eta
+\right]_a^b=0.
+\end{equation}
+由于 \(\eta(a),\eta(b)\) 任意，得到自然边界条件：
+\begin{equation}
+    \left.\frac{\partial F}{\partial y'}\right|_{x=a}=0,
+\qquad
+\left.\frac{\partial F}{\partial y'}\right|_{x=b}=0.
+\end{equation}
+更一般地，若端点满足某种约束，则边界项与约束条件共同给出相应的边界条件。则可得Euler-Lagrange方程：
+\begin{equation}
+    \frac{\partial F}{\partial y}
+-\frac{\bd}{\bd x}\left(\frac{\partial F}{\partial y'}\right)=0
+\end{equation}
+
+若泛函依赖高阶导数：
+\begin{equation}
+    J[y]=\int_a^b F(x,y,y',y'',\dots,y^{(n)})\,dx,
+\end{equation}
+则欧拉–拉格朗日方程为
+\begin{equation}
+    \frac{\partial F}{\partial y}
+-\frac{\bd}{\bd x}\frac{\partial F}{\partial y'}
++\frac{\bd^2}{\bd x^2}\frac{\partial F}{\partial y''}
+-\cdots
++(-1)^n\frac{\bd^n}{\bd x^n}\frac{\partial F}{\partial y^{(n)}}=0
+\end{equation}
+
+\section{最降速线}
+
+\section{悬链线}
+
+\chapter{Legendre变换}
+\label{sec:legendre}
+\chapter{Lie代数基础}
+\label{sec:lie}
+
+
+\chapter{辛结构}
+\label{sec:sympletic}
+
+辛结构是流形上的一类闭非退化 \(2\)-形式，为哈密顿力学、经典力学与几何量子化提供基本几何框架。与黎曼几何不同，辛几何在局部没有曲率型不变量，这由达布定理体现。
+
+\section{辛流形与辛形式}
+
+\begin{definition}[辛流形]
+设 \(M\) 为光滑流形，\(\omega\) 为 \(M\) 上的 \(2\)-形式。若
+\begin{enumerate}
+  \item \(\omega\) 是闭形式，即
+  \[
+  d\omega=0;
+  \]
+  \item \(\omega\) 非退化，即对任意 \(p\in M\)，线性映射
+  \[
+  T_pM\to T_p^*M,\qquad v\mapsto \iota_v\omega_p
+  \]
+  是同构，
+\end{enumerate}
+则称 \(\omega\) 为 \(M\) 上的辛形式，称 \((M,\omega)\) 为辛流形。
+\end{definition}
+
+非退化性蕴涵 \(M\) 必为偶数维。若 \(\dim M=2n\)，则
+\[
+\omega^n=\underbrace{\omega\wedge\cdots\wedge\omega}_{n\text{ 次}}
+\]
+处处非零，因此辛流形自然可定向，并带有体积形式 \(\omega^n/n!\)。
+
+\begin{example}[标准辛空间]
+在 \(\mathbb R^{2n}\) 上取坐标
+\[
+(q_1,\dots,q_n,p_1,\dots,p_n),
+\]
+定义
+\[
+\omega_0=\sum_{i=1}^n dq_i\wedge dp_i.
+\]
+则 \(d\omega_0=0\)，且 \(\omega_0\) 非退化，故 \((\mathbb R^{2n},\omega_0)\) 是辛流形。
+\end{example}
+
+\begin{example}[余切丛]
+设 \(Q\) 为光滑流形，余切丛 \(T^*Q\) 带有标准辛结构。若局部坐标为 \((q_1,\dots,q_n,p_1,\dots,p_n)\)，其中 \(p_i\) 为余切向量在 \(dq_i\) 下的分量，则刘维尔形式为
+\[
+\theta=\sum_{i=1}^n p_i\,dq_i,
+\]
+标准辛形式为
+\[
+\omega=-d\theta=\sum_{i=1}^n dq_i\wedge dp_i.
+\]
+因此 \(T^*Q\) 是辛流形，其维数为 \(2\dim Q\)。
+\end{example}
+
+\begin{example}[定向曲面]
+设 \(\Sigma\) 为二维定向曲面，\(\omega\) 为其面积形式。则 \(\omega\) 是闭的且处处非零，因此 \((\Sigma,\omega)\) 是二维辛流形。
+\end{example}
+
+\section{达布定理}
+
+\begin{theorem}[达布定理]
+设 \((M,\omega)\) 为 \(2n\) 维辛流形。则对任意 \(p\in M\)，存在 \(p\) 的局部坐标
+\[
+(q_1,\dots,q_n,p_1,\dots,p_n)
+\]
+使得
+\[
+\omega=\sum_{i=1}^n dq_i\wedge dp_i.
+\]
+\end{theorem}
+
+达布定理说明辛几何在局部没有不变量：所有同维辛流形局部同构。这与黎曼几何形成鲜明对比，后者由曲率张量刻画局部不变量。
+
+\section{辛同胚与哈密顿向量场}
+
+\begin{definition}[辛同胚]
+设 \((M,\omega)\) 与 \((N,\eta)\) 为辛流形。微分同胚
+\[
+\varphi:M\to N
+\]
+若满足
+\[
+\varphi^*\eta=\omega,
+\]
+则称为辛同胚。若 \(M=N\) 且 \(\varphi^*\omega=\omega\)，则称 \(\varphi\) 为 \(M\) 的辛同胚。
+\end{definition}
+
+设 \((M,\omega)\) 为辛流形，\(H\in C^\infty(M)\)。由非退化性，存在唯一向量场 \(X_H\) 使得
+\[
+\iota_{X_H}\omega=dH.
+\]
+称 \(X_H\) 为哈密顿函数 \(H\) 对应的哈密顿向量场。其积分曲线满足哈密顿方程。在标准坐标 \((q_i,p_i)\) 且
+\[
+\omega=\sum_{i=1}^n dq_i\wedge dp_i
+\]
+下，哈密顿方程为
+\[
+\dot q_i=\frac{\partial H}{\partial p_i},
+\qquad
+\dot p_i=-\frac{\partial H}{\partial q_i}.
+\]
+
+哈密顿向量场保持辛形式，即
+\[
+\mathcal L_{X_H}\omega=0,
+\]
+其中 \(\mathcal L\) 表示李导数。因此哈密顿流由辛同胚组成。
+
+\begin{definition}[泊松括号]
+对 \(f,g\in C^\infty(M)\)，定义泊松括号
+\[
+\{f,g\}=\omega(X_f,X_g),
+\]
+其中 \(X_f,X_g\) 分别为 \(f,g\) 对应的哈密顿向量场。该括号满足反对称性与雅可比恒等式，使 \(C^\infty(M)\) 成为李代数。
+\end{definition}
+
+\section{拉格朗日子流形}
+
+\begin{definition}[拉格朗日子流形]
+设 \((M,\omega)\) 为 \(2n\) 维辛流形，\(L\subseteq M\) 为 \(n\) 维子流形。若
+\[
+\omega|_L=0,
+\]
+则称 \(L\) 为拉格朗日子流形。
+\end{definition}
+
+\begin{example}
+在标准辛空间 \((\mathbb R^{2n},\omega_0)\) 中，
+\[
+L=\mathbb R^n\times\{0\}
+\]
+是拉格朗日子流形。更一般地，余切丛 \(T^*Q\) 的零截面是拉格朗日子流形。
+\end{example}
+
+拉格朗日子流形是辛几何的核心对象之一，在哈密顿力学、镜像对称与几何量子化中具有重要作用。
+
+\section{与哈密顿力学的关系}
+
+经典力学中的相空间通常取为余切丛 \(T^*Q\)，其中 \(Q\) 为位形空间。余切丛带有标准辛形式 \(\omega=-d\theta\)。哈密顿函数 \(H:T^*Q\to\mathbb R\) 给出哈密顿向量场 \(X_H\)，其流描述系统随时间的演化。
+
+由于
+\[
+\mathcal L_{X_H}\omega=0,
+\]
+哈密顿流保持相空间体积形式 \(\omega^n/n!\)，这就是刘维尔定理的几何表述。此外，若 \(H\) 不显含时间，则沿哈密顿流 \(H\) 守恒：
+\[
+X_H(H)=0.
+\]
+
+\begin{remark}
+辛结构不是黎曼度量。黎曼度量给出长度与角度，而辛结构给出的是反对称的“面积型”结构。辛流形必为偶数维且可定向；其局部模型由达布定理完全确定。
+\end{remark}

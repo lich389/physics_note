@@ -1,9 +1,9 @@
 # Makefile for Chinese LaTeX book project
 
-PDF = CM.pdf
+PDF = mécanique_analytique.pdf
 TEX = xelatex
 BIB = bibtex
-SRC = CM.tex
+SRC = mécanique_analytique.tex
 
 all: $(PDF)
 

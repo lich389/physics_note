@@ -2576,7 +2576,10 @@ G_c(z_1,z_2,z_3)=\frac{1}{i}\int\mathrm{d}x_1\mathrm{d}x_2\mathrm{d}x_3 G_c(x_1,
 \begin{equation}
     \mathscr{V}_\mathrm{eff}(\phi) = -\sum_n^\infty \frac{\phi^n}{n!} \bar{\Gamma}_{(n)}(p_{1,\cdots i}=0) \label{eq:effpot}
 \end{equation}
-此时，$\bar{\Gamma}_{(n)}(p_{1,\cdots i}=0) $包含了所有阶次项的n点函数，对于给定的n点函数，更多的内部动量$p_i$意味着更高阶的修正项。对于一个$\phi^4$理论，它的原始势能最高次项就是4次项，但是有效势能则可以包含更高次$\phi^n$。
+此时，$\bar{\Gamma}_{(n)}(p_{1,\cdots i}=0) $包含了所有阶次项的n点函数，对于给定的n点函数，更多的内部动量$p_i$意味着更高阶的修正项。对于一个$\phi^4$理论，它的原始势能最高次项就是4次项，但是有效势能则可以包含更高次$\phi^n$。则在我们不考虑高阶项只考虑首阶项时的$\phi^4$理论有效作用量可以实际表示为
+\begin{equation}
+    \Gamma[\phi] = \frac{1}{2}\int\mathrm{d}p~\phi(-p)[p^2-m^2]\phi(p) + \frac{\lambda}{4!}\int\frac{\Pi_i^4\mathrm{d}p_i}{(2\pi)^4}(2\pi)^4\delta(p_1+\cdots+p_4)\phi(p_1)\cdots\phi(p_4)+\cdots
+\end{equation}
 
 当我们最终可以计算散射矩阵的时候，我们则需要以此计算可观测物理量。由于散射矩阵被定义在散射态上，而我们的散射态是用Fock空间的基表示，在Fock空间中，基矢即为能量本征态，也为动量本征态。因此如果我们的Green函数是定义在位形空间中的，这样计算起来将会非常不便。所以我们就考虑在动量空间中的Green函数。从前面的讨论我们已经知道，$n$点Green函数由更基础的2点Green函数及顶点函数所构成，因此我们只需要讨论基础的传播子和顶点函数的形式，便可用其推导任意点Green函数。
 

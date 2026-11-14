@@ -1271,7 +1271,7 @@ A_\mu(x)=A^a_\mu(x)\boldsymbol{T}^a
 \end{equation}
 而$\omega^a\boldsymbol{T}^a=\boldsymbol{\omega}$，则规范场$A_\mu$的无穷小变换可表示为\footnote{对$\boldsymbol{\omega}$的协变导数表示为：\[\begin{split}
 	D_\mu\boldsymbol{\omega}&=\partial_\mu\omega^c\boldsymbol{T}^c-igA_\mu^a(if^{abc}\omega^b)\boldsymbol{T}^c\\&=\partial_\mu\omega^c\boldsymbol{T}^c-igA_\mu^a\omega^b[\boldsymbol{T}^a,\boldsymbol{T}^b]\\&=\partial_\mu\boldsymbol{\omega}-ig[A_\mu,\boldsymbol{\omega}]
-	\end{split}\]即\[D_\mu\omega^a=\partial_\mu\omega^a-gf^{abc}\omega^b A_\mu^c\]}：
+	\end{split}\]即\[D_\mu\omega^a=\partial_\mu\omega^a+gf^{abc} A_\mu^b\omega^c\]}：
 \begin{equation}
 \begin{split}
 \delta A_\mu&=\frac{1}{g}\partial_\mu\boldsymbol{\omega}-i[A_\mu,\boldsymbol{\omega}]\\
@@ -1435,13 +1435,13 @@ F_{\mu\nu}\rightarrow F'_{\mu\nu}&= UF_{\mu\nu}U^\dagger\notag\\
 
 我们考虑具体的规范场费曼规则。对于规范场的传播子，我们可以从生成泛函中的动能项获得：
 \begin{align}
-	Z_A[J]=&\int\mathcal{D}A_\mu\,\exp\Big( i\int\mathrm{d}x\Big[\frac{1}{2}A_\mu^a(\eta^{\mu\nu}\partial_\lambda \partial^\lambda-(1-\frac{1}{\xi})\partial^\mu\partial^\nu)A_\nu^b\delta^{ab}+A_\mu^a {J^a}^\mu\Big]	\Big)\notag\\
+	Z_A[J]=&\int\mathcal{D}A_\mu\,\exp\Big( i\int\mathrm{d}x\Big[\frac{1}{2}A_\mu^a(\eta^{\mu\nu}\partial_\lambda \partial^\lambda-(1-\lambda)\partial^\mu\partial^\nu)A_\nu^b\delta^{ab}+A_\mu^a {J^a}^\mu\Big]	\Big)\notag\\
 	=&\int\mathcal{D}A_\mu\,\exp\Big( i\int\mathrm{d}x\Big[\frac{1}{2}A_\mu^a {D^{\mu\nu}}^{ab} A_\nu^b+A_\mu^a {J^\mu}^a\Big]	\Big)\notag\\
 	=&\exp\Big(-\frac{i}{2}\int\mathrm{d}x\mathrm{d}y {J(x)^\mu}^a D_{\mu\nu}^{ab}(x-y) {J(y)^\nu}^b\Big)
 \end{align}
 易得，规范场传播子在$R_\xi$规范下即为：
 \begin{equation}
-	D_{\mu\nu}^{ab}(p)=\frac{-i\delta^{ab}}{p^2+i\epsilon}\Big[\eta_{\mu\nu}-(1-{\xi})\frac{p_\mu p_\nu}{p^2} \Big]
+	D_{\mu\nu}^{ab}(p)=\frac{-i\delta^{ab}}{p^2+i\epsilon}\Big[\eta_{\mu\nu}-(1-\frac{1}{\lambda})\frac{p_\mu p_\nu}{p^2} \Big]
 \end{equation}
 对于鬼场$c^a,\bar{c}^a$，我们则引入对应的外源函数$\eta^a,\bar{\eta}^a$，那么生成泛函的鬼场动能项则为：
 \begin{align}
@@ -1449,7 +1449,7 @@ F_{\mu\nu}\rightarrow F'_{\mu\nu}&= UF_{\mu\nu}U^\dagger\notag\\
 \end{align}
 其中为了简便，我们将动能项的常数$1/g$吸收到场$c^a$里面。那么同理我们可得鬼场的传播子：
 \begin{equation}
-	\Delta^{ab}(k)=\frac{i\delta^{ab}}{k^2+i\epsilon}
+	\widetilde{\Delta}^{ab}(k)=\frac{i\delta^{ab}}{k^2+i\epsilon}
 \end{equation}
 
 
@@ -1462,8 +1462,8 @@ F_{\mu\nu}\rightarrow F'_{\mu\nu}&= UF_{\mu\nu}U^\dagger\notag\\
 则Faddeev-Popov有效拉氏量为：
 \begin{equation}
 \begin{split}
-    \mathscr{L}_{\text{FP}} =& -\frac{1}{4}{F^a}_{\mu\nu}{F^a}^{\mu\nu} -\frac{1}{2\xi}(\partial^\mu A_\mu^a)^2 +\partial^\mu\bar{ c}^a\partial_\mu c^a-g f^{abc} (\partial^\mu\Bar{c}^a) c^b A_\mu^c\\
-    =& - \frac{1}{2}(\partial_\mu A_\nu^a \partial^\mu {A^a}^\nu-\partial_\mu A_\nu^a \partial^\nu {A^a}^\mu) -gf^{abc} \partial_\mu A_\nu^a {A^\mu}^b{A^\nu}^c+\frac{1}{4}g^2f^{abc}f^{ade}A_\mu^b A_\nu^c {A^\mu}^d {A^\nu}^e\\&-\frac{1}{2\xi}(\partial^\mu A_\mu^a)^2 +\partial^\mu\bar{ c}^a\partial_\mu c^a-g f^{abc} (\partial^\mu\Bar{c}^a) c^b A_\mu^c
+    \mathscr{L}_{\text{FP}} =& -\frac{1}{4}{F^a}_{\mu\nu}{F^a}^{\mu\nu} -\frac{\lambda}{2}(\partial^\mu A_\mu^a)^2 +\partial^\mu\bar{ c}^a\partial_\mu c^a-g f^{abc} (\partial^\mu\Bar{c}^a) c^b A_\mu^c\\
+    =& - \frac{1}{2}(\partial_\mu A_\nu^a \partial^\mu {A^a}^\nu-\partial_\mu A_\nu^a \partial^\nu {A^a}^\mu) -gf^{abc} \partial_\mu A_\nu^a {A^\mu}^b{A^\nu}^c+\frac{1}{4}g^2f^{abc}f^{ade}A_\mu^b A_\nu^c {A^\mu}^d {A^\nu}^e\\&-\frac{\lambda}{2}(\partial^\mu A_\mu^a)^2 +\partial^\mu\bar{ c}^a\partial_\mu c^a-g f^{abc} (\partial^\mu\Bar{c}^a) c^b A_\mu^c
 \end{split}
 \end{equation}
 从该拉氏量中，我们可以得到关于杨-Mills场的费曼规则：
@@ -1548,7 +1548,7 @@ F_{\mu\nu}\rightarrow F'_{\mu\nu}&= UF_{\mu\nu}U^\dagger\notag\\
 \includegraphics[width=.5\linewidth]{图/ghost-propa.pdf}
 \vspace{10pt}
     \end{minipage} \begin{minipage}{.45\linewidth}
-        \[i\Delta^{ab} =\frac{-i\delta^{ab}}{k^2+i\epsilon}\]
+        \[i\widetilde{\Delta}^{ab} =\frac{-\delta^{ab}}{k^2+i\epsilon}\]
     \end{minipage}
     % \vspace{30pt}
 \end{center}
@@ -1576,37 +1576,29 @@ F_{\mu\nu}\rightarrow F'_{\mu\nu}&= UF_{\mu\nu}U^\dagger\notag\\
 \section{BRST(Becchi-Rouet-Stora-Tyutin)对称性}
 现在考虑纯规范场的Lagrangian在洛伦兹规范下可表示为：
 \begin{equation}
-\mathscr{L}_\text{FP}=-\frac{1}{4}F^a_{\mu\nu}{F^a}^{\mu\nu}-\frac{\lambda}{2}(\partial^\mu A_\mu^a)^2+\partial^\mu\bar{c}^aD_\mu  c^a
+\mathscr{L}_\text{FP}=-\frac{1}{4}F^a_{\mu\nu}{F^a}^{\mu\nu}-\frac{1}{2\xi}(\partial^\mu A_\mu^a)^2+\partial^\mu\bar{c}^aD_\mu  c^a
 \end{equation}
 考虑对各场作如下变换：
 \begin{equation}
 \begin{split}
 A^a_\mu&\rightarrow A^a_\mu+\epsilon D_\mu c^a\\
-\bar{c}^a&\rightarrow\bar{c}^a-\epsilon \lambda\partial^\mu A_\mu^a\\
-c^a&\rightarrow c^a+\epsilon 
-\frac{g}{2} f^{abc} c^b c^c
+c^a&\rightarrow c^a-\epsilon 
+\frac{g}{2} f^{abc} c^b c^c\\
+\bar{c}^a&\rightarrow\bar{c}^a-\frac\epsilon\xi \partial^\mu A_\mu^a
 \end{split}\label{eq:brsttrans}
 \end{equation}
 其中$\epsilon$为满足Grassmann代数的无穷小常量，和鬼场有反对易关系：
 \begin{equation}
 \{\epsilon,c\}=0,\qquad\{\epsilon,\bar{c}\}=0,\qquad[\epsilon,A_\mu^a]=0
 \end{equation}
-% 而$\tau$和$\rho$为待定常系数。
-将变换带入Lagrangian，得到额外的项
+将变换带入Lagrangian，由于对于杨-Mills场强部分，其变换满足规范变换，因此不变，而对于鬼场部分的变换，可以得到额外的项
 \begin{equation}
-    \delta\mathscr{L} = -\lambda\epsilon\partial^\mu D_\mu c^a\partial^\nu A^a_\nu -\lambda \epsilon\partial_\mu\partial^\nu A^a_\nu  D^\mu c^a + \frac{g}{2} \partial_\mu \bar{c}^a D^\mu( \epsilon f^{abc} c^b c^c)
+    \delta\mathscr{L} = -\frac\epsilon\xi\partial_\mu D^\mu c^a(\partial^\nu A^a_\nu) -\frac \epsilon\xi\partial_\mu(\partial^\nu A^a_\nu)  D^\mu c^a  + \partial_\mu \bar{c}^a \delta(D^\mu c^a)
 \end{equation}
-对第二项进行分部积分，可以将第一项抵消掉，得
-\begin{equation}
-    \delta\mathscr{L} =-\lambda\epsilon\partial_\mu(\partial^\nu A_\nu ^a D^\mu c^a) + \frac{g}{2} \partial_\mu \bar{c}^a D^\mu( \epsilon f^{abc} c^b c^c)
-\end{equation}
-对于最后一项，我们有
-\begin{equation}
-    \frac{g}{2}D^\mu( \epsilon f^{abc} c^b c^c) = -\frac{g^2}{2}(f^{acb}f^{bpq}-f^{apb}f^{bcq}-f^{aqb}f^{bpc})c^c c^p {A^\mu}^q \epsilon=0 
-\end{equation}
+前两项可以合成一个全微分项，最后一项$\delta(D^\mu c^a)=0$，
 因此Lagrangian只变化了一个全微分项
 \begin{equation}
-    \delta\mathscr{L} =-\lambda\epsilon\partial_\mu(\partial^\nu A_\nu ^a D^\mu c^a) = \epsilon\partial_\mu \Lambda^\mu,~~\Lambda^\mu = -\lambda\partial^\nu A^a_\nu D^\mu c^a\label{eq:brsttotd}
+    \delta\mathscr{L} =-\frac\epsilon\xi\partial_\mu(\partial^\nu A_\nu ^a D^\mu c^a) = \epsilon\partial_\mu \Lambda^\mu,~~\Lambda^\mu = -\frac1\xi\partial^\nu A^a_\nu D^\mu c^a\label{eq:brsttotd}
 \end{equation}
 则运动方程保持不变，则变换\eqref{eq:brsttrans}式即为BRST变换。
 
@@ -1616,26 +1608,229 @@ c^a&\rightarrow c^a+\epsilon
 \end{equation}
 带入\eqref{eq:brsttrans}，\eqref{eq:brsttotd}式，可得
 \begin{equation}
-    J^\mu(\epsilon) =\epsilon J^\mu_\text{BRST} = \epsilon\left( -{F^{\mu\nu}}^aD_\nu c^a + \lambda\partial^\nu A_\nu^a D^\mu c^a + \frac{g}{2}f^{abc}\partial^\mu \bar{c}^a c^b c^c \right)
+    J^\mu(\epsilon) =\epsilon J^\mu_\text{BRST} , \qquad J^\mu_\text{BRST} =  -{F^{\mu\nu}}^aD_\nu c^a + \frac{g}{2}f^{abc}\partial^\mu \bar{c}^a c^b c^c 
 \end{equation}
 最终我们可以得到BRST守恒荷
 \begin{equation}
-    Q_\text{BRST} = \int \mathrm{d}^3\boldsymbol{x} \left( -F^a_{0\nu}D^\nu c^a + \lambda\partial^\mu A_\mu ^a D_0 c^a + \frac{g}{2}f^{abc} \partial_0 \bar{c}^a c^b c^c\right)
+    Q_\text{BRST} = \int \mathrm{d}^3\boldsymbol{x} \left( -F^a_{0\nu}D^\nu c^a + \frac{g}{2}f^{abc} \partial_0 \bar{c}^a c^b c^c\right)\label{eq:QBRST}
     \end{equation}
+我们可以看到，此时的守恒量已经不包含规范固定项了，因此其守恒量不依赖于规范选取。
 
     考虑我们存在杨-Mills场与Fermion场存在相互作用
     \begin{equation}
-        \mathscr{L}=i\psi\slashed{D}\psi-m\bar{\psi}\psi-\frac{1}{4}F^a_{\mu\nu}{F^a}^{\mu\nu}-\frac{\lambda}{2}(\partial^\mu A_\mu^a)^2+\partial^\mu\bar{c}^aD_\mu  c^a
+        \mathscr{L}=i\psi\slashed{D}\psi-m\bar{\psi}\psi-\frac{1}{4}F^a_{\mu\nu}{F^a}^{\mu\nu}-\frac{1}{2\xi}(\partial^\mu A_\mu^a)^2+\partial^\mu\bar{c}^aD_\mu  c^a
     \end{equation}
 此时我们的BRST变换即为
 \begin{equation}
 \begin{split}
 \delta A^a_\mu&= D_\mu c^a\\
-\delta c^a&=-  \frac{g}{2} f^{abc} c^b c^c\\
-\delta \bar{c}^a&=- \lambda\partial^\mu A_\mu^a\\
+\delta c^a&=  -\frac{g}{2} f^{abc} c^b c^c\\
+\delta \bar{c}^a&=- \frac1\xi\partial^\mu A_\mu^a\\
 \delta \psi & = ig \,c^a \boldsymbol{T}^a \psi
+\end{split}
+\end{equation}
+我们可以定义辅助场（中西-Lautrup场）为
+\begin{equation}
+    B^a = \frac{1}{\xi}\partial^\mu A_\mu^a
+\end{equation}
+则此时的Lagrangian可以写为
+\begin{equation}
+     \mathscr{L}=i\psi\slashed{D}\psi-m\bar{\psi}\psi-\frac{1}{4}F^a_{\mu\nu}{F^a}^{\mu\nu}+\frac{\xi}{2}B^a B^a-B^a\partial^\mu A_\mu^a+\partial^\mu\bar{c}^aD_\mu  c^a
+\end{equation}
+那么此时的BRST变换可以写为
+\begin{equation}
+    \begin{split}
+\delta A^a_\mu&= D_\mu c^a\\
+\delta \psi & = ig \,c^a \boldsymbol{T}^a \psi\\
+\delta c^a&=  -\frac{g}{2} f^{abc} c^b c^c\\
+\delta \bar{c}^a&= -B^a\\
+\delta B^a & = 0
 \end{split}\label{eq:brsttrans_wf}
 \end{equation}
+而此时BRST守恒荷依然与此前形式\eqref{eq:QBRST}式保持一致。其实我们可以看到BRST变换本身就是一种规范变换，因此对Fermion场和杨-Mills场本身都是保持不变的，但是由于杨-Mills场中引入了鬼场的自由度，因此BRST对称性可以理解为用鬼场作为规范参数的规范变换。而由于鬼场的Fermion性质，使得BRST变换体现为Fermionic的对称性，即BRST守恒荷具有零幂性的关键性质
+\begin{equation}
+    Q^2_\text{BRST} = 0
+\end{equation}
+这意味着BRST荷作用到物理态上则会
+\begin{equation}
+    Q_\text{BRST}|\text{phys}\rangle = 0
+\end{equation}
+而如果两个物理态相差一个BRST恰当态时，它们则在物理上等价，这一系列的物理态空间即为BRST上同调类。如果说QED中的规范对称性去除了标量光子以及光子的纵向极化分量，那么此时BRST对称性则去除了非物理的鬼态，保留了真实的物理自由度。如果非物理的鬼态保留的话，那么散射矩阵的幺正性将无法保证。
+
+% 对于鬼场-杨-Mills场的三相互作用顶点而言，我们需要确保其在BRST变换下保持不变，即
+% \begin{equation}
+%    \Gamma^{abc}_\mu(x,y,z) = \langle \bar{c}^c(z) c^b(y) A^a_\mu(x) \rangle,\qquad  \Gamma^{abc}_\mu(x,y,z)\mapsto  \Gamma^{abc}_\mu(x,y,z) + \delta_\text{BRST}  \Gamma^{abc}_\mu(x,y,z) = \Gamma^{abc}_\mu(x,y,z)
+% \end{equation}
+% 即将BRST变换带入到$\Gamma^{abc}_\mu(x,y,z)$中产生的变换项为0，则有
+% \begin{equation}
+%    -\frac1\xi \langle \partial^\nu A_\nu^c(z) c^b(y) A^a_\mu(x) \rangle - \frac g2 f^{bde}
+% \langle \bar{c}^c(z) c^d(y) c^e(y) A^a_\mu(x) \rangle + \langle \bar{c}^c(z) c^b(y) \partial_\mu c^a(x) \rangle + g f^{ade}\langle \bar{c}^c(z) c^b(y) A_\mu^d(x) c^e(x) \rangle = 0
+% \end{equation}
+
+现在我们将所有参与相互作用的场标记为
+\begin{equation}
+    \Phi_i = \{A_\mu^a,~c^a,~ \bar{c}^a,~B^a,~\psi,~\bar{\psi}\}
+\end{equation}
+那么对于\eqref{eq:brsttrans_wf}式中所有场的BRST变换记为$\delta_\text{BRST}\Phi_i$。这时对于BRST变换，我们对每个场引入对应的流$K_i$，则我们的生成泛函可以写成
+\begin{equation}
+    \mathcal{Z}[J,K] = \int\mathcal{D}\Phi_i~\exp\left[ i\mathcal{S}[\Phi] + i\int\mathrm{d}x\sum_i J_i\Phi_i + i\int\mathrm{d}x \sum K_i \delta_\text{BRST}\Phi_i\right]
+\end{equation}
+由于BRST变换的零幂性，该生成泛函依然能在BRST变换下保持不变。同样我们可以通过BRST不变性得出
+\begin{equation}
+\int\mathcal{D}\Phi_i\left(\int\mathrm{d}xJ_i\delta_\text{BRST}\Phi_i \right)e^{ i\mathcal{S}[\Phi] + i\int\mathrm{d}x\sum_i J_i\Phi_i + i\int\mathrm{d}x \sum K_i \delta_\text{BRST}\Phi_i} = 0
+\end{equation}
+由于我们可以通过以下泛函求导得到$\delta_\text{BRST}\Phi_i$
+\begin{equation}
+   i\int\mathcal{D}\Phi_i~ (\delta_\text{BRST}\Phi_i) ~e^{i\mathcal{S}+i\int J\Phi + i\int K \delta_\text{BRRST}\Phi}= \frac{\delta\mathcal{Z}}{\delta K_i}
+\end{equation}
+因此带入后可得Zinn-Justin方程：
+\begin{equation}
+    \int\mathrm{d}x\sum_i J_i\frac{\delta \mathcal{Z}}{\delta K_i} = 0\label{eq:st_1}
+\end{equation}
+对于此时的生成泛函，我们可以进行Legendre变换得到有效作用量，也即单粒子不可约函数
+\begin{equation}
+    \Gamma[\Phi,K] = -i\ln\mathcal{Z}[J,K]-\int\mathrm{d}x\sum J_i\Phi_i
+\end{equation}
+此时，\eqref{eq:st_1}式可以变为
+\begin{equation}
+    \frac{-i}{\mathcal{Z}}\int\mathrm{d}x\sum_i J_i\frac{\delta\Gamma}{\delta K_i} =0,~~~~\int\mathrm{d}x\sum_i J_i\frac{\delta \Gamma}{\delta K_i} =  0
+\end{equation}
+而对于外源$J$而言，可以通过对有效作用量的泛函求导获得
+\begin{equation}
+    J_i =-\frac{\delta\Gamma}{\delta\Phi_i}
+\end{equation}
+带入之后即可的
+\begin{equation}
+    \int\mathrm{d}x\sum_i \frac{\delta\Gamma}{\delta\Phi_i}\frac{\delta \Gamma}{\delta K_i} =  0
+\end{equation}
+这就是Ward-高桥恒等式在杨-Mills场的拓展形式，即Slavnov–Taylor恒等式，展开具体形式可以写为
+\begin{equation}
+    \int\mathrm{d}x \left( \frac{\delta \Gamma}{\delta A_\mu^a}\frac{\delta\Gamma}{\delta {K^\mu}^a} + \frac{\delta\Gamma}{\delta\psi}\frac{\delta\Gamma}{\delta K_\psi} +  \frac{\delta\Gamma}{\delta K_{\bar{\psi}}}\frac{\delta\Gamma}{\delta\bar{\psi}} + \frac{\delta\Gamma}{\delta c^a}\frac{\delta\Gamma}{\delta K^a_c}+ \frac{\delta\Gamma}{\delta \bar{c}^a}\frac{\delta\Gamma}{\delta K^a_{\bar{c}}}\right)=0
+\end{equation}
+带入BRST变换的具体形式，可得
+\begin{equation}
+    \int\mathrm{d}x \left( \frac{\delta \Gamma}{\delta A_\mu^a}D_\mu c^a + igc^a(\frac{\delta\Gamma}{\delta\psi}\boldsymbol{T}^a \psi +  \bar{\psi}\boldsymbol{T}^a\frac{\delta\Gamma}{\delta\bar{\psi}}) -\frac{g}{2} \frac{\delta\Gamma}{\delta c^a}f^{abc}c^b c^c -\frac{1}{\xi}\frac{\delta\Gamma}{\delta \bar{c}^a}\partial^\mu A_\mu^a\right)=0
+\end{equation}
+% 由于$\gamma$是单粒子不可约green函数，我们可以考虑$\Gamma$对源$K_{\bar{c}}^a$求导，再对$A_\mu^a$求导，可得鬼-胶子传播子
+% \begin{equation}
+%     \frac{\delta^2\Gamma}{\delta K_{\bar{c}}^a(x) \delta A_\mu^b(y)} = -\frac{1}{\xi}\partial^\mu\delta^{ab}\delta(x-y)
+% \end{equation}
+% 而我们还可以考虑$\Gamma$对源${K}_{\mu}^a$求导的$D_\mu c^a$，再对$A_\mu^a$和$c^a$去求导，得
+% \begin{equation}
+%     \Gamma^{abc}_{\mu\nu}=\frac{\delta^3\Gamma    }{\delta c^c(y)\delta {A^\mu}^b(x)\delta {K^\nu}^a(z)} = -gf^{abc}\eta_{\mu\nu}\delta(x-z)\delta(y-z)
+% \end{equation}
+
+对于Fermion场而言，我们可以用同样的方法得到与QED相同的Ward-高桥恒等式。而不考虑Ferimon场，只考虑纯杨-Mills场，我们有
+\begin{equation}
+    \int\mathrm{d}x \left( \frac{\delta \Gamma}{\delta A_\mu^a}D_\mu c^a -\frac{g}{2} \frac{\delta\Gamma}{\delta c^a}f^{abc}c^b c^c -\frac{1}{\xi}\frac{\delta\Gamma}{\delta \bar{c}^a}\partial^\mu A_\mu^a\right)=0\label{eq:zinn_justin}
+\end{equation}
+% 我们可以将有效作用量得泛函导数展开
+% \begin{align}
+%     \frac{\delta    \Gamma}{\delta A^{\mu a}(x)} &= \int\mathrm{d}y~{\Gamma^{(2)}_{AA}}_{\mu\nu}^{ab}(x,y)A^{\nu b}(y) + \int\mathrm{d}y\mathrm{d}z~\Big(\bar{c}^b(y){\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu (x,y,z)c^c(z)+{\Gamma^{(3)}_{AAA}}^{abc}_{\mu\nu\lambda}(x,y,z) A^{\nu b}(y) A^{\lambda c}(z)\Big)\notag\\&~~~~+\int\mathrm{d}y\mathrm{d}z\mathrm{d}w~{\Gamma^{(4)}_{AAAA}}^{abcd}_{\mu\nu\lambda\rho}(x,y,z,w)A^{\nu b}(y) A^{\lambda c}(z)A^{\rho d}(w)\\
+%     \frac{\delta\Gamma}{\delta c^a(x)}&=\int\mathrm{d}y~\bar{c}^b(y){\Gamma^{(2)}_{c\bar{c}}}^{ab}(x,y) + \int\mathrm{d}y\mathrm{d}z~\bar{c}^b(y){\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu(x,y,z) A^{\mu c}(z)\\
+%   \frac{\delta\Gamma}{\delta \bar c^a(x)}&=\int\mathrm{d}y~{\Gamma^{(2)}_{c\bar{c}}}^{ab}(x,y){c}^b(y) + \int\mathrm{d}y\mathrm{d}z~{\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu(x,y,z) {c}^b(y)A^{\mu c}(z)
+%   \end{align}
+% 带入到\eqref{eq:zinn_justin}式中，可得
+% \begin{equation}
+%     \begin{split}
+%         \int\mathrm{d}x\mathrm{d}y\Bigg( & {\Gamma^{(2)}_{AA}}_{\mu\nu}^{ab}(x,y)A^{\nu b}(y)\partial^\mu c^a(x)- gf^{ade}{\Gamma^{(2)}_{AA}}_{\mu\nu}^{ab}(x,y)A^{\nu b}(y)c^d(x)A^{\mu e}(x)  \\&+ \int\mathrm{d}z~\Big[\bar{c}^b(y){\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu (x,y,z)c^c(z) \partial^\mu c^a(x)- gf^{ade}\bar{c}^b(y){\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu (x,y,z)c^c(z) c^d(x)A^{\mu e}(x)\\
+%         &+{\Gamma^{(3)}_{AAA}}^{abc}_{\mu\nu\lambda}(x,y,z) A^{\nu b}(y) A^{\lambda c}(z)\partial^\mu c^a(x)-gf^{ade}{\Gamma^{(3)}_{AAA}}^{abc}_{\mu\nu\lambda}(x,y,z) A^{\nu b}(y) A^{\lambda c}(z)c^d(x)A^{\mu e}(x)\\&+\int\mathrm{d}w~({\Gamma^{(4)}_{AAAA}}^{abcd}_{\mu\nu\lambda\rho}(x,y,z,w)A^{\nu b}(y) A^{\lambda c}(z)A^{\rho d}(w) \partial^\mu c^{a}(x) \\&-gf^{afj}{\Gamma^{(4)}_{AAAA}}^{abcd}_{\mu\nu\lambda\rho}(x,y,z,w)A^{\nu b}(y) A^{\lambda c}(z)A^{\rho d}(w)c^{f}(x)A^{\mu j}(x))\Big]
+%         \\&-\frac{g}{2} \bar{c}^b(y){\Gamma^{(2)}_{c\bar{c}}}^{ab}(x,y) f^{ade}c^d(x) c^e(x)-\frac{g}{2}\int\mathrm{d}z~\bar{c}^b(y){\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu(x,y,z) A^{\mu c}(z)f^{ade} c^d(x) c^e(x)\\&-\frac{1}{\xi}{\Gamma^{(2)}_{c\bar{c}}}^{ab}(x,y) c^b(y)\partial^\nu A_\nu^a(x)-\frac{1}{\xi}  \int\mathrm{d}z~{\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu(x,y,z) {c}^b(y)A^c(z)\partial^\nu A^a_\nu(x)\Bigg)=0
+%     \end{split}
+% \end{equation}
+% % 对于其中$\bar{c}^bc^ac^c$的项，我们可以提取出来，得到对应的关系
+% %   \begin{equation}
+% %       \int\mathrm{d}x\mathrm{d}y~\bar{c}^b(y)\Bigg( \int \mathrm{d}z~ {\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu (x,y,z)c^c(z)\frac{\partial}{\partial x_\mu}c^a(x) -\frac{g}{2}{\Gamma^{(2)}_{c\bar{c}}}^{bd}(x,y) f^{dca}c^c(x) c^a(x)\Bigg)=0
+% %   \end{equation}
+% % 其中对第一项进行分部积分，并舍弃全微分的边界项，这时我们可以对等式求三阶$\bar{c},~c,~c$泛函导数，得到
+% %   \begin{equation}
+% %       \int\mathrm{d}x\mathrm{d}y\mathrm{d}z~\Bigg( -\frac{\partial}{\partial y_\mu}{\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu (x,y,z) -\frac{\partial}{\partial z_\mu}{\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu (x,z, y) -\frac{g}{2}{\Gamma^{(2)}_{c\bar{c}}}^{bd}(x,y) f^{dca}\delta(z-x)+\frac{g}{2}{\Gamma^{(2)}_{c\bar{c}}}^{bd}(x,y) f^{dca}\delta(z-x)\Bigg)=0
+% %   \end{equation}
+% %   对此等式做Fourier变换，变换到动量空间，那么可以得到相应的
+% \begin{equation}
+%     k^\mu \Gamma^{abc}_\mu (p,q,k) = ig f^{abc}[\widetilde{\Delta}^{-1}(p)-\widetilde{\Delta}^{-1}(q)]
+% \end{equation}
+
+因此我们可以进一步通过对该等式的求导，得到相关顶点函数之间的关系。
+对于上式，在零场的条件下做对场$c$和$A$的二阶泛函求导，我们可得
+\begin{align}
+\begin{split}
+    \frac{\delta^2}{\delta c^c(z)\delta A^b_\nu(y)}\left(  \frac{\delta \Gamma}{\delta A_\mu^a(x)}D_\mu c^a(x) \right)\Bigg|_0 &= \frac{\delta^2\Gamma}{\delta A^b_\nu(y)\delta A^a_\mu(x)} \frac{\delta(D_\mu c^a(x))}{\delta c^c(z)}\Bigg|_0 \\&={\Gamma^{(2)}_{AA}}^{\mu\nu~ab}(x,y) \Bigg( \frac{\partial}{\partial x^\mu} \delta^{ac}  \Bigg) \delta(x-z)
+\end{split}\\
+\begin{split}
+    \frac{\delta^2}{\delta c^c(z)\delta A^b_\nu(y)}\left(   \frac{g}{2} \frac{\delta\Gamma}{\delta c^a}f^{aef}c^e c^f\right)\Bigg|_0 &= 0
+\end{split}\\
+\begin{split}
+    \frac{\delta^2}{\delta c^c(z)\delta A^b_\nu(y)}\left(-\frac{1}{\xi}\frac{\delta\Gamma}{\delta \bar{c}^a(x)}\partial^\mu A_\mu^a(x)\right)\Bigg|_0 &= -\frac1\xi \frac{\delta^2\Gamma}{\delta c^c(z)\delta \bar{c}^a(x)}\frac{\delta(\partial^\mu A_\mu^a(x))}{\delta A_\nu^b(y)}\\&=-\frac1\xi {\Gamma^{(2)}_{\bar{c}c}}^{ca}(x,z)\Bigg(\frac{\partial}{\partial x^\nu}\delta^{ab}\Bigg) \delta(x-y)
+\end{split}
+\end{align}
+其中第二项在所有场取零的时候会变为0。这时我们可以带入到原积分内，并进行分部积分，舍弃边界项，得到
+\begin{equation}
+    \int\mathrm{d}x\Bigg( -\Big[\frac{\partial}{\partial x^\mu}{\Gamma^{(2)}_{AA}}^{\mu\nu ~cb}(x,y)\Big]\delta(x-z) + \frac{1}{\xi}\Big[ \frac{\partial}{\partial x^\nu}{\Gamma^{(2)}_{\bar{c}c}}^{cb}(x,z) \Big]\delta(x-y) \Bigg) = 0
+\end{equation}
+将$x$积分掉，我们可得等式
+\begin{equation}
+    \frac{\partial}{\partial z_\mu}{\Gamma^{(2)}_{AA}}_{\mu\nu}^{cb}(z,y) = \frac{1}{\xi}\frac{\partial}{\partial y^\nu}{\Gamma^{(2)}_{\bar{c}c}}^{cb}(y,z)
+\end{equation}
+转换到动量空间，
+% 我们可以通过杨-Mills场传播子定义杨-Mills场的自能
+% \begin{equation}
+%    \Delta_{\mu\nu}^{ab}  \Pi^{\nu\lambda}= \delta^{ab}\delta^\lambda_\mu
+% \end{equation}
+% 那么其单粒子不可约两点函数（传播子逆）即可表为
+% \begin{equation}
+%     {\Gamma^{(2)}_{AA}}_{\mu\nu}^{ab}(k) = \delta^{ab} \Pi_{\mu\nu}(k),\qquad {\Gamma^{(2)}_{\bar{c}c}}^{ab}(p) = \delta^{ab} \widetilde{\Delta}^{-1}(p)
+% \end{equation}
+这样我们可得BRST对称性给出关于传播子逆的Slavnov-Taylor恒等式，即
+\begin{equation}
+    p^\mu {\Pi_{\mu\nu}^{ab}}(p) = -\frac1\xi p_\nu{\widetilde{\Delta}^{ab}}(-p)^{-1}\label{eq:st_1}
+\end{equation}
+
+% 然而我们发现，如果我们想通过对$\bar{c},~c,~A$泛函求导求导的方法，获取跟杨-Mills场和鬼场三相互作用顶点的时，我们发现其泛函求导恒为0，因此无法获取任何等式关系。而同时我们可以转而去考虑杨-Mills场和鬼场三相互作用的三点Green函数，即
+% \begin{equation}
+%     {\Gamma^{(3)}_{Ac\bar{c}}}^{abc}_\mu(x,y,z) = \langle \bar{c}^a(x)c^b(y) A_\mu^c(z) \rangle
+% \end{equation}
+% 此时我们对该三点函数作BRST变换，其应当保持不变，即变化量为0
+% \begin{equation}
+%     \delta_\text{BRST}  \langle \bar{c}^a(x)c^b(y) A_\mu^c(z) \rangle = 0
+% \end{equation}
+% 带入BRST变换，得
+% \begin{equation}
+%     -\frac{1}{\xi} \langle \partial^\nu A_\nu^a(x)c^b(y) A_\mu^c(z) \rangle - \frac{g}{2}f^{bde} \langle \bar{c}^a(x)c^d(y)c^e(y) A_\mu^c(z) \rangle +  \langle \bar{c}^a(x)c^b(y) D_\mu c^c(z) \rangle = 0
+% \end{equation}
+% 我们可以通过LSZ约化的方式，利用场的运动方程来消去格林函数的外线，同样我们此时可以先同时消除$c^b(y)$，得到
+% \begin{equation}
+%     -\frac{1}{\xi} \langle \partial^\nu A_\nu^a(x)A_\mu^c(z) \rangle  +  \langle \bar{c}^a(x) \partial_\mu c^c(z) \rangle + g f^{cjk}\langle \bar{c}^a(x) A^j_\mu (z)c^k(z) \rangle = 0
+% \end{equation}
+% 其中上式的第二项由于对$c^d$和$c^e$具有对称性，因此最终该项会消去。对等式作Fourier变换，变换到动量空间，则此时等式中的两点函数即为传播子，三点函数为顶点函数，得
+% \begin{equation}
+%     -\frac{1}{\xi} p^\nu\Delta^{ac}_{\mu\nu}(p)\delta(p+k) +  p_\mu\widetilde{\Delta}^{ac}(p)\delta(p+q)  + g f^{cjk}G^{ajk}_\mu(p,k,q) = 0
+% \end{equation}
+% 其中的两点函数即为传播子，同时我们有之前的恒等式\eqref{eq:st_1}式，我们可以得到
+% \begin{equation}
+%  G^{ajk}_\mu(p,k,q) =\widetilde{\Delta}^{an}(p)\widetilde{\Delta}^{jm}(q)\Delta^{\mu\nu~kl}(k) {\Gamma^{(3)}_{A\bar{c}c}}^{nml}_\nu(p,q,k) \delta(p+k+q)
+% \end{equation}
+
+% 我们继续对\eqref{eq:zinn_justin}式进行$c^a$，$A^b_\mu$，$A^c_\mu$三阶泛函导数，并取零场条件，便可得
+% \begin{equation}
+% \begin{split}
+%        & \frac{\delta^3}{\delta c^d(w)\delta A^c_\lambda(z)\delta A^b_\nu (y)}\left(  \frac{\delta \Gamma}{\delta A_\mu^a(x)}D_\mu c^a(x) \right)\Bigg|_0  \\&= \left(  \frac{\delta^3\Gamma}{\delta A_\lambda^c(z)\delta A_\nu^b(y)\delta A_\mu^a(x)}\frac{\delta(D_\mu c^a(x))}{\delta c^d(w)} + \frac{\delta^2\Gamma}{\delta A_\nu^b(y) \delta A^a_\mu(x)} \frac{\delta^2(D_\mu c^a(x))}{\delta c^d(w)\delta A_\lambda^c(z)} + \frac{\delta^2\Gamma}{\delta A_\lambda^c(z) \delta A^a_\mu(x)} \frac{\delta^2(D_\mu c^a(x))}{\delta c^d(w)\delta A_\nu^b(y)}\right)\Bigg|_0\\
+%         &=\Big({\Gamma^{(3)}_{AAA}}^{\mu\nu\lambda~abc}(x,y,z)\frac{\partial}{\partial x^\mu} \delta^{ad}- {\Gamma^{(2)}_{AA}}^{\mu\nu~ab}(x,y)~g f^{adc}\delta^\lambda_\mu\delta(x-z) -{\Gamma^{(2)}_{AA}}^{\mu\lambda~ac}(x,z)g f^{adb}\delta^\nu_\mu\delta(x-y)\Big) \delta(x-w)\\
+%         &=\Big({\Gamma^{(3)}_{AAA}}^{\mu\nu\lambda~dbc}(w,y,z)\frac{\partial}{\partial w^\mu} + g f^{dbc}[\Pi^{\lambda\nu}(z,y)~ -\Pi^{\nu\lambda}(y,z)]\Big) 
+% \end{split}
+% \end{equation}
+% 以及
+% \begin{equation}
+%     \begin{split}
+%         &\frac{\delta^3}{\delta c^d(w)\delta A^c_\lambda(z)\delta A^b_\nu (y)}\left(  -\frac{1}{\xi}\frac{\delta\Gamma}{\delta \bar{c}^a(x)}\partial^\mu A_\mu^a(x) \right)\Bigg|_0 \\&~~~~~~~~~~~~~= -\frac{1}{\xi}\Big[ {\Gamma^{(3)}_{Ac\bar{c}}}^{\lambda~adc} (w,z,x)\partial^\nu\delta^{ab}\delta(x-y)+ {\Gamma^{(3)}_{Ac\bar{c}}}^{\nu~adb} (w,y,x)\partial^\lambda\delta^{ac}\delta(x-z) \Big]
+%         \\&~~~~~~~~~~~~~=-\frac{1}{\xi}\Big[ {\Gamma^{(3)}_{Ac\bar{c}}}^{\lambda~bdc} (w,z,y)\frac{\partial}{\partial y_\nu}+ {\Gamma^{(3)}_{Ac\bar{c}}}^{\nu~cdb} (w,y,z)\frac{\partial }{\partial z_\lambda}\Big]
+%     \end{split}
+% \end{equation}
+% 此时我们可以将等式合并，并作Fourier变换，变换到动量空间
+% 可得
+% \begin{equation}
+%     p^\lambda \Gamma^{abc}_{\lambda\mu\nu}(p,q,k) = -igf^{abc} [\Pi_{\mu\nu}(q)-\Pi_{\mu\nu}(k)]%\cdot \tilde{G}^{-1}(p)
+% \end{equation}
 
 \section{杨-Mills场单圈重整化}
 对于杨-Mills场及参与规范相互作用的费米子场，其裸有效拉氏量为：
@@ -1669,9 +1864,13 @@ c^a&\rightarrow c^a+\epsilon
 \begin{equation}
     Z_g= \frac{Z_1}{Z_\psi Z_A^{1/2}} = \frac{Z_2}{Z_A^{3/2}}=\frac{Z_3^{1/2}}{Z_A^{2}}=\frac{Z_4}{Z^{1/2}_AZ_c}
 \end{equation}
-此关系满足Slavnov–Taylor 恒等式，则我们并不需要求解所有的重整化参数，只需求解这6个独立的重整化参数$Z_\psi,~Z_A,~Z_c,~Z_m,~Z_\xi,~Z_{g}$。
-\subsection{杨-Mills规范玻色子自能}
-杨-Mills规范玻色子自能$\Pi^{ab}_{\mu\nu} =$包含了费米子圈，玻色子圈及鬼场圈的贡献：
+又由于Slavnov–Taylor恒等式\eqref{eq:st_1}式，有
+\begin{equation}
+    Z_A = \frac{Z_c}{Z_A/Z_\xi}
+\end{equation}
+则我们并不需要求解所有的重整化参数，只需求解这5个独立的重整化参数$Z_\psi,~Z_A,~Z_c,~Z_m,~Z_{g}$。
+\subsection{杨-Mills场规范Boson自能}
+杨-Mills规范Boson自能$\Pi^{ab}_{\mu\nu} $包含了Fermion圈，Boson圈及鬼场圈的贡献：
 \begin{center}
      \includegraphics[width=.24\linewidth]{图/ymferloop.pdf}
 % \begin{fmffile}{ymfermionloop}
@@ -1727,31 +1926,201 @@ c^a&\rightarrow c^a+\epsilon
 %     \end{fmfgraph*}
 % \end{fmffile}
 \end{center}
-\paragraph{费米子圈}
+\paragraph{Fermion圈}
 
-根据费曼圈积分公示，规范玻色子的费米子圈图即为圈积分：
-
+根据如下Feynman圈，我们可以计算规范Boson的Fermion单圈贡献：
 \begin{figure}[h]
     \centering
-    \includegraphics[width=.38\linewidth]{图/ymferloop.pdf}
+       \includegraphics[width=.38\linewidth]{图/ymferloop.pdf}
     \caption{}
-    \label{fig:ymferloop}
+    \label{fig:ymgfermionloop}
 \end{figure}
 \begin{equation}
 \begin{split}
-\Pi^{ab}_{\mu\nu}(k)&=-\int\frac{\mathrm{d}^{4-\epsilon} p}{(2\pi)^{4-\epsilon}}\operatorname{Tr}\Big[(-ig_0\boldsymbol{T}^a\gamma_\mu)\frac{ i}{\slashed{p}-m}(-ig_0\boldsymbol{T}^b\gamma_\nu)\frac{ i}{\slashed{p}-\slashed{k}-m}\Big]    \\
+{\Pi^{(f)}}^{ab}_{\mu\nu}(k)&=-\int\frac{\mathrm{d}^{d} p}{(2\pi)^{d}}\operatorname{Tr}\Big[(-ig_0\boldsymbol{T}^a\gamma_\mu)\frac{ i}{\slashed{p}-m}(-ig_0\boldsymbol{T}^b\gamma_\nu)\frac{ i}{\slashed{p}-\slashed{k}-m}\Big]    \\
 &=\frac{-i8g^2\mu^{2\epsilon}}{16\pi^2}\operatorname{Tr}(\boldsymbol{T}^a\boldsymbol{T}^b)(k_\mu k_\nu-\eta_{\mu\nu}k^2)\Gamma(\frac{\epsilon}{2})\int_0^1\mathrm{d}x\left(\frac{k^2 x(1-x)+m^2}{4\pi}\right)^{-\frac{\epsilon}{2}}\Big[(x-1)x\Big]
 \end{split}
 \end{equation}
-可以求得：
+其中取$d=4-2\epsilon$，且我们有$\operatorname{Tr}(\boldsymbol{T}^a\boldsymbol{T}^b)=T_F\delta^{ab}$，其中$T_F$为SU($N$)群基础表示的归一化因子，同时我们考虑中间Fermion圈存在多个Fermion，那么可以对所有$n_f$个Fermion求和，可以求得：
 \begin{equation}
-   \Pi^{ab}_{\mu\nu}(k) = \frac{ig^2\delta^{ab}}{16\pi^2}(\eta_{\mu\nu}k^2 - k_\mu k_\nu)\Big[ -\frac{4}{3\epsilon} + 8\int_0^1 (1-x)x\ln\frac{k^2 x(1-x)+m^2}{\mu^2} +\text{finite.}\Big] 
+   {\Pi^{(f)}}^{ab}_{\mu\nu}(k) = \frac{ig^2 T_F n_f\delta^{ab}}{16\pi^2}(\eta_{\mu\nu}k^2 - k_\mu k_\nu)\Big[ -\frac{4}{3\epsilon} + 8\int_0^1\mathrm{d}x (1-x)x\ln\frac{k^2 x(1-x)+m^2}{\mu^2} +\text{finite.}\Big] 
    \label{eq:ymferloop}
 \end{equation}
 
+\paragraph{规范Boson圈}
+\begin{figure}[h]
+    \centering
+ \includegraphics[width=.38\linewidth]{图/ymloop1.pdf}~~~~\includegraphics[width=.38\linewidth]{图/ymloop2.pdf}
+    \caption{}
+    \label{fig:ymbosonloop}
+\end{figure}
+对于杨-Mills场而言，我们取Feynman-t'Hooft规范$(\xi = 1)$，对于三相互作用的规范Boson圈，我们有
+\begin{multline}
+    {\Pi^{(B3)}}^{ab}_{\mu\nu}(k)=\frac{1}{2}\int\frac{\mathrm{d}^{d} p}{(2\pi)^{d}}\frac{-i}{p^2}\frac{-i}{(p+k)^2}g_0^2 f^{acd}f^{bcd}\\\times\Big[ \eta_{\mu\rho}(k-p)_\sigma + \eta_{\rho\sigma}(2p+k)_\mu + \eta_{\sigma\mu}(-p-2k)_\rho \Big]\Big[ \delta_\nu^\rho (p-k)^\sigma + \eta^{\rho\sigma}(-2p-k)_\nu + \delta_\nu^\sigma (p+2k)^\rho \Big]
+\end{multline}
+其中结构常数收缩即为$f^{acd}f^{bcd}=C_A\delta^{ab}$，$C_A$为规范群伴随表示的Casimir算符平方，可得
+\begin{multline}
+      {\Pi^{(B3)}}^{ab}_{\mu\nu}(k)  =\frac{ig_0^2 C_A\delta^{ab}}{(4\pi)^{d/2}}\int_0^1\mathrm{d}x\frac{1}{[-x(1-x)k^2]^{2-d/2}}\Bigg( \Gamma(1-\frac{d}{2})\eta_{\mu\nu}k^2\Big[\frac{3}{2}(d-1)x(1-x)\Big]\\+\frac12\Gamma(2-\frac{d}{2})\eta_{\mu\nu}k^2\Big[(2-x)^2+(1+x)^2\Big] - \Gamma(2-\frac{d}{2})k_\mu k_\nu \Big[ (1-\frac{d}{2})(1-2x)^2 + (1+x)(2-x) \Big]\Bigg)
+\end{multline}
+而对于另一个包含四相互作用规范Boson圈，我们有
+\begin{multline}
+    {\Pi^{(B4)}}^{ab}_{\mu\nu}(k) = \frac{1}{2}\int\frac{\mathrm{d}^{d   }p}{(2\pi)^{d}} \frac{-i\eta^{\rho\sigma}}{p^2}\delta^{cd}(-ig_0^2)\Big[ f^{abe}f^{cde}(\eta_{\mu\rho}\eta_{\nu\sigma}-\eta_{\mu\sigma}\eta_{\nu\rho} \\+ f^{ace}f^{bde}(\eta_{\mu\nu}\eta_{\rho\sigma}-\eta_{\mu\sigma}\eta_{\nu\rho}) +f^{ade}f^{bce}(\eta_{\mu\nu}\eta_{\rho\sigma}-\eta_{\mu\rho}\eta_{\nu\sigma}) \Big]
+\end{multline}
+计算Feynman积分，可得
+\begin{multline}
+    {\Pi^{(B4)}}^{ab}_{\mu\nu}(k) = \frac{ig_0^2 C_A}{(4\pi)^{d/2}}\delta^{ab}\int_0^1\mathrm{d}x\frac{1}{[-x(1-x)k^2]^{2-d/2}}\Bigg[-\Gamma(1-\frac{d}{2})\eta_{\mu\nu}k^2[\frac{1}{2}d(d-1)x(1-x)] \\-\Gamma(2-\frac{d}{2})\eta_{\mu\nu}k^2[(d-1)(1-x)^2]  \Bigg]
+\end{multline}
+\paragraph{鬼场圈} 对于鬼场贡献的规范Boson自能，我们可以用计算
+\begin{figure}[h]
+    \centering
+       \includegraphics[width=.38\linewidth]{图/ymgholoop.pdf}
+    \caption{}
+    \label{fig:ymgghostloop}
+\end{figure}
+\begin{equation}
+\begin{split}
+         {\Pi^{(G)}}^{ab}_{\mu\nu}(k) &= -\int \frac{\mathrm{d}^{d}p}{(2\pi)^{d}} \frac{i}{p}\frac{i}{(p-k)^2}g_0^2f^{dac}(p-k)_\mu f^{cbd}p_\nu\\
+         &=\frac{ig_0^2 C_A\delta^{ab}}{(4\pi)^{d/2}}\int_0^1 \mathrm{d}x \frac{1}{[-x(1-x)k^2]^{2-d/2}}\left( - \Gamma(1-\frac{d}{2})\eta_{\mu\nu}k^2 [\frac{1}{2}x(1-x)] + \Gamma(2-\frac{d}{2})k_\mu k_\nu [x(1-x)] \right)
+\end{split}
+\end{equation}
+
+我们需要将规范Boson圈与鬼场圈的所有贡献加起来，并取$d=4-2\epsilon$，且另耦合常数$g^2 = g^2\mu^{2\epsilon}$，得到
+\begin{equation}
+    \begin{split}
+        &~~~~{\Pi^{(B3)}}^{ab}_{\mu\nu}(k) + {\Pi^{(B4)}}^{ab}_{\mu\nu}(k) + {\Pi^{(G)}}^{ab}_{\mu\nu}(k) \\&= \frac{ig_0^2 C_A\delta^{ab}}{(4\pi)^{d/2}}(-k^2)^{d/2-2}\Gamma\left(1- \frac{d}{2}\right) \frac{\Gamma(\frac{d}{2}-1)^2}{\Gamma(d-2)}\frac{(d-2)(2-3d)}{4(d-1)}(\eta_{\mu\nu }k^2-k_\mu k_\nu)\\&=\frac{ig^2 C_A\delta^{ab}}{16\pi^2}(\eta_{\mu\nu }k^2-k_\mu k_\nu)\Bigg[ \frac{5}{3\epsilon} -\frac{5}{3}\ln\frac{k^2}{\mu^2}+\mathrm{finite.}+\mathcal{O}(\epsilon) \Bigg]
+    \end{split}
+\end{equation}
+最终加上Fermion圈，我们可以得到单圈的杨-Mills场的自能
+\begin{equation}
+    \Pi^{ab}_{\mu\nu}(k) = \frac{1}{Z_A}\frac{-i\delta^{ab}}{k^2}\left(  \eta_{\mu\nu}-\frac{k_\mu k_\nu}{k^2}\right)\Bigg[ 1 + \frac{g^2}{16\pi^2\epsilon}\left(\frac{5}{3}C_A - \frac{4}{3}T_F n_f \right) + \Pi(k^2, \mu^2) + \mathrm{finite.} \Bigg]
+\end{equation}
+那么我们可以解得杨-Mills场的重整化系数
+\begin{equation}
+    Z_A = 1+ \frac{g^2}{16\pi^2\epsilon}\left(\frac{5}{3}C_A - \frac{4}{3}T_F n_f \right)
+\end{equation}
+
+\subsection{杨-Mills场中的Fermion自能}
+\begin{figure}[h]
+\centering
+\begin{fmffile}{self_quark}
+        \begin{fmfgraph*}(120,100)
+       \fmfleft{i}
+       \fmfright{o}
+       \fmf{fermion,tension=1,label=$p$}{i,v1} 
+       \fmf{fermion,tension=1,label=$p$}{v2,o}
+       \fmf{gluon,right,tension=0,label=${k}$,label.dist=12pt}{v2,v1}
+       \fmf{fermion,label=${k-p}$}{v1,v2}
+    \end{fmfgraph*}
+    \end{fmffile}
+    \caption{杨-Mills场Fermion单圈自能}
+\end{figure}
+对于与杨-Mills场相互作用的Fermion而言，其单圈自能由此Feynman图进行计算，我们可得（取Feynman-t'Hooft规范）
+\begin{equation}
+    \Sigma(p) = \int\frac{\mathrm{d}^dk}{(2\pi)^d} (ig_0)^2 \gamma^\mu\boldsymbol{T}^a \frac{\slashed{k}-\slashed{p}}{(k-p)^2}\gamma_\mu \boldsymbol{T}^a \frac{-i}{p^2} 
+\end{equation}
+其中对于SU($N$)的规范场我们有$\boldsymbol{T}^a \boldsymbol{T}^a = C_F = \frac{N^2-1}{2N}$，$C_F$为SU($N$)群基础表示的Casimir算符，最终带入$d=4-2\epsilon$，该自能可以得到
+\begin{equation}
+\begin{split}
+        \Sigma(p) &= -g_0^2 C_F\frac{d-2}{2}\slashed{p}\frac{1}{(4\pi)^{d/2}}\Gamma\!\left(2-\frac{d}{2}\right)\frac{\Gamma(\frac{d}{2}-1)^2}{\Gamma(d-2)}(-p^2)^{d/2-2}\\
+&=-\frac{g^2C_F}{16\pi^2}\,\slashed p\left[\frac1\epsilon+\ln\!\left(\frac{\mu^2}{-p^2}\right)+\mathrm{finite.}+O(\epsilon)\right]       
+\end{split}
+\end{equation}
+因此我们可以解得重整化系数
+\begin{equation}
+    Z_\psi = 1-\frac{g^2}{16\pi^2\epsilon}C_F
+\end{equation}
+
+\subsection{杨-Mills场辐射修正}
+对于杨-Mills场与Fermion相互作用顶点，其单圈Feynman图如图所示，那么我们可以以此计算此相互作用的单圈修正，即杨-Mills场的辐射修正。
+\begin{figure}[h]
+    \centering
+    ~\hfill\begin{fmffile}{ym_radcorr1}
+      \begin{fmfgraph*}(80,100)
+    \fmfleft{x2,x1}
+    \fmfright{x3}
+    \fmf{gluon,t=1,label=$k$,label.dist=8pt}{x3,v}
+    \fmf{fermion,label=$p_1$}{x2,v1}
+    \fmf{plain,t=1.3}{v1,v}
+        \fmf{plain,t=1.3}{v,v2}
+    \fmf{fermion,label=$p_2$}{v2,x1}
+        \fmffreeze
+    \fmf{gluon,left=0.36,label=$q$,l.s=left}{v1,v2}
+  \end{fmfgraph*}
+\end{fmffile}\hfill
+    \begin{fmffile}{ym_radcorr2}
+      \begin{fmfgraph*}(80,100)
+    \fmfleft{x2,x1}
+    \fmfright{x3}
+    \fmf{gluon,t=1,label=$k$,label.dist=8pt}{x3,v}
+    \fmf{fermion,label=$p_1$}{x2,v1}
+    \fmf{gluon,t=1.3}{v1,v}
+        \fmf{gluon,t=1.3}{v,v2}
+    \fmf{fermion,label=$p_2$}{v2,x1}
+        \fmffreeze
+    \fmf{fermion,left=0.0,label=$q$,l.s=left}{v1,v2}
+  \end{fmfgraph*}
+\end{fmffile}\hfill~
+    \caption{杨-Mills场与Fermion单圈相互作用}
+    \label{fig:ym_radcorr}
+\end{figure}
+对于左图，我们可以计算得
+\begin{equation}
+    (\Gamma^{(1)})^{a}_{\mu} = \int\frac{\mathrm{d}^d q}{(2\pi)^{d}}g_0^3\boldsymbol{T}^b\boldsymbol{T}^a\boldsymbol{T}^b\frac{\gamma^\nu(\slashed{q}+\slashed{p}_2)\gamma_\mu(\slashed{q}+\slashed{p}_1)\gamma_\nu}{(q+p_2)^2 (q+p_1)^2 q^2}
+\end{equation}
+带入$d=4-2\epsilon$，可得
+\begin{equation}
+     (\Gamma^{(1)})^{a}_{\mu} =  \frac{ig^3 }{16\pi^2}\boldsymbol{T}^a\left( C_F - \frac{C_A}{2}\right)\gamma_\mu \Big(\frac{1}{\epsilon} + \mathrm{finite.} \Big)
+\end{equation}
+
+而对于右图，我们可得
+\begin{multline}
+     (\Gamma^{(2)})^{a}_{\mu} =  \int\frac{\mathrm{d}^d q}{(2\pi)^{d}} (ig\gamma_\nu\boldsymbol{T}^b)\frac{i\slashed{q}}{q^2}(ig\gamma_\rho\boldsymbol{T}^c)\frac{-i}{(p_2-q)^2}\frac{-i}{(p_1-q)^2}\\\times gf^{abc}\Big[ \delta^\nu_\mu (2p_2 -p_1 - q)^\rho +\delta^{\rho}_\mu (2p_1-p_2 - q)^\nu+ \eta^{\nu\rho}(-p_1-p_2+2q)_\mu  \Big]
+\end{multline}
+取$d=4-2\epsilon$，可得
+\begin{equation}
+    (\Gamma^{(2)})^{a}_{\mu} =  \frac{ig^3}{16\pi^2}\boldsymbol{T}^a\gamma_\mu \frac{3C_A}{2}\Big(\frac{1}{\epsilon} + \mathrm{finite.} \Big)
+\end{equation}
+最终加在一起，我们可得最终的单圈辐射修正结果
+\begin{equation}
+    \Gamma^a_\mu = \frac{ig^3}{16\pi^2}(C_F+C_A) \boldsymbol{T}^a\gamma_\mu \Big(\frac{1}{\epsilon} + \mathrm{finite.} \Big)
+\end{equation}
+这样我们可以解得对于规范Boson与Fermion的三相互作用顶点的重整化系数
+\begin{equation}
+    Z_1 = 1-\frac{g^2}{16\pi^2\epsilon} (C_F+C_A)
+\end{equation}
+
+
+
+\subsection{杨-Mills场的跑动耦合常数}
+根据此前的重整化系数关系，我们可以知道
+\begin{equation}
+    Z_g = Z_1 Z_\psi^{-1} Z_A^{-\frac{1}{2}},\qquad \delta_g = -\delta_1 + \delta_\psi +\frac{1}{2}\delta_A
+\end{equation}
+那么我们综合以下求解结果
+\begin{equation}
+    \delta_A = \frac{g^2}{16\pi^2\epsilon}\left(\frac{5}{3}C_A - \frac{4}{3}T_F n_f \right),~~\delta_\psi = -\frac{g^2}{16\pi^2\epsilon}C_F,~~\delta_1 = -\frac{g^2}{16\pi^2\epsilon} (C_F+C_A)
+\end{equation}
+最终可得
+\begin{equation}
+    \delta_g =\delta_1 -\delta_\psi -\frac{1}   {2}\delta_A=- \frac{g^2}{32\pi^2\epsilon}\left(\frac{11}{3}C_A - \frac{4}{3}T_F n_f \right)
+\end{equation}
+那么裸的耦合常数即为
+\begin{equation}
+    g_0 = g\mu^{\epsilon}Z_g = g\mu^{\epsilon}\Bigg[1 -\frac{g^2}{32\pi^2\epsilon}\left(\frac{11}{3}C_A - \frac{4}{3}T_F n_f \right)\Bigg]
+\end{equation}
+由$\mu\frac{\mathrm{d}g_0}{\mathrm{d}\mu}=0 $，我们可以得到杨-Mills场的$\beta(g)$函数，即为
+\begin{equation}
+    \beta (g)= \mu\frac{\mathrm{d}g}{\mathrm{d}\mu} = -\frac{g^3}{16\pi^2}\left(\frac{11}{3}C_A - \frac{4}{3}T_F n_f \right)
+\end{equation}
+
+对于SU(3)的杨-Mills场，描述了传递强相互作用的胶子，胶子与作为Fermion的夸克耦合，即构成了量子色动力学 (QCD)。其中色量子数有3个，因此$C_A=3$， 而$T_F=\frac12$。同时我们已知存在6种夸克，因此带入之后可得
+\begin{equation}
+    \beta(g) = -\frac{7g^3}{16\pi^2}<0
+\end{equation}
+此时我们看出，对于QCD而言，其$\beta(g)$函数小于0，意味着当能标$\mu$越低的时候，耦合常数$g$越大。当能标低到一定程度的时候，耦合常数会出现$g>1$的情形，此时散射振幅相互作用图像计算的微扰展开将不再适用，此时的能标称为$\Lambda_\mathrm{QCD}$。而当能标越高时，强相互作用的强度反而越来越小，在极高能标下，强相互作用耦合常数则趋近于0。而对于夸克之间的强相互作用而言，相互作用距离越远同样意味着能标越小，此时越远的强相互作用越大，因此当夸克之间的距离较远时，他们也会受到更强的强相互作用，从而运动被限制在一定范围内，这就是夸克的渐近自由。因此夸克也会被禁闭在强子内部，我们无法观测到单独的夸克，这就是夸克的色禁闭效应。
 
 \section{规范对称性自发破缺与BEH机制}
-对于杨-Mills场而言，场的质量项$mA_\mu A^\mu$显然破坏了规范对称性，因此杨-Mills场必须为无质量场。然而当我试图描述带质量的规范相互作用时，我们则需要引入额外的机制赋予规范场的质量项。这样的机制假定规范对称性存在于在高能标的情形，此时规范场不具有质量。而当系统自然地过渡到低能标时，规范场的质量项自发的产生，则规范对称性同时自发地被破坏，即称之为“规范对称性自发破缺”。
+对于杨-Mills场而言，场的质量项$mA_\mu A^\mu$显然破坏了规范对称性，因此杨-Mills场必须为无质量场。然而当我试图描述带质量的规范相互作用时，我们则需要引入额外的机制赋予规范场的质量项。这样的机制假定规范对称性存在于在高能标的情形，此时规范场不具有质量。而当系统自然地过渡到低能标时，规范场的质量项自发的产生，则规范对称性同时自发地被破坏，即称之为“规范对称性自发破缺”。这样的获取质量的机制称为Brout-Englert-Higgs机制。
 
 通常来说场的基态即为真空态，其真空期望值通常为零。然而我们假设拉格朗日中存在某个场，其真空期待值为非零值，那么该场的自由度将会在高于其它场基态的能标中冻结。如果该场还具有不同分量，其分量之间存在着规范对称性，那么如果该场不同分量之间的规范对称性在基态中被破坏的话，便可以在其它场仍能处于自由态的时候，自发的破坏规范对称性。
 

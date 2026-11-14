@@ -1,0 +1,39 @@
+\begin{tikzpicture}[
+    >=Stealth, % Use Stealth arrowheads
+    line width=0.8pt,
+    font=\large
+]
+
+    % === Coordinate System S (Origin O) ===
+    \coordinate (O) at (0,0);
+    \draw[->] (O) -- (-2.14,-2.14) node[below left] {\(x\)};
+    \draw[->] (O) -- (3,0) node[below right] {\(y\)};
+    \draw[->] (O) -- (0,3) node[left] {\(z\)};
+    \node[left] at (O) {\(O\)};
+    \node at (1.2, 2.5) {\(S\)};
+
+    % === Coordinate System S' (Origin O') ===
+    \coordinate (Oprime) at (5,1);
+    \draw[->] (Oprime) -- ++(-2.14,-2.14) node[below left] {\(x'\)};
+    \draw[->] (Oprime) -- ++(3.,0) node[right] {\(y'\)};
+    \draw[->] (Oprime) -- ++(0,3) node[above] {\(z'\)};
+    \node[below] at (Oprime) {\(O'\)};
+    \node at (8, 3) {\(S'\)};
+
+    % === Point P (Tip of the vector) ===
+    \coordinate (P) at (3.3, 3);
+
+    % === Vectors ===
+    % Vector r (from O to P)
+    \draw[->, thick] (O) -- (P) node[midway, above left] {\(\vec{r}\)};
+    
+    % Vector R (from O to O')
+    \draw[->, thick] (O) -- (Oprime) node[midway, above] {\(\vec{R}\)};
+    
+    % Vector r' (from O' to P)
+    \draw[->, thick] (Oprime) -- (P) node[midway, above right] {\(\vec{r}\,'\)};
+
+
+   
+
+\end{tikzpicture}
