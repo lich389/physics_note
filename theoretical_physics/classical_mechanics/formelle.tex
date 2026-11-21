@@ -1,5 +1,5 @@
 
-\part{理论框架}
+\part{形式理论}
 \chapter{Lagrangian力学}
 \section{最小作用量原理}
 \label{sec:princ_least_action}
@@ -11,7 +11,12 @@
 
 此时用来描述路径的$q$则称之为\textbf{广义坐标}，广义坐标不仅仅可以是常用的Cartesian坐标系，也可以表达任意坐标系，包括运动坐标系，甚至有的时候并不一定是真实的空间位置，本质上所有的广义坐标其实是我们在最小作用量原理中需要去求的解。
 
-
+\begin{figure}[h]
+    \centering
+    \input{figs/path}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
 
 此时，由于时间是整个系统演化的独立自由参数，但作用量又不依赖于该参数演化，意味着作用量可以写为某个量对自由独立参数的积分，即
 \begin{equation}
@@ -88,6 +93,8 @@
 \begin{equation}
     \frac{\bd}{\bd t} \left(\frac{\partial\lag}{\partial \dot{q}} \right)-\frac{\partial\lag}{\partial q}  = 0\label{eq:eqomot}
 \end{equation}
+
+我们可以看到，实际上Euler-Lagrangian方程给出的运动方程与Newtonian运动方程一致，很多人会因此疑惑，为什么我们需要通过这一套泛函分析的流程绕一大圈才得到我们已知的定律？其实这种泛函分析的流程不仅仅是让我们得到运动方程，更重要的是给出了一套获得运动方程的框架。通常来说，我们只需要带入边界条件通过求解偏微分方程，就能解出运动方程的解，而泛函分析则是用来求解“运动方程的形式”，只有知道运动方程的具体形式之后，才能继续通过解微分方程来获取具体的物理量。在Newtonian力学中，通常运动方程的形式相对简单，能够之间观察出来，但是在经典物理之外，具体的物理问题往往要比Newtonian运动定律中的质点运动学要复杂的多，运动方程所满足的条件形式也复杂多变，而泛函分析恰恰提供了一种能够找到方程形式的数学工具。这一套强大的框架不仅仅是囊括了我们生活中的物理，更是包含了描述微观的粒子以及宏观的宇宙的规律进来，为物理学的研究提供了最基础的语言。
 
 \section{相对性原理}
 \label{sec:Galilean}
@@ -336,8 +343,8 @@ Poisson可以看成是一种代数运算，具有如下性质
 新的正则坐标依然保持相空间的辛结构
 \begin{equation}
     J = \begin{pmatrix}
-        0&  \mathbb{1}\\
-        -\mathbb{1}& 0
+        0&  \mathbbm{1}\\
+        -\mathbbm{1}& 0
     \end{pmatrix},~~~~M^T J M = J
 \end{equation}
 同时，新的正则坐标也满足Poisson括号
