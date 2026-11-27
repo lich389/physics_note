@@ -58,15 +58,60 @@
 所以，作用量和Lagrangian都是用来帮助我们去寻找求解运动方程的辅助量。而只有当运动方程保持不变时，我们才能认为真实的物理没有发生变化，即使作用量或者Lagrangain发生变换。但是反过来说，如果作用量或者Lagrangian没有发生变化，那么自然运动方程也不会改变。
 \section{约束系统}
 \label{sec:constraint}
-对于一个存在$N$个质点的力学系统，在经典无约束的情形下每个质点的路径都需要用3个坐标来描述，那么系统的广义坐标的个数就是$3N$个，即为系统的\textbf{自由度}$s$。作用量可以表示为
+对于一个任意的力学系统而言，其位形状态定义为$\{\vec r_1, \dots,\vec r_n\}$，那么系统的运动状态可以由$\{\vec r_1, \dots,\vec r_n;\dot{\vec{r}}_1, \dots,\dot{\vec{r}}_n\}$来描述。而此时，约束对系统运动状态的限制则可用约束方程来描述
 \begin{equation}
-    \action = \action[q_1,\cdots,q_s]
+    f(\vec r_1, \dots,\vec r_n;\dot{\vec{r}}_1, \dots,\dot{\vec{r}}_n;t)=0
 \end{equation}
-但是如果存在一定的约束，一部分质点并不是在三维空间中任意运动的，而是在平面上，或者是线上运动的，那么此时系统总的自由度$s$就会小于$3N$个。
+这样的约束方程也称之为约束条件。如果约束条件仅与系统的位形相关，而速度不作约束，则称之为几何约束:
+\begin{equation}
+    f(\vec r_1, \dots,\vec r_n;t)=0
+\end{equation}
+而有些约束仅对运动速度进行限制，却不限制位形，那么则称为运动约束：
+\begin{equation}
+    f(\dot{\vec{r}}_1, \dots,\dot{\vec{r}}_n;t)=0
+\end{equation}
+然而几何约束虽然不显含速度项，却可以通过对方程进行全微分化为运动约束
+\begin{equation}
+    f(\vec r_1, \dots,\vec r_n;t)=0,\qquad \sum_i^n \frac{\partial f}{\partial \vec{r}_i} \dot{\vec{r}}_i + \frac{\partial f}{\partial t} = 0
+\end{equation}
+而运动约束虽然可以通过积分来转化为几何约束，但是并非所有运动约束方程都是可积的。如果运动约束方程可积，那么这样的约束称之为完整约束，运动约束与几何约束本质上等价，可互相转化。而如果运动约束方程不可积，则称之为非完整约束，运动约束与几何约束并不等价。如果一个系统仅受完整约束，那么这样的系统称之为完整系统，而如果系统存在非完整约束，那么系统即为非完整系统。
 
-意味着有$s$个自由度时，同样也有$s$个广义速度。那么对于多自由度体系来说，可以表示为
+除了上述的约束类型以外，还有定常约束，即约束方程不显含时间
+\begin{equation}
+    f(\vec r_1, \dots,\vec r_n;\dot{\vec{r}}_1, \dots,\dot{\vec{r}}_n)=0
+\end{equation}
+以及单侧约束，即约束方程为不等式
+\begin{equation}
+    f(\vec r_1, \dots,\vec r_n;\dot{\vec{r}}_1, \dots,\dot{\vec{r}}_n;t)\lesseqgtr 0
+\end{equation}
+
+我们考虑在3维空间中的一个存在$N$个质点的力学系统，在经典无约束的情形下每个质点的位形状态都需要用3个坐标来描述，那么系统的广义坐标的个数就是$3N$个。作用量可以表示为
+\begin{equation}
+    \action = \action[q_1,\cdots,q_{3N}]
+\end{equation}
+此时对所有的$3N$个独立广义坐标进行变分，则可获得$3N$个独立的运动方程。
+但是如果存在一定的约束，一部分质点并不是在三维空间中任意运动的，而是在某个面上，或者是线上运动的，那么此时系统总的广义坐标个数就会小于$3N$个。考虑系统存在$m$个完整约束，则存在$m$个约束方程$f_j,~(j=1,\cdots m)$。那么利用这$m$个约束方程，便可求解出$m$个广义坐标的依赖关系，那么此时系统独立坐标的个数则是$3N-m$，现在这个独立坐标个数便称之为自由度$s$。每一个完整约束都可以使系统的自由度降低一个。
+
+对于每个质点的位形状态$\vec{r}_i$，在具体的三维坐标系中可以用坐标$\vec{r}_i = (u_{i1},~ u_{i2},~u_{i3})$来描述，但是最终的$s$个广义坐标却并不一定是从具体坐标系的坐标$u$来选取出的。因此会存在坐标关系
+\begin{align}
+    \vec{r}_i &= \vec{r}_i(q_1,\cdots,q_s;t),~~i = 1,\cdots,N\\
+    u_i &= u_i(q_1,\cdots,q_s;t),~~i = 1,\cdots,3N
+\end{align}
+由此可见，广义坐标实际上在更广义的程度上并不一定是实际的位形坐标，也不再是一定能够组成位形矢量，甚至广义坐标的量纲可以不是长度量纲，可以仅仅只是用于决定系统运动状态的一个独立参数。
+
+我们考虑系统有$s$个自由度时，那么同样也有对应的$s$个广义速度。那么对于多自由度体系来说，可以表示为
 \begin{equation}
     \action [q_1,\cdots,q_s] = \int_{t_1} ^{t_2} \lag(q_1,\cdots,q_s,\dot{q}_1,\cdots,\dot q_s;t) ~\bd t 
+\end{equation}
+如果只存在完整约束时，那么这$s$个广义速度也是相互独立的。然而如果我们考虑存在$k$个非完整约束，$f_l(u;~\dot u;~t),~~(l=1,\cdots k)$，但是非完整约束方程却并不能降低系统整体自由度，但是却可以求解出广义坐标或者广义速度的关系，从而减少广义速度的个数。那么也可以表述为，非完整约束可以减少无穷小运动的自由度。
+
+对于具体在求解运动方程的过程中，我们可以利用Lagrange乘子法，在作用量求变分的过程中添加约束方程
+\begin{equation}
+    \delta \action[q] = \delta\int \bigg[ \lag(q_\alpha,\dot q_\alpha,t) + \sum_\mu^m \lambda_\mu f_\mu(q_\alpha;t) + \sum_j^k \lambda_j  f_j(q_\alpha,\dot q_\alpha;t) \bigg]\bd t = 0
+\end{equation}
+其中约束方程前的$\lambda$为Lagrange乘子系数，最终做变分法可得
+\begin{equation}
+     \int_{t_1}^{t_2}\left[\sum_\mu\lambda_\mu\frac{\partial f_\mu}{\partial q_\alpha}- \frac{\bd }{\bd t} \left(\frac{\partial\lag}{\partial \dot{q}_\alpha} \right) +\frac{\partial\lag}{\partial q_\alpha}  \right] \delta q_\alpha~\bd t=0
 \end{equation}
 
 \section{Euler-Lagrange方程}
